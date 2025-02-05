@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://l4otxvj8i56v"]
+
+[ext_resource type="Script" path="res://Scripts/CharacterBody2d.cs" id="1_delsr"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gvrc0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xhfpy"]
+
+[node name="PuzzleCharacter" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+collision_layer = 3
+collision_priority = 2.0
+script = ExtResource("1_delsr")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(4.17233e-07, 4.02331e-07)
+scale = Vector2(20, 20)
+texture = SubResource("PlaceholderTexture2D_gvrc0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_xhfpy")
