@@ -1,5 +1,4 @@
 ![Asgard's Draw Logo](Asgard's%20Draw.svg)
-
 # Asgard's Draw
 
 **Team Members:** Rishaan Desai and Maddy Plant

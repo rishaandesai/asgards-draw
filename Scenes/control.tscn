@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://3424aeabtp0f"]
+
+[ext_resource type="PackedScene" uid="uid://cw02smxslflsc" path="res://Scenes/card_test.tscn" id="1_4h5h7"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CardTest" parent="." instance=ExtResource("1_4h5h7")]
+layout_mode = 1
+offset_left = 227.0
+offset_top = 101.0
+offset_right = 419.656
+offset_bottom = 371.008

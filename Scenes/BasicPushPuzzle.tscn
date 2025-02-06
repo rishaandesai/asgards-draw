@@ -1,15 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://bs68130475ox3"]
+[gd_scene load_steps=6 format=3 uid="uid://bs68130475ox3"]
 
 [ext_resource type="PackedScene" uid="uid://l4otxvj8i56v" path="res://Scenes/PuzzleCharacter.tscn" id="1_hebb5"]
 [ext_resource type="PackedScene" uid="uid://1qr0k3yfsbjb" path="res://Scenes/PuzzleWall.tscn" id="2_fv36l"]
-[ext_resource type="PackedScene" uid="uid://cqhykjv0i1kkp" path="res://Scenes/PuzzlePushBlock.tscn" id="3_kvq77"]
+[ext_resource type="PackedScene" uid="uid://c0m7hvxbwg3kq" path="res://Scenes/push_block_area_unlocker.tscn" id="4_ey2oj"]
+[ext_resource type="PackedScene" uid="uid://sm55c3jqp05c" path="res://Scenes/door.tscn" id="5_3lex6"]
+[ext_resource type="PackedScene" uid="uid://cwmx6dka3kwk1" path="res://Scenes/puzzle_push_block.tscn" id="5_s31dv"]
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(271, 166)
-scale = Vector2(5.6436, 5.6436)
 
 [node name="PuzzleCharacter" parent="." instance=ExtResource("1_hebb5")]
-position = Vector2(25, 23)
+position = Vector2(83.6346, 23.0349)
 
 [node name="Node2D2" parent="." instance=ExtResource("2_fv36l")]
 position = Vector2(20, 0)
@@ -52,5 +53,13 @@ rotation = -0.00168062
 position = Vector2(60, 49)
 rotation = -0.00168062
 
-[node name="PuzzlePushBlock" parent="." instance=ExtResource("3_kvq77")]
-position = Vector2(89, 24)
+[node name="Door" parent="." instance=ExtResource("5_3lex6")]
+position = Vector2(111.631, 23.3893)
+
+[node name="PushBlockAreaUnlocker" parent="." instance=ExtResource("4_ey2oj")]
+position = Vector2(-67.1557, 23.3893)
+metadata/door = NodePath("../Door")
+metadata/PushBlock = NodePath("../PuzzlePushBlock")
+
+[node name="PuzzlePushBlock" parent="." instance=ExtResource("5_s31dv")]
+position = Vector2(-0.708769, 23.9209)
