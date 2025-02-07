@@ -12,7 +12,8 @@ config_version=5
 
 config/name="Asgard's Draw"
 run/main_scene="res://Scenes/BasicPushPuzzle.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.3", "C#", "Forward Plus")
+boot_splash/image="res://Asgard's Draw.png"
 config/icon="res://Asgard's Draw.svg"
 
 [dotnet]

@@ -22,3 +22,4 @@ texture = SubResource("PlaceholderTexture2D_gvrc0")
 shape = SubResource("RectangleShape2D_xhfpy")
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+zoom = Vector2(2, 2)
