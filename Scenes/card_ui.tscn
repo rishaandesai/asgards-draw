@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbx1nawk7xl5d"]
+
+[ext_resource type="PackedScene" uid="uid://b5l372d456hso" path="res://Scenes/card_container.tscn" id="1_bot6p"]
+[ext_resource type="PackedScene" uid="uid://b57h1lwg4vldy" path="res://Scenes/card.tscn" id="2_4fybf"]
+
+[node name="CardUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CardContainer" parent="." instance=ExtResource("1_bot6p")]
+layout_mode = 1
+offset_left = 669.0
+offset_top = 193.0
+offset_right = -463.0
+offset_bottom = -435.0
+scale = Vector2(20, 10)
+
+[node name="Card" parent="." instance=ExtResource("2_4fybf")]
+layout_mode = 1
+offset_left = 510.0
+offset_top = 229.0
+offset_right = -542.0
+offset_bottom = -279.0
+
+[node name="Card2" parent="." instance=ExtResource("2_4fybf")]
+modulate = Color(0.447059, 0.501961, 0, 1)
+layout_mode = 1
+offset_left = 326.0
+offset_top = 437.0
+offset_right = -726.0
+offset_bottom = -71.0
+
+[node name="Card3" parent="." instance=ExtResource("2_4fybf")]
+modulate = Color(0, 1, 0, 1)
+layout_mode = 1
+offset_left = 113.0
+offset_top = 359.0
+offset_right = -939.0
+offset_bottom = -149.0
+
+[node name="Card4" parent="." instance=ExtResource("2_4fybf")]
+modulate = Color(0.67451, 0, 1, 1)
+layout_mode = 1
+offset_left = 332.0
+offset_top = 63.0
+offset_right = -720.0
+offset_bottom = -445.0
+
+[node name="Card5" parent="." instance=ExtResource("2_4fybf")]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 1
+offset_left = 196.0
+offset_top = 176.0
+offset_right = -856.0
+offset_bottom = -332.0

@@ -24,3 +24,7 @@ window/size/viewport_height=1024
 [dotnet]
 
 project/assembly_name="Asgard-s Draw"
+
+[layer_names]
+
+2d_physics/layer_4="CardLayer"
