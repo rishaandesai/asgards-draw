@@ -13,28 +13,28 @@ mouse_filter = 1
 
 [node name="CardTest" parent="." instance=ExtResource("1_4h5h7")]
 layout_mode = 1
-offset_left = 353.0
-offset_top = 121.0
-offset_right = 545.656
-offset_bottom = 391.008
+offset_left = 237.0
+offset_top = 362.0
+offset_right = 311.656
+offset_bottom = 467.008
 
 [node name="CardTest2" parent="." instance=ExtResource("1_4h5h7")]
 layout_mode = 1
-offset_left = 535.0
-offset_top = 122.0
-offset_right = 727.656
-offset_bottom = 392.008
+offset_left = 364.0
+offset_top = 366.0
+offset_right = 438.656
+offset_bottom = 471.008
 
 [node name="CardTest3" parent="." instance=ExtResource("1_4h5h7")]
 layout_mode = 1
-offset_left = 790.0
-offset_top = 121.0
-offset_right = 982.656
-offset_bottom = 391.008
+offset_left = 672.0
+offset_top = 373.0
+offset_right = 746.656
+offset_bottom = 478.008
 
 [node name="CardTest4" parent="." instance=ExtResource("1_4h5h7")]
 layout_mode = 1
-offset_left = 707.0
-offset_top = 122.0
-offset_right = 899.656
-offset_bottom = 392.008
+offset_left = 522.0
+offset_top = 364.0
+offset_right = 596.656
+offset_bottom = 469.008
