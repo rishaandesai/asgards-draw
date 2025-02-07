@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://l4otxvj8i56v"]
+[gd_scene load_steps=5 format=3 uid="uid://l4otxvj8i56v"]
 
 [ext_resource type="Script" path="res://Scripts/character_body_2d.gd" id="1_b4etx"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_syxxd"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gvrc0"]
 
@@ -14,6 +16,7 @@ collision_priority = 2.0
 script = ExtResource("1_b4etx")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+material = SubResource("CanvasItemMaterial_syxxd")
 position = Vector2(4.17233e-07, 4.02331e-07)
 scale = Vector2(20, 20)
 texture = SubResource("PlaceholderTexture2D_gvrc0")

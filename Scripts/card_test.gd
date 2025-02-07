@@ -8,30 +8,28 @@ var drag_origin_magnitude: float
 @onready var animationvar: float = 0
 
 func _ready() -> void:
-	connect("gui_input", on_gui_input)
+	set_process_input(true)  # Ensures the node processes input
 
-func on_gui_input(event: InputEvent):
-	if event.is_class("InputEventMouseButton"):
-		event = event as InputEventMouseButton
-		if event.pressed:
+func _input(event: InputEvent):
+	if event is InputEventMouseButton:
+		var mouse_event = event as InputEventMouseButton
+		if mouse_event.pressed:
 			animationvar = 0
-			drag_origin_angle = Vector2().angle_to_point(get_local_mouse_position())
-			drag_origin_magnitude = Vector2().distance_to(get_local_mouse_position())
+			drag_origin_angle = Vector2.ZERO.angle_to(get_local_mouse_position())
+			drag_origin_magnitude = Vector2.ZERO.distance_to(get_local_mouse_position())
 		else:
 			target_position = origin_position
 			target_angle = 0
-	elif event.is_class("InputEventMouseMotion"):
+	elif event is InputEventMouseMotion:
 		animationvar = 0.5
-		event = event as InputEventMouseMotion
-		if event.pressure == 1:
-			target_position = get_global_mouse_position()-Vector2(drag_origin_magnitude*cos(drag_origin_angle+rotation), drag_origin_magnitude*sin(drag_origin_angle+rotation))
-			target_angle = (target_position).angle_to(position)
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+			target_position = get_local_mouse_position() - Vector2(
+				drag_origin_magnitude * cos(drag_origin_angle + rotation),
+				drag_origin_magnitude * sin(drag_origin_angle + rotation)
+			)
+			target_angle = (target_position - position).angle()
 
 func _process(delta: float) -> void:
-	if animationvar < 1:
-		animationvar += delta*0.4
-		print(animationvar)
-	else:
-		animationvar = 1
+	animationvar = clamp(animationvar + delta * 0.4, 0.0, 1.0)
 	position = position.lerp(target_position, animationvar)
 	rotation = lerp(rotation, target_angle, animationvar)
