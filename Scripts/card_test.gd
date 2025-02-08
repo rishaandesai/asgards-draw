@@ -9,6 +9,7 @@ var drag_origin_magnitude: float
 @onready var animationvar: float = 0
 
 func _ready() -> void:
+	
 	connect("gui_input", on_mouse_input)
 
 func on_mouse_input(event: InputEvent):
@@ -21,7 +22,7 @@ func on_mouse_input(event: InputEvent):
 		else:
 			if !$Area2D.get_overlapping_areas().is_empty():
 				if parent_array != NodePath():
-					get_node(parent_array).set_meta("Cards", get_node(parent_array).Cards.filter(func(card: Control): return card != self))
+					get_node(parent_array).Cards = get_node(parent_array).Cards.filter(func(card: Control): return card != self)
 				var container: Control = $Area2D.get_overlapping_areas()[0].get_parent()
 				parent_array = container.get_path()
 				container.Cards.append(self)

@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://sm55c3jqp05c" path="res://Scenes/door.tscn" id="5_3lex6"]
 [ext_resource type="PackedScene" uid="uid://cwmx6dka3kwk1" path="res://Scenes/puzzle_push_block.tscn" id="5_s31dv"]
 
-[node name="Node2D" type="Node2D"]
+[node name="BasicPushPuzzle" type="Node2D"]
 position = Vector2(271, 166)
 
 [node name="PuzzleCharacter" parent="." instance=ExtResource("1_hebb5")]

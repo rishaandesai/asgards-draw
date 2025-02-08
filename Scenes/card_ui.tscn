@@ -13,19 +13,19 @@ grow_vertical = 2
 
 [node name="CardContainer" parent="." instance=ExtResource("1_bot6p")]
 layout_mode = 1
-offset_left = 639.0
-offset_top = 79.0
-offset_right = -1389.0
-offset_bottom = -925.0
-scale = Vector2(20, 10)
+offset_left = 841.0
+offset_top = 45.0
+offset_right = -1187.0
+offset_bottom = -959.0
+scale = Vector2(30, 10)
 
 [node name="CardContainer2" parent="." instance=ExtResource("1_bot6p")]
 layout_mode = 1
-offset_left = 851.0
-offset_top = 396.0
-offset_right = -1177.0
-offset_bottom = -608.0
-scale = Vector2(20, 10)
+offset_left = 449.0
+offset_top = 735.0
+offset_right = -1579.0
+offset_bottom = -269.0
+scale = Vector2(50, 10)
 
 [node name="Card" parent="." instance=ExtResource("2_4fybf")]
 layout_mode = 1
