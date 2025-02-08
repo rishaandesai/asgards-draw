@@ -9,23 +9,9 @@ var drag_origin_magnitude: float
 @onready var animationvar: float = 0
 
 func _ready() -> void:
-	connect("gui_input", on_gui_input)
-	$Area2D.connect("area_entered", on_area_entered)
+	connect("gui_input", on_mouse_input)
 
-func on_area_entered(area: Area2D) -> void:
-	var parent = area.get_parent()
-	if parent.get_path().get_name(parent.get_path().get_name_count()-1) == "CardContainer":
-		var Cards = parent.get_meta("Cards") as Array
-		Cards.append(self)
-		print(parent_array)
-		if (parent_array != NodePath()):
-			get_node(parent_array).set_meta("Cards", get_node(parent_array).get_meta("Cards").filter(func(card: Control): return card != self))
-		parent_array = parent.get_path()
-		parent.reorder()
-		
-	pass
-
-func _input(event: InputEvent):
+func on_mouse_input(event: InputEvent):
 	if event is InputEventMouseButton:
 		var mouse_event = event as InputEventMouseButton
 		if mouse_event.pressed:
@@ -33,10 +19,20 @@ func _input(event: InputEvent):
 			drag_origin_angle = Vector2.ZERO.angle_to(get_local_mouse_position())
 			drag_origin_magnitude = Vector2.ZERO.distance_to(get_local_mouse_position())
 		else:
+			if !$Area2D.get_overlapping_areas().is_empty():
+				if parent_array != NodePath():
+					get_node(parent_array).set_meta("Cards", get_node(parent_array).Cards.filter(func(card: Control): return card != self))
+				var container: Control = $Area2D.get_overlapping_areas()[0].get_parent()
+				parent_array = container.get_path()
+				container.Cards.append(self)
+				container.reorder()
+				print(container)
 			animationvar = 0
 			target_position = origin_position
 			target_angle = 0
-	elif event.is_class("InputEventMouseMotion"):
+			drag_origin_angle = 0
+			drag_origin_magnitude = 0
+	elif event is InputEventMouseMotion:
 		animationvar = 0.5
 		event = event as InputEventMouseMotion
 		if event.pressure == 1:
@@ -46,7 +42,6 @@ func _input(event: InputEvent):
 func _process(delta: float) -> void:
 	if animationvar < 1:
 		animationvar += delta*0.4
-		print(animationvar)
 	else:
 		animationvar = 1
 	position = position.lerp(target_position, animationvar)

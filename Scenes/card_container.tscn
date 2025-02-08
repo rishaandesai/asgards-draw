@@ -11,12 +11,11 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1132.0
-offset_bottom = -628.0
+offset_right = -2028.0
+offset_bottom = -1004.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6djkg")
-metadata/Cards = []
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 8
