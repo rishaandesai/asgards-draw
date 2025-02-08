@@ -2,19 +2,35 @@ class_name Card extends Resource
 
 enum CardType {
 	DAMAGE,
-	SHIELD,
+	HEALER,
 	MULT,
 	UTILITY,
 	JOKER
 }
 
-@export var texture: StringName
+enum PlayCardType {
+	MELEE,
+	RANGED,
+	SUMMON
+}
+
+static var affect_dict: Dictionary = {
+	damage_base = 0,
+	shield_base = 0,
+	heal_base = 0,
+	max_heal_base = 0,
+	mult_base = 0,
+	mult_multiplier = 1
+}
+
+@export var texture: Texture
 @export var type: CardType
 @export var level: int
-@export var affect: Callable
-
-func _init(itexture: StringName, itype: CardType, iaffect: Callable, ilevel: int = 0) -> void:
-	self.texture = itexture
-	self.type = itype
-	self.affect = iaffect
-	self.level = ilevel
+@export var affect: Dictionary = {
+	damage_base = 0,
+	shield_base = 0,
+	heal_base = 0,
+	max_heal_base = 0,
+	mult_base = 0,
+	mult_multiplier = 1
+}

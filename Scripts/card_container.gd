@@ -1,6 +1,7 @@
 extends Control
+class_name CardContainer
 
-var Cards: Array[Control] = []
+var Cards: Array[CanvasCard] = []
 @export var allowedTypes: Array[Card.CardType]
 
 # Called when the node enters the scene tree for the first time.
@@ -9,7 +10,6 @@ func _ready() -> void:
 
 func reorder() -> void:
 	Cards.sort_custom(func(Card1: Control, Card2: Control): return Card1.position.x+Card1.size.x*Card1.scale.x/2+Card1.drag_origin_magnitude*cos(Card1.drag_origin_angle) < Card2.position.x+Card2.size.x*Card2.scale.x/2+Card1.drag_origin_magnitude*cos(Card1.drag_origin_angle))
-	print(Cards)
 	for card: CanvasCard in Cards: 
 		card.z_index = Cards.find(card)
 		card.animationvar = 0

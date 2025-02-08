@@ -1,0 +1,134 @@
+[gd_scene load_steps=7 format=3 uid="uid://bbx1nawk7xl5d"]
+
+[ext_resource type="PackedScene" uid="uid://b5l372d456hso" path="res://Scenes/card_container.tscn" id="1_ck2br"]
+[ext_resource type="PackedScene" uid="uid://dv4u7nqs3roj7" path="res://Scenes/deck.tscn" id="2_kja1g"]
+[ext_resource type="PackedScene" uid="uid://rt6j0ajaffrt" path="res://Scenes/combat_player.tscn" id="5_yn8se"]
+[ext_resource type="PackedScene" uid="uid://sokg2n47yfep" path="res://Scenes/combat_enemy.tscn" id="6_1llcq"]
+[ext_resource type="Script" path="res://Scripts/combat_player.gd" id="6_c4mj5"]
+
+[sub_resource type="GDScript" id="GDScript_tsf48"]
+resource_name = "play_hand"
+script/source = "extends Button
+
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pressed.connect(_button_pressed)
+	pass # Replace with function body.
+
+func _button_pressed() -> void:
+	if $\"../Playing\".Cards.is_empty(): return
+	var cards: Array[Card] = []
+	for c: CanvasCard in $\"../Playing\".Cards:
+		cards.append(c.card)
+	$\"../Deck\".hand = cards
+	var jokers: Array[Joker] = []
+	for j: CanvasCard in $\"../Jokers\".Cards:
+		cards.append(j.Card as Joker)
+	play_hand($\"../CombatEnemy\", $\"../CombatPlayer\", cards, jokers)
+	for c: CanvasCard in $\"../Playing\".Cards:
+		get_parent().remove_child(c)
+		c.get_node(c.parent_array).Cards = c.get_node(c.parent_array).Cards.filter(func(g: CanvasCard): return g != c)
+	for e: CombatEnemy in get_tree().get_nodes_in_group(\"enemies\"):
+		e.take_turn()
+
+func play_hand(enemy: CombatEntity, friendly: CombatEntity, cards: Array[Card], jokers: Array[Joker]) -> void:
+	if cards.is_empty(): return
+	var dict = Card.affect_dict
+	for c: Card in cards:
+		dict.damage_base += c.affect.damage_base
+		dict.shield_base += c.affect.shield_base
+		dict.heal_base += c.affect.heal_base
+		dict.max_heal_base += c.affect.max_heal_base
+		dict.mult_base += c.affect.mult_base
+		dict.mult_base *= c.affect.mult_multiplier
+		for j: Joker in jokers:
+			if j.conditions.call(c):
+				dict.damage_base += j.affect.damage_base
+				dict.shield_base += j.affect.shield_base
+				dict.heal_base += j.affect.heal_base
+				dict.max_heal_base += j.affect.max_heal_base
+				dict.mult_base += j.affect.mult_base
+				dict.mult_base *= j.affect.mult_multiplier
+	var damage = dict.damage_base*dict.mult_base
+	enemy.shield -= damage
+	if enemy.shield < 0:
+		enemy.health += enemy.shield
+		enemy.shield = 0
+	friendly.shield += dict.shield_base*dict.mult_base
+	friendly.max_health += dict.max_heal_base*dict.mult_base
+	friendly.health = max(friendly.health+dict.heal_base*dict.mult_base, friendly.max_health)
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	pass
+"
+
+[node name="CombatScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Jokers" parent="." instance=ExtResource("1_ck2br")]
+layout_mode = 1
+offset_left = 636.0
+offset_top = 61.0
+offset_right = -1392.0
+offset_bottom = -943.0
+scale = Vector2(30, 10)
+allowedTypes = Array[int]([4])
+
+[node name="Hand" parent="." instance=ExtResource("1_ck2br")]
+layout_mode = 1
+offset_left = 449.0
+offset_top = 735.0
+offset_right = -1579.0
+offset_bottom = -269.0
+scale = Vector2(50, 10)
+allowedTypes = Array[int]([0, 1, 2, 3])
+
+[node name="Deck" parent="." instance=ExtResource("2_kja1g")]
+layout_mode = 1
+offset_left = 1583.0
+offset_top = 751.0
+offset_right = -365.0
+offset_bottom = -133.0
+
+[node name="Playing" parent="." instance=ExtResource("1_ck2br")]
+layout_mode = 1
+offset_left = 445.0
+offset_top = 505.0
+offset_right = -1583.0
+offset_bottom = -499.0
+scale = Vector2(50, 10)
+allowedTypes = Array[int]([0, 1, 2, 3])
+
+[node name="PlayHand" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1486.0
+offset_top = 547.0
+offset_right = 1700.0
+offset_bottom = 663.0
+text = "Play Hand"
+script = SubResource("GDScript_tsf48")
+
+[node name="CombatPlayer" parent="." instance=ExtResource("5_yn8se")]
+position = Vector2(632, 388)
+script = ExtResource("6_c4mj5")
+
+[node name="CombatEnemy" parent="." instance=ExtResource("6_1llcq")]
+position = Vector2(1193, 380)
+
+[node name="Target" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Target"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

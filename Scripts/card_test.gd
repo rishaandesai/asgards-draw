@@ -19,7 +19,9 @@ static func init(icard: Card) -> CanvasCard:
 	return c
 
 func _ready() -> void:
-	connect("gui_input", on_mouse_input)
+	gui_input.connect(on_mouse_input)
+	if card.texture != null:
+		$TextureRect.texture = card.texture
 
 func on_mouse_input(event: InputEvent):
 	if event is InputEventMouseButton:
@@ -35,9 +37,9 @@ func on_mouse_input(event: InputEvent):
 					get_node(parent_array).Cards = get_node(parent_array).Cards.filter(func(c: CanvasCard): return c != self)
 					get_node(parent_array).reorder()
 					parent_array = container.get_path()
+					print(parent_array)
 					container.Cards.append(self)
 					container.reorder()
-				print(container)
 			animationvar = 0
 			target_position = origin_position
 			target_angle = 0

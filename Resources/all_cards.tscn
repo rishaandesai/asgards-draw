@@ -1,0 +1,86 @@
+[gd_scene load_steps=9 format=3 uid="uid://dra5ryvhaquj6"]
+
+[ext_resource type="Script" path="res://Resources/Play_Cards.gd" id="1_bdyji"]
+[ext_resource type="Script" path="res://card_class.gd" id="2_2a7f0"]
+
+[sub_resource type="Resource" id="Resource_nl6xg"]
+script = ExtResource("2_2a7f0")
+type = 0
+level = 0
+affect = {
+"damage_base": 5,
+"heal_base": 0,
+"max_heal_base": 0,
+"mult_base": 0,
+"mult_multiplier": 1,
+"shield_base": 0
+}
+
+[sub_resource type="Resource" id="Resource_1vbl4"]
+script = ExtResource("2_2a7f0")
+type = 1
+level = 0
+affect = {
+"damage_base": 0,
+"heal_base": 0,
+"max_heal_base": 0,
+"mult_base": 0,
+"mult_multiplier": 1,
+"shield_base": 5
+}
+
+[sub_resource type="Resource" id="Resource_r2sto"]
+script = ExtResource("2_2a7f0")
+type = 1
+level = 0
+affect = {
+"damage_base": 0,
+"heal_base": 5,
+"max_heal_base": 0,
+"mult_base": 0,
+"mult_multiplier": 1,
+"shield_base": 0
+}
+
+[sub_resource type="Resource" id="Resource_qfg40"]
+script = ExtResource("2_2a7f0")
+type = 1
+level = 0
+affect = {
+"damage_base": 0,
+"heal_base": 0,
+"max_heal_base": 5,
+"mult_base": 0,
+"mult_multiplier": 1,
+"shield_base": 0
+}
+
+[sub_resource type="Resource" id="Resource_fl5mo"]
+script = ExtResource("2_2a7f0")
+type = 2
+level = 0
+affect = {
+"damage_base": 0,
+"heal_base": 0,
+"max_heal_base": 0,
+"mult_base": 5,
+"mult_multiplier": 1,
+"shield_base": 0
+}
+
+[sub_resource type="Resource" id="Resource_w5fcc"]
+script = ExtResource("2_2a7f0")
+type = 2
+level = 0
+affect = {
+"damage_base": 0,
+"heal_base": 0,
+"max_heal_base": 0,
+"mult_base": 0,
+"mult_multiplier": 5,
+"shield_base": 0
+}
+
+[node name="AllCards" type="Node"]
+script = ExtResource("1_bdyji")
+AllCards = Array[Object]([SubResource("Resource_nl6xg"), SubResource("Resource_1vbl4"), SubResource("Resource_r2sto"), SubResource("Resource_qfg40"), SubResource("Resource_fl5mo"), SubResource("Resource_w5fcc")])
