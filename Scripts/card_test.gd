@@ -37,7 +37,6 @@ func on_mouse_input(event: InputEvent):
 					get_node(parent_array).Cards = get_node(parent_array).Cards.filter(func(c: CanvasCard): return c != self)
 					get_node(parent_array).reorder()
 					parent_array = container.get_path()
-					print(parent_array)
 					container.Cards.append(self)
 					container.reorder()
 			animationvar = 0

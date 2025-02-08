@@ -15,6 +15,8 @@ script/source = "extends Button
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pressed.connect(_button_pressed)
+	for i in range(0,5):
+		call_deferred(\"fill_hand\")
 	pass # Replace with function body.
 
 func _button_pressed() -> void:
@@ -27,11 +29,24 @@ func _button_pressed() -> void:
 	for j: CanvasCard in $\"../Jokers\".Cards:
 		cards.append(j.Card as Joker)
 	play_hand($\"../CombatEnemy\", $\"../CombatPlayer\", cards, jokers)
+	var i: int = $\"../Playing\".Cards.size()
 	for c: CanvasCard in $\"../Playing\".Cards:
-		get_parent().remove_child(c)
 		c.get_node(c.parent_array).Cards = c.get_node(c.parent_array).Cards.filter(func(g: CanvasCard): return g != c)
+		get_parent().remove_child(c)
+	for k in range (0, i):
+		fill_hand()
 	for e: CombatEnemy in get_tree().get_nodes_in_group(\"enemies\"):
 		e.take_turn()
+
+func fill_hand() -> void: 
+	var c = CanvasCard.init($\"../Deck\".draw_card())
+	get_parent().add_child(c)
+	var container = get_node(\"../Hand\")
+	c.parent_array = container.get_path()
+	c.position = $\"../Deck\".position
+	container.Cards.append(c)
+	container.reorder()
+	c.z_index = z_index+1
 
 func play_hand(enemy: CombatEntity, friendly: CombatEntity, cards: Array[Card], jokers: Array[Joker]) -> void:
 	if cards.is_empty(): return
@@ -119,9 +134,14 @@ script = SubResource("GDScript_tsf48")
 [node name="CombatPlayer" parent="." instance=ExtResource("5_yn8se")]
 position = Vector2(632, 388)
 script = ExtResource("6_c4mj5")
+health = 600
+max_health = 600
 
 [node name="CombatEnemy" parent="." instance=ExtResource("6_1llcq")]
 position = Vector2(1193, 380)
+health = 400
+max_health = 400
+shield = 200
 
 [node name="Target" type="Control" parent="."]
 anchors_preset = 0

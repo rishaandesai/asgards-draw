@@ -11,23 +11,7 @@ func _ready() -> void:
 			var c: Card = b.duplicate(true)
 			c.affect = b.affect
 			deck.append(c)
-	
-	gui_input.connect(on_input)
 	pass # Replace with function body.
-
-func on_input(event: InputEvent):
-	if event is InputEventMouseButton:
-		event = event as InputEventMouseButton
-		if event.button_index == 1 && event.pressed == true && !deck.filter(func(c: Card): return !used.has(c)).is_empty():
-			var c = CanvasCard.init(draw_card())
-			get_parent().add_child(c)
-			var container = get_node("../Hand")
-			c.parent_array = container.get_path()
-			print(c.parent_array)
-			c.position = position
-			container.Cards.append(c)
-			container.reorder()
-			c.z_index = z_index+1
 
 func draw_card() -> Card:
 	if deck.filter(func(c: Card): return !used.has(c)).is_empty(): used == hand

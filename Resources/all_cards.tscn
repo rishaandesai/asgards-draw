@@ -1,10 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://dra5ryvhaquj6"]
+[gd_scene load_steps=11 format=3 uid="uid://dra5ryvhaquj6"]
 
 [ext_resource type="Script" path="res://Resources/Play_Cards.gd" id="1_bdyji"]
 [ext_resource type="Script" path="res://card_class.gd" id="2_2a7f0"]
+[ext_resource type="Texture2D" uid="uid://of556ujxxsvb" path="res://DeckTestImage.png" id="3_k04a8"]
+[ext_resource type="Texture2D" uid="uid://q6ischvos8tw" path="res://Grasslands.png" id="4_g6uvq"]
 
 [sub_resource type="Resource" id="Resource_nl6xg"]
 script = ExtResource("2_2a7f0")
+texture = ExtResource("3_k04a8")
 type = 0
 level = 0
 affect = {
@@ -31,6 +34,7 @@ affect = {
 
 [sub_resource type="Resource" id="Resource_r2sto"]
 script = ExtResource("2_2a7f0")
+texture = ExtResource("4_g6uvq")
 type = 1
 level = 0
 affect = {
