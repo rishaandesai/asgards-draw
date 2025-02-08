@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bbx1nawk7xl5d"]
 
 [ext_resource type="PackedScene" uid="uid://b5l372d456hso" path="res://Scenes/card_container.tscn" id="1_bot6p"]
-[ext_resource type="PackedScene" uid="uid://b57h1lwg4vldy" path="res://Scenes/card.tscn" id="2_4fybf"]
+[ext_resource type="PackedScene" uid="uid://dv4u7nqs3roj7" path="res://Scenes/deck.tscn" id="3_2b3c1"]
 
 [node name="CardUI" type="Control"]
 layout_mode = 3
@@ -11,80 +11,27 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CardContainer" parent="." instance=ExtResource("1_bot6p")]
+[node name="Jokers" parent="." instance=ExtResource("1_bot6p")]
 layout_mode = 1
 offset_left = 841.0
 offset_top = 45.0
 offset_right = -1187.0
 offset_bottom = -959.0
 scale = Vector2(30, 10)
+allowedTypes = Array[int]([4])
 
-[node name="CardContainer2" parent="." instance=ExtResource("1_bot6p")]
+[node name="Hand" parent="." instance=ExtResource("1_bot6p")]
 layout_mode = 1
 offset_left = 449.0
 offset_top = 735.0
 offset_right = -1579.0
 offset_bottom = -269.0
 scale = Vector2(50, 10)
+allowedTypes = Array[int]([0, 1, 2, 3])
 
-[node name="Card" parent="." instance=ExtResource("2_4fybf")]
+[node name="Deck" parent="." instance=ExtResource("3_2b3c1")]
 layout_mode = 1
-offset_left = 114.0
-offset_top = 71.0
-offset_right = -1834.0
-offset_bottom = -813.0
-
-[node name="Card2" parent="." instance=ExtResource("2_4fybf")]
-modulate = Color(1, 1, 0, 1)
-layout_mode = 1
-offset_left = 392.0
-offset_top = 385.0
-offset_right = -1556.0
-offset_bottom = -499.0
-
-[node name="Card3" parent="." instance=ExtResource("2_4fybf")]
-modulate = Color(0, 1, 1, 1)
-layout_mode = 1
-offset_left = 348.0
-offset_top = 84.0
-offset_right = -1600.0
-offset_bottom = -800.0
-
-[node name="Card4" parent="." instance=ExtResource("2_4fybf")]
-modulate = Color(0.509804, 0.517647, 1, 1)
-layout_mode = 1
-offset_left = 64.0
-offset_top = 273.0
-offset_right = -1884.0
-offset_bottom = -611.0
-
-[node name="Card5" parent="." instance=ExtResource("2_4fybf")]
-layout_mode = 1
-offset_left = 206.0
-offset_top = 189.0
-offset_right = -1742.0
-offset_bottom = -695.0
-
-[node name="Card6" parent="." instance=ExtResource("2_4fybf")]
-modulate = Color(1, 1, 0, 1)
-layout_mode = 1
-offset_left = 604.0
-offset_top = 425.0
-offset_right = -1344.0
-offset_bottom = -459.0
-
-[node name="Card7" parent="." instance=ExtResource("2_4fybf")]
-modulate = Color(0, 1, 1, 1)
-layout_mode = 1
-offset_left = 463.0
-offset_top = 177.0
-offset_right = -1485.0
-offset_bottom = -707.0
-
-[node name="Card8" parent="." instance=ExtResource("2_4fybf")]
-modulate = Color(0.509804, 0.517647, 1, 1)
-layout_mode = 1
-offset_left = 231.0
-offset_top = 365.0
-offset_right = -1717.0
-offset_bottom = -519.0
+offset_left = 1583.0
+offset_top = 751.0
+offset_right = -365.0
+offset_bottom = -133.0

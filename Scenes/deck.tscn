@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dv4u7nqs3roj7"]
+
+[ext_resource type="Script" path="res://Scripts/deck.gd" id="1_rwreb"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_mrjn5"]
+
+[node name="Deck" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1948.0
+offset_bottom = -884.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_rwreb")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 140.0
+texture = SubResource("PlaceholderTexture2D_mrjn5")

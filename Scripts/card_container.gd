@@ -1,6 +1,7 @@
 extends Control
 
-@onready var Cards: Array[Control] = []
+var Cards: Array[Control] = []
+@export var allowedTypes: Array[Card.CardType]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -8,7 +9,8 @@ func _ready() -> void:
 
 func reorder() -> void:
 	Cards.sort_custom(func(Card1: Control, Card2: Control): return Card1.position.x+Card1.size.x*Card1.scale.x/2+Card1.drag_origin_magnitude*cos(Card1.drag_origin_angle) < Card2.position.x+Card2.size.x*Card2.scale.x/2+Card1.drag_origin_magnitude*cos(Card1.drag_origin_angle))
-	for card: Control in Cards: 
+	print(Cards)
+	for card: CanvasCard in Cards: 
 		card.z_index = Cards.find(card)
 		card.animationvar = 0
 		card.origin_position = position + Vector2((Cards.find(card)*size.x*scale.x)/(Cards.size()), size.y*scale.y/2-card.size.y*card.scale.y/2+(10 if Cards.find(card) % 2 == 0 else 0))

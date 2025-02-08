@@ -14,17 +14,6 @@ modulate = Color(0.661067, 0.551121, 1.15514e-06, 1)
 self_modulate = Color(0.662745, 0.552941, 0, 1)
 position = Vector2(85, 24)
 
-[node name="Node2D" parent="." instance=ExtResource("2_fv36l")]
-modulate = Color(0.938088, 0, 0.290998, 1)
-position = Vector2(13, -23)
-scale = Vector2(2.82943, 1)
-
-[node name="Node2D9" parent="." instance=ExtResource("2_fv36l")]
-modulate = Color(0.938088, 0, 0.290998, 1)
-position = Vector2(84, 47)
-rotation = -0.00168062
-scale = Vector2(10.0405, 1)
-
 [node name="Door" parent="." instance=ExtResource("5_3lex6")]
 modulate = Color(0.937255, 0, 0.290196, 1)
 position = Vector2(115, 16)
@@ -38,18 +27,6 @@ metadata/PushBlock = NodePath("../PuzzlePushBlock")
 [node name="PuzzlePushBlock" parent="." instance=ExtResource("5_s31dv")]
 self_modulate = Color(0.501961, 0.32549, 0.929412, 1)
 position = Vector2(1, 22)
-
-[node name="Node2D2" parent="." instance=ExtResource("2_fv36l")]
-modulate = Color(0.937255, 0, 0.290196, 1)
-position = Vector2(115, -78)
-rotation = 1.57131
-scale = Vector2(7.04, 1)
-
-[node name="Node2D3" parent="." instance=ExtResource("2_fv36l")]
-modulate = Color(0.938088, 0, 0.290998, 1)
-position = Vector2(192, -47)
-rotation = 1.57131
-scale = Vector2(10.6802, 1)
 
 [node name="Door2" parent="." instance=ExtResource("5_3lex6")]
 modulate = Color(0.938088, 0, 0.290998, 1)
@@ -69,11 +46,6 @@ modulate = Color(0.938088, 0, 0.290998, 1)
 position = Vector2(66, -23)
 scale = Vector2(2.47999, 1)
 
-[node name="Node2D4" parent="." instance=ExtResource("2_fv36l")]
-modulate = Color(0.938088, 0, 0.290998, 1)
-position = Vector2(108, -23)
-scale = Vector2(1.74942, 1)
-
 [node name="PuzzlePushBlock3" parent="." instance=ExtResource("5_s31dv")]
 position = Vector2(-49, -55)
 
@@ -82,14 +54,44 @@ position = Vector2(63, -77)
 metadata/door = NodePath("../Door2")
 metadata/PushBlock = NodePath("../PuzzlePushBlock3")
 
-[node name="Node2D5" parent="." instance=ExtResource("2_fv36l")]
+[node name="Walls" type="Node" parent="."]
+
+[node name="Node2D" parent="Walls" instance=ExtResource("2_fv36l")]
 modulate = Color(0.938088, 0, 0.290998, 1)
-position = Vector2(12, -87)
+position = Vector2(284, 143)
+scale = Vector2(2.82943, 1)
+
+[node name="Node2D9" parent="Walls" instance=ExtResource("2_fv36l")]
+modulate = Color(0.938088, 0, 0.290998, 1)
+position = Vector2(355, 213)
+rotation = -0.00168062
+scale = Vector2(10.0405, 1)
+
+[node name="Node2D2" parent="Walls" instance=ExtResource("2_fv36l")]
+modulate = Color(0.937255, 0, 0.290196, 1)
+position = Vector2(386, 88)
+rotation = 1.57131
+scale = Vector2(7.04, 1)
+
+[node name="Node2D3" parent="Walls" instance=ExtResource("2_fv36l")]
+modulate = Color(0.938088, 0, 0.290998, 1)
+position = Vector2(463, 119)
+rotation = 1.57131
+scale = Vector2(10.6802, 1)
+
+[node name="Node2D4" parent="Walls" instance=ExtResource("2_fv36l")]
+modulate = Color(0.938088, 0, 0.290998, 1)
+position = Vector2(379, 143)
+scale = Vector2(1.74942, 1)
+
+[node name="Node2D5" parent="Walls" instance=ExtResource("2_fv36l")]
+modulate = Color(0.938088, 0, 0.290998, 1)
+position = Vector2(283, 79)
 rotation = 1.57131
 scale = Vector2(5.56001, 1)
 
-[node name="Node2D10" parent="." instance=ExtResource("2_fv36l")]
+[node name="Node2D10" parent="Walls" instance=ExtResource("2_fv36l")]
 modulate = Color(0.938088, 0, 0.290998, 1)
-position = Vector2(63, -132)
+position = Vector2(334, 34)
 rotation = -0.00168062
 scale = Vector2(4.2806, 1)
