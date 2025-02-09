@@ -41,7 +41,11 @@ func _button_pressed() -> void:
 			$\"../Playing\".Cards = $\"../Playing\".Cards.filter(func(g: CanvasCard): return g != c)
 			get_parent().remove_child(c)
 			temp.stop()
+			temp.get_parent().remove_child(temp)
 		)
+		$\"../Deck\".hand.clear()
+		for h: CanvasCard in ($\"../Hand\" as CardContainer).Cards:
+			$\"../Deck\".hand.append(h.card)
 	for k in range (0, i):
 		fill_hand()
 	for e: CombatEnemy in get_tree().get_nodes_in_group(\"enemies\"):
