@@ -25,6 +25,7 @@ static var affect_dict: Dictionary = {
 
 @export var texture: Texture
 @export var type: CardType
+@export var played_card_type: PlayCardType
 @export var level: int
 @export var affect: Dictionary = {
 	damage_base = 0,

@@ -9,7 +9,7 @@ var drag_origin_magnitude: float
 @onready var target_position: Vector2 = position
 @onready var target_angle: float = 0
 @onready var animationvar: float = 0
-static var packed_scene = preload("res://Scenes/card.tscn")
+static var packed_scene = preload("res://Scenes/CombatScenes/Util/card.tscn")
 
 
 
@@ -20,6 +20,11 @@ static func init(icard: Card) -> CanvasCard:
 
 func _ready() -> void:
 	gui_input.connect(on_mouse_input)
+	var bobbing: Timer = Timer.new()
+	bobbing.timeout.connect(func(): 
+		target_position)
+	add_sibling(bobbing)
+	
 	if card.texture != null:
 		$TextureRect.texture = card.texture
 

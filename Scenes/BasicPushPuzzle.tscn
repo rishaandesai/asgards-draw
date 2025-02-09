@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://bs68130475ox3"]
 
-[ext_resource type="PackedScene" uid="uid://l4otxvj8i56v" path="res://Scenes/PuzzleCharacter.tscn" id="1_hebb5"]
-[ext_resource type="PackedScene" uid="uid://1qr0k3yfsbjb" path="res://Scenes/PuzzleWall.tscn" id="2_fv36l"]
-[ext_resource type="PackedScene" uid="uid://c0m7hvxbwg3kq" path="res://Scenes/push_block_area_unlocker.tscn" id="4_ey2oj"]
-[ext_resource type="PackedScene" uid="uid://sm55c3jqp05c" path="res://Scenes/door.tscn" id="5_3lex6"]
-[ext_resource type="PackedScene" uid="uid://cwmx6dka3kwk1" path="res://Scenes/puzzle_push_block.tscn" id="5_s31dv"]
+[ext_resource type="PackedScene" uid="uid://l4otxvj8i56v" path="res://Scenes/PuzzleScenes/PuzzleCharacter.tscn" id="1_hebb5"]
+[ext_resource type="PackedScene" uid="uid://1qr0k3yfsbjb" path="res://Scenes/PuzzleScenes/PuzzleWall.tscn" id="2_fv36l"]
+[ext_resource type="PackedScene" uid="uid://c0m7hvxbwg3kq" path="res://Scenes/PuzzleScenes/push_block_area_unlocker.tscn" id="4_ey2oj"]
+[ext_resource type="PackedScene" uid="uid://sm55c3jqp05c" path="res://Scenes/PuzzleScenes/door.tscn" id="5_3lex6"]
+[ext_resource type="PackedScene" uid="uid://cwmx6dka3kwk1" path="res://Scenes/PuzzleScenes/puzzle_push_block.tscn" id="5_s31dv"]
 
 [node name="BasicPushPuzzle" type="Node2D"]
 position = Vector2(271, 166)

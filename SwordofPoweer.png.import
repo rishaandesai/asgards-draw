@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8d4vhlt1f8qn"
-path="res://.godot/imported/card_default.png-749d1977cee3a4718816ab2282dbccd7.ctex"
+uid="uid://b4h6vw3eea612"
+path="res://.godot/imported/SwordofPoweer.png-52c9bc0235ac03ac865416f14c42dbfe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://card_default.png"
-dest_files=["res://.godot/imported/card_default.png-749d1977cee3a4718816ab2282dbccd7.ctex"]
+source_file="res://SwordofPoweer.png"
+dest_files=["res://.godot/imported/SwordofPoweer.png-52c9bc0235ac03ac865416f14c42dbfe.ctex"]
 
 [params]
 

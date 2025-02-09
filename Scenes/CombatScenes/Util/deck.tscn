@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dv4u7nqs3roj7"]
 
-[ext_resource type="Script" path="res://Scripts/deck.gd" id="1_rwreb"]
+[ext_resource type="Script" path="res://Scripts/CombatScenes/deck.gd" id="1_rwreb"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_mrjn5"]
 

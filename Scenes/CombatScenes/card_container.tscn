@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b5l372d456hso"]
 
-[ext_resource type="Script" path="res://Scripts/card_container.gd" id="1_6djkg"]
+[ext_resource type="Script" path="res://Scripts/CombatScenes/card_container.gd" id="1_6djkg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_frem1"]
 

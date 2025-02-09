@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://l4otxvj8i56v"]
 
-[ext_resource type="Script" path="res://Scripts/character_body_2d.gd" id="1_b4etx"]
+[ext_resource type="Script" path="res://Scripts/PuzzleScenes/character_body_2d.gd" id="1_b4etx"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_syxxd"]
 

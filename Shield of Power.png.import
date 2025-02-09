@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://q6ischvos8tw"
-path="res://.godot/imported/Grasslands.png-926f008a928c2a5738c044cc8a72d13e.ctex"
+uid="uid://byskq7wf21x44"
+path="res://.godot/imported/Shield of Power.png-de635d12b2cdc0f1b33dba90f3716027.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Grasslands.png"
-dest_files=["res://.godot/imported/Grasslands.png-926f008a928c2a5738c044cc8a72d13e.ctex"]
+source_file="res://Shield of Power.png"
+dest_files=["res://.godot/imported/Shield of Power.png-de635d12b2cdc0f1b33dba90f3716027.ctex"]
 
 [params]
 

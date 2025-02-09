@@ -1,18 +1,22 @@
-[gd_scene load_steps=11 format=3 uid="uid://dra5ryvhaquj6"]
+[gd_scene load_steps=13 format=3 uid="uid://dra5ryvhaquj6"]
 
 [ext_resource type="Script" path="res://Resources/Play_Cards.gd" id="1_bdyji"]
 [ext_resource type="Script" path="res://card_class.gd" id="2_2a7f0"]
-[ext_resource type="Texture2D" uid="uid://of556ujxxsvb" path="res://DeckTestImage.png" id="3_k04a8"]
-[ext_resource type="Texture2D" uid="uid://q6ischvos8tw" path="res://Grasslands.png" id="4_g6uvq"]
+[ext_resource type="Texture2D" uid="uid://ct4a7gllvn2g3" path="res://Transfeminator.png" id="3_v8sg4"]
+[ext_resource type="Texture2D" uid="uid://b4h6vw3eea612" path="res://SwordofPoweer.png" id="4_5yv4f"]
+[ext_resource type="Texture2D" uid="uid://byskq7wf21x44" path="res://Shield of Power.png" id="5_w8vp4"]
+[ext_resource type="Texture2D" uid="uid://pa7xqqqegiq1" path="res://mult.png" id="5_xobll"]
+[ext_resource type="Texture2D" uid="uid://cr4jfry1mvi2" path="res://Mult_add.png" id="6_sgnuo"]
 
 [sub_resource type="Resource" id="Resource_nl6xg"]
 script = ExtResource("2_2a7f0")
-texture = ExtResource("3_k04a8")
+texture = ExtResource("3_v8sg4")
 type = 0
+played_card_type = 0
 level = 0
 affect = {
-"damage_base": 5,
-"heal_base": 0,
+"damage_base": 15,
+"heal_base": 15,
 "max_heal_base": 0,
 "mult_base": 0,
 "mult_multiplier": 1,
@@ -21,10 +25,12 @@ affect = {
 
 [sub_resource type="Resource" id="Resource_1vbl4"]
 script = ExtResource("2_2a7f0")
-type = 1
+texture = ExtResource("4_5yv4f")
+type = 0
+played_card_type = 0
 level = 0
 affect = {
-"damage_base": 0,
+"damage_base": 50,
 "heal_base": 0,
 "max_heal_base": 0,
 "mult_base": 0,
@@ -34,57 +40,49 @@ affect = {
 
 [sub_resource type="Resource" id="Resource_r2sto"]
 script = ExtResource("2_2a7f0")
-texture = ExtResource("4_g6uvq")
+texture = ExtResource("5_w8vp4")
 type = 1
-level = 0
-affect = {
-"damage_base": 0,
-"heal_base": 5,
-"max_heal_base": 0,
-"mult_base": 0,
-"mult_multiplier": 1,
-"shield_base": 0
-}
-
-[sub_resource type="Resource" id="Resource_qfg40"]
-script = ExtResource("2_2a7f0")
-type = 1
+played_card_type = 0
 level = 0
 affect = {
 "damage_base": 0,
 "heal_base": 0,
-"max_heal_base": 5,
+"max_heal_base": 0,
 "mult_base": 0,
 "mult_multiplier": 1,
+"shield_base": 50
+}
+
+[sub_resource type="Resource" id="Resource_qfg40"]
+script = ExtResource("2_2a7f0")
+texture = ExtResource("6_sgnuo")
+type = 1
+played_card_type = 0
+level = 0
+affect = {
+"damage_base": 0,
+"heal_base": 0,
+"max_heal_base": 0,
+"mult_base": 0,
+"mult_multiplier": 50,
 "shield_base": 0
 }
 
 [sub_resource type="Resource" id="Resource_fl5mo"]
 script = ExtResource("2_2a7f0")
+texture = ExtResource("5_xobll")
 type = 2
+played_card_type = 0
 level = 0
 affect = {
 "damage_base": 0,
 "heal_base": 0,
 "max_heal_base": 0,
-"mult_base": 5,
+"mult_base": 50,
 "mult_multiplier": 1,
-"shield_base": 0
-}
-
-[sub_resource type="Resource" id="Resource_w5fcc"]
-script = ExtResource("2_2a7f0")
-type = 2
-level = 0
-affect = {
-"damage_base": 0,
-"heal_base": 0,
-"max_heal_base": 0,
-"mult_base": 0,
-"mult_multiplier": 5,
 "shield_base": 0
 }
 
 [node name="AllCards" type="Node"]
 script = ExtResource("1_bdyji")
-AllCards = Array[Object]([SubResource("Resource_nl6xg"), SubResource("Resource_1vbl4"), SubResource("Resource_r2sto"), SubResource("Resource_qfg40"), SubResource("Resource_fl5mo"), SubResource("Resource_w5fcc")])
+AllCards = Array[ExtResource("2_2a7f0")]([SubResource("Resource_nl6xg"), SubResource("Resource_1vbl4"), SubResource("Resource_r2sto"), SubResource("Resource_qfg40"), SubResource("Resource_fl5mo")])

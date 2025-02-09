@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c0m7hvxbwg3kq"]
 
-[ext_resource type="Script" path="res://Scripts/area_object.gd" id="1_eqxip"]
+[ext_resource type="Script" path="res://Scripts/PuzzleScenes/area_object.gd" id="1_eqxip"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tqnxm"]
 size = Vector2(77, 82)
