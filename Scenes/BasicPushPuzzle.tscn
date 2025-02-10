@@ -1,10 +1,52 @@
-[gd_scene load_steps=6 format=3 uid="uid://bs68130475ox3"]
+[gd_scene load_steps=15 format=3 uid="uid://bs68130475ox3"]
 
 [ext_resource type="PackedScene" uid="uid://l4otxvj8i56v" path="res://Scenes/PuzzleScenes/PuzzleCharacter.tscn" id="1_hebb5"]
 [ext_resource type="PackedScene" uid="uid://1qr0k3yfsbjb" path="res://Scenes/PuzzleScenes/PuzzleWall.tscn" id="2_fv36l"]
 [ext_resource type="PackedScene" uid="uid://c0m7hvxbwg3kq" path="res://Scenes/PuzzleScenes/push_block_area_unlocker.tscn" id="4_ey2oj"]
 [ext_resource type="PackedScene" uid="uid://sm55c3jqp05c" path="res://Scenes/PuzzleScenes/door.tscn" id="5_3lex6"]
 [ext_resource type="PackedScene" uid="uid://cwmx6dka3kwk1" path="res://Scenes/PuzzleScenes/puzzle_push_block.tscn" id="5_s31dv"]
+[ext_resource type="PackedScene" uid="uid://cbuqk5k1icn0c" path="res://Scenes/PuzzleScenes/enemy.tscn" id="6_sx3aa"]
+[ext_resource type="Script" path="res://enemy_tpe.gd" id="7_y742r"]
+[ext_resource type="Script" path="res://card_class.gd" id="8_s60dw"]
+[ext_resource type="Script" path="res://joker_class.gd" id="9_d3tkh"]
+[ext_resource type="Texture2D" uid="uid://bd36ajlr1q3qx" path="res://E92EEE34-DB03-4682-8A19-85319085FFF4.png" id="10_gr5si"]
+[ext_resource type="Script" path="res://Scripts/PuzzleScenes/area_object.gd" id="10_ohubk"]
+
+[sub_resource type="Resource" id="Resource_2ob8b"]
+script = ExtResource("9_d3tkh")
+conditions = ExtResource("10_ohubk")
+type = 0
+played_card_type = 0
+level = 0
+affect = {
+"damage_base": 0,
+"heal_base": 0,
+"max_heal_base": 0,
+"mult_base": 0,
+"mult_multiplier": 1,
+"shield_base": 0
+}
+
+[sub_resource type="Resource" id="Resource_mq0vb"]
+script = ExtResource("7_y742r")
+health = 500
+max_health = 500
+shield = 60
+deck = Array[ExtResource("8_s60dw")]([])
+used = Array[ExtResource("8_s60dw")]([])
+jokers = Array[ExtResource("9_d3tkh")]([SubResource("Resource_2ob8b")])
+hand_size = 5
+sprite = ExtResource("10_gr5si")
+
+[sub_resource type="Resource" id="Resource_qfawu"]
+script = ExtResource("7_y742r")
+health = 600
+max_health = 600
+shield = 50
+deck = Array[ExtResource("8_s60dw")]([])
+used = Array[ExtResource("8_s60dw")]([])
+jokers = Array[ExtResource("9_d3tkh")]([])
+hand_size = 5
 
 [node name="BasicPushPuzzle" type="Node2D"]
 position = Vector2(271, 166)
@@ -81,7 +123,7 @@ scale = Vector2(10.6802, 1)
 
 [node name="Node2D4" parent="Walls" instance=ExtResource("2_fv36l")]
 modulate = Color(0.938088, 0, 0.290998, 1)
-position = Vector2(379, 143)
+position = Vector2(378, 143)
 scale = Vector2(1.74942, 1)
 
 [node name="Node2D5" parent="Walls" instance=ExtResource("2_fv36l")]
@@ -95,3 +137,7 @@ modulate = Color(0.938088, 0, 0.290998, 1)
 position = Vector2(334, 34)
 rotation = -0.00168062
 scale = Vector2(4.2806, 1)
+
+[node name="Enemy" parent="." instance=ExtResource("6_sx3aa")]
+position = Vector2(152, -172)
+encounter = Array[ExtResource("7_y742r")]([SubResource("Resource_mq0vb"), SubResource("Resource_qfawu")])

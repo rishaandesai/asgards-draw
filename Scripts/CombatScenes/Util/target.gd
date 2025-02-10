@@ -1,18 +1,12 @@
-extends Node2D
-class_name CombatEntity
+extends Control
 
-
-@export var health: int = 0
-@export var max_health: int = 0
-@export var shield: int = 0
-
+var target: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	get_tree().get_nodes_in_group("enemies")
 	pass # Replace with function body.
 
-func on_death() -> void:
-	get_parent().remove_child(self)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

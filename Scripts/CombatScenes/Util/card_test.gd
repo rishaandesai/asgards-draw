@@ -2,8 +2,6 @@ extends Control
 class_name CanvasCard
 
 var card: Card
-var drag_origin_angle: float
-var drag_origin_magnitude: float
 @onready var parent_array: NodePath
 @onready var origin_position: Vector2 = position
 @onready var target_position: Vector2 = position
@@ -16,15 +14,10 @@ static var packed_scene = preload("res://Scenes/CombatScenes/Util/card.tscn")
 static func init(icard: Card) -> CanvasCard:
 	var c: CanvasCard = packed_scene.instantiate()
 	c.card = icard
-	return c
+	return c;
 
 func _ready() -> void:
 	gui_input.connect(on_mouse_input)
-	var bobbing: Timer = Timer.new()
-	bobbing.timeout.connect(func(): 
-		target_position)
-	add_sibling(bobbing)
-	
 	if card.texture != null:
 		$TextureRect.texture = card.texture
 
@@ -33,8 +26,8 @@ func on_mouse_input(event: InputEvent):
 		var mouse_event = event as InputEventMouseButton
 		if mouse_event.pressed:
 			animationvar = 0
-			drag_origin_angle = Vector2.ZERO.angle_to(get_local_mouse_position())
-			drag_origin_magnitude = Vector2.ZERO.distance_to(get_local_mouse_position())
+			pivot_offset = get_local_mouse_position()
+			print(get_local_mouse_position())
 		else:
 			if !$Area2D.get_overlapping_areas().is_empty():
 				var container: Control = $Area2D.get_overlapping_areas()[0].get_parent()
@@ -47,14 +40,15 @@ func on_mouse_input(event: InputEvent):
 			animationvar = 0
 			target_position = origin_position
 			target_angle = 0
-			drag_origin_angle = 0
-			drag_origin_magnitude = 0
 	elif event is InputEventMouseMotion:
-		animationvar = 0.5
+		animationvar = .5
 		event = event as InputEventMouseMotion
 		if event.pressure == 1:
-			target_position = get_global_mouse_position()-Vector2(drag_origin_magnitude*cos(drag_origin_angle+rotation), drag_origin_magnitude*sin(drag_origin_angle+rotation))
-			target_angle = (target_position).angle_to(position)
+			target_position = get_global_mouse_position()-pivot_offset
+			print(target_position)
+			print(get_local_mouse_position())
+			print(position)
+			target_angle = (position).angle_to(origin_position)
 
 func _process(delta: float) -> void:
 	if animationvar < 1:

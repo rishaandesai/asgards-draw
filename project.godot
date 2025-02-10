@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 boot_splash/image="res://Asgard's Draw.png"
 config/icon="res://Asgard's Draw.svg"
 
+[autoload]
+
+SaveData="*res://Scenes/Utils/SaveData.tscn"
+
 [display]
 
 window/size/viewport_width=2048

@@ -9,7 +9,7 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func reorder() -> void:
-	Cards.sort_custom(func(Card1: Control, Card2: Control): return Card1.position.x+Card1.size.x*Card1.scale.x/2+Card1.drag_origin_magnitude*cos(Card1.drag_origin_angle) < Card2.position.x+Card2.size.x*Card2.scale.x/2+Card1.drag_origin_magnitude*cos(Card1.drag_origin_angle))
+	Cards.sort_custom(func(Card1: Control, Card2: Control): return Card1.position.x+Card1.size.x*Card1.scale.x/2 < Card2.position.x+Card2.size.x*Card2.scale.x/2)
 	for card: CanvasCard in Cards: 
 		card.z_index = Cards.find(card)
 		card.animationvar = 0

@@ -1,17 +1,12 @@
 extends Control
 
-@export var deck: Array[Card] = []
+@export var deck: Array[Card] = SaveData.deck
 @export var used: Array[Card] = []
 @onready var hand: Array[Card] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	for i in range(0, 6):
-		for b: Card in (load("res://Resources/all_cards.tscn") as PackedScene).instantiate().AllCards:
-			var c: Card = b.duplicate(true)
-			c.affect = b.affect
-			deck.append(c)
-	pass # Replace with function body.
+	pass
 
 func draw_card() -> Card:
 	if deck.filter(func(c: Card): return !used.has(c)).is_empty():
