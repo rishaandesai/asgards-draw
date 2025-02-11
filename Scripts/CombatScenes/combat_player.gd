@@ -22,6 +22,5 @@ func damage(i: int) -> void:
 		if health <= 0:
 			on_death()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
+func heal(i:  int) -> void:
+	health += i

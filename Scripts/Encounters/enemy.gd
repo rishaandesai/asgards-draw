@@ -16,7 +16,7 @@ func trigger_combat():
 	var scene = PackedScene.new()
 	scene.pack(get_parent())
 	SaveData.save_scene = scene
-	SaveData.enemies = encounter
+	SaveData.enemies = encounter.duplicate(true)
 	get_tree().change_scene_to_file("res://Scenes/combat_scene.tscn")
 	pass
 

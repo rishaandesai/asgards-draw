@@ -12,6 +12,13 @@ resource_name = "play_hand"
 script/source = "extends Button
 
 var notifier: PackedScene = preload(\"res://Scenes/CombatScenes/Util/score_notifier.tscn\")
+var colours: Dictionary = {
+	damage = \"ac3232\",
+	shield = \"5b6ee1\",
+	heal = \"5b6ee1\",
+	mult = \"76428a\"
+}
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -31,7 +38,7 @@ func _button_pressed() -> void:
 	var jokers: Array[Joker] = []
 	for j: CanvasCard in $\"../Jokers\".Cards:
 		cards.append(j.Card as Joker)
-	play_hand(get_tree().get_nodes_in_group(\"enemies\")[$\"../Target\".target], $\"../CombatPlayer\", cards, jokers)
+	await play_hand(get_tree().get_nodes_in_group(\"enemies\")[$\"../Target\".target], $\"../CombatPlayer\", cards, jokers)
 	var i: int = $\"../Playing\".Cards.size()
 	for c: CanvasCard in $\"../Playing\".Cards:
 		c.target_position = $\"../Deck\".position
@@ -51,8 +58,8 @@ func _button_pressed() -> void:
 			$\"../Deck\".hand.append(h.card)
 	for k in range (0, i):
 		fill_hand()
-	#for e: CombatEnemy in get_tree().get_nodes_in_group(\"enemies\"):
-		#e.take_turn()
+	for e: CombatEnemy in get_tree().get_nodes_in_group(\"enemies\"):
+		e.take_turn()
 
 func fill_hand() -> void: 
 	var c = CanvasCard.init($\"../Deck\".draw_card())
@@ -75,16 +82,17 @@ func play_hand(enemy: CombatEntity, friendly: CombatEntity, card: Array[Card], j
 				var notifier_instance = notifier.instantiate()
 				friendly.add_child(notifier_instance)
 				notifier_instance.position = Vector2(0, 0)
+				print(k)
+				notifier_instance.get_node(\"TextureRect\").modulate = colours[k]
 				notifier_instance.z_index = friendly.z_index+1
 				notifier_instance.get_node(\"Label\").text = str(c.affect[k])
 				notifier_instance.get_node(\"Label\").position.x = -notifier_instance.get_node(\"Label\").size.x/2
 				await notifier_instance.tree_exited
-	enemy.damage(dict.damage_base)
+	enemy.damage(dict.damage*dict.mult)
+	friendly.heal(dict.heal*dict.mult)
+	friendly.shield += dict.shield
 	
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
+	
 "
 
 [node name="CombatScene" type="Control"]
