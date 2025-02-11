@@ -1,6 +1,6 @@
 [gd_scene load_steps=66 format=3 uid="uid://dpbglpsa0dedh"]
 
-[ext_resource type="Script" path="res://Scripts/player.gd" id="1_gufl8"]
+[ext_resource type="Script" path="res://Scripts/Puzzles/player.gd" id="1_gufl8"]
 [ext_resource type="Texture2D" uid="uid://l2qeoe5d6iqi" path="res://Resources/Textures/Player/idle.png" id="1_kna8y"]
 [ext_resource type="Texture2D" uid="uid://cklwcyfxunwf3" path="res://Resources/Textures/Player/idle_reversed.png" id="2_eaiqo"]
 [ext_resource type="Texture2D" uid="uid://bjt31fx6rggjm" path="res://Resources/Textures/Player/run.png" id="2_sq6j3"]

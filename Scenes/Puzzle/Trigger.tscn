@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dxe674mclqi16"]
 
-[ext_resource type="Script" path="res://Scripts/Trigger.gd" id="1_0t5i8"]
+[ext_resource type="Script" path="res://Scripts/Puzzles/Trigger.gd" id="1_0t5i8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0hqs6"]
 

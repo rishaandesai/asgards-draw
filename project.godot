@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Asgard's Draw"
-run/main_scene="res://Scenes/Puzzle_Import/World.tscn"
+run/main_scene="res://Scenes/World.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/image="res://Asgard's Draw.png"
 config/icon="res://Asgard's Draw.svg"
@@ -19,7 +19,7 @@ config/icon="res://Asgard's Draw.svg"
 [autoload]
 
 SaveData="*res://Scenes/Utils/SaveData.tscn"
-DoorManager="*res://Scripts/DoorManager.gd"
+DoorManager="*res://Scripts/Puzzles/DoorManager.gd"
 
 [display]
 

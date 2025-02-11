@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://bll4fs43d0x86"]
+
+[ext_resource type="PackedScene" uid="uid://dpbglpsa0dedh" path="res://Scenes/Puzzle/Player.tscn" id="1_g5x23"]
+[ext_resource type="PackedScene" uid="uid://ddho1cag5vw4w" path="res://Scenes/Puzzle/MoveableBox.tscn" id="2_hf7vf"]
+[ext_resource type="PackedScene" uid="uid://ca72xlhs8s4vt" path="res://Scenes/Puzzle/Door.tscn" id="3_0xdip"]
+[ext_resource type="PackedScene" uid="uid://dxe674mclqi16" path="res://Scenes/Puzzle/Trigger.tscn" id="4_iuctw"]
+[ext_resource type="PackedScene" uid="uid://cbuqk5k1icn0c" path="res://Scenes/CombatScenes/enemy.tscn" id="5_hu2kl"]
+
+[node name="World" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_g5x23")]
+position = Vector2(83, 126)
+
+[node name="RigidBody2D" parent="." instance=ExtResource("2_hf7vf")]
+position = Vector2(81, 107)
+
+[node name="RigidBody2D2" parent="." instance=ExtResource("2_hf7vf")]
+position = Vector2(120, 106)
+
+[node name="Door" parent="." instance=ExtResource("3_0xdip")]
+position = Vector2(104, 101)
+rotation = 1.57142
+door_id = "A"
+
+[node name="Trigger" parent="." instance=ExtResource("4_iuctw")]
+position = Vector2(80, 82)
+scale = Vector2(0.332117, 0.35208)
+trigger_id = "A"
+
+[node name="Enemy" parent="." instance=ExtResource("5_hu2kl")]
+position = Vector2(129, 129)
+scale = Vector2(0.5, 0.5)
