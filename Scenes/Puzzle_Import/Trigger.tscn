@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxe674mclqi16"]
+
+[ext_resource type="Script" path="res://Scripts/Trigger.gd" id="1_0t5i8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hqs6"]
+
+[sub_resource type="Gradient" id="Gradient_s4mg7"]
+offsets = PackedFloat32Array(0, 0.331169, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.769481, 0.769481, 0.769481, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oh5ae"]
+gradient = SubResource("Gradient_s4mg7")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0.993119, 0)
+
+[node name="Trigger" type="Area2D"]
+script = ExtResource("1_0t5i8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0hqs6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2.38418e-07, 3.57628e-07)
+scale = Vector2(0.3125, 0.3125)
+texture = SubResource("GradientTexture2D_oh5ae")

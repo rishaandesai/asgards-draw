@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddho1cag5vw4w"]
+
+[ext_resource type="Script" path="res://Scripts/MoveableBox.gd" id="1_inbfd"]
+[ext_resource type="Texture2D" uid="uid://b8fbb2ldlo05m" path="res://Resources/Textures/World/Objects/TX Props.png" id="2_dlm5g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g8v05"]
+size = Vector2(56.8947, 43.0988)
+
+[node name="Box" type="RigidBody2D"]
+lock_rotation = true
+script = ExtResource("1_inbfd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.136993, 0.124996)
+scale = Vector2(0.246069, 0.249427)
+shape = SubResource("RectangleShape2D_g8v05")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.137001, -4.25)
+scale = Vector2(0.549, 0.5)
+texture = ExtResource("2_dlm5g")
+region_enabled = true
+region_rect = Rect2(162.771, 85.8268, 26.243, 39.4102)

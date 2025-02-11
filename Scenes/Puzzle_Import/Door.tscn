@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://ca72xlhs8s4vt"]
+
+[ext_resource type="Script" path="res://Scripts/Door.gd" id="1_g0m7j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mbuii"]
+size = Vector2(34, 2)
+
+[sub_resource type="Gradient" id="Gradient_qfflx"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xq2m7"]
+gradient = SubResource("Gradient_qfflx")
+
+[node name="Door" type="StaticBody2D"]
+position = Vector2(34, 25)
+script = ExtResource("1_g0m7j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mbuii")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.49012e-06, 0)
+scale = Vector2(0.53125, 0.03125)
+texture = SubResource("GradientTexture2D_xq2m7")

@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://bll4fs43d0x86"]
+
+[ext_resource type="PackedScene" uid="uid://dpbglpsa0dedh" path="res://Scenes/Puzzle_Import/Player.tscn" id="1_7crcm"]
+[ext_resource type="PackedScene" uid="uid://ddho1cag5vw4w" path="res://Scenes/Puzzle_Import/MoveableBox.tscn" id="3_35sd5"]
+[ext_resource type="PackedScene" path="res://Scenes/Puzzle_Import/Trigger.tscn" id="3_j75x5"]
+[ext_resource type="PackedScene" path="res://Scenes/Puzzle_Import/Door.tscn" id="4_qb1e2"]
+
+[node name="World" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_7crcm")]
+position = Vector2(80, 98)
+
+[node name="RigidBody2D" parent="." instance=ExtResource("3_35sd5")]
+position = Vector2(51, 98)
+
+[node name="RigidBody2D2" parent="." instance=ExtResource("3_35sd5")]
+position = Vector2(120, 106)
+
+[node name="Door" parent="." instance=ExtResource("4_qb1e2")]
+position = Vector2(107, 99)
+rotation = 1.5708
+door_id = "A"
+
+[node name="Trigger" parent="." instance=ExtResource("3_j75x5")]
+position = Vector2(80, 76)
+trigger_id = "A"
