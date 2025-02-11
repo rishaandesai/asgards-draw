@@ -11,7 +11,8 @@ size = Vector2(34, 2)
 gradient = SubResource("Gradient_qfflx")
 
 [node name="Door" type="StaticBody2D"]
-position = Vector2(34, 25)
+position = Vector2(0, 1.90735e-06)
+scale = Vector2(3, 3)
 script = ExtResource("1_g0m7j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

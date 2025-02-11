@@ -646,9 +646,11 @@ script = ExtResource("1_gufl8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0)
+scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_x0ipt")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_lr7ti")
 animation = &"idle"
 
@@ -658,4 +660,4 @@ libraries = {
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(10, 10)
+zoom = Vector2(3, 3)
