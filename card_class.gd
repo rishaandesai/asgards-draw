@@ -20,7 +20,7 @@ static var affect_dict: Dictionary = {
 	heal_base = 0,
 	max_heal_base = 0,
 	mult_base = 0,
-	mult_multiplier = 1
+	mult_multiplier = 0
 }
 
 @export var texture: Texture
@@ -33,5 +33,5 @@ static var affect_dict: Dictionary = {
 	heal_base = 0,
 	max_heal_base = 0,
 	mult_base = 0,
-	mult_multiplier = 1
+	mult_multiplier = 0
 }

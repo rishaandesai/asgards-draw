@@ -15,11 +15,11 @@ type = 0
 played_card_type = 0
 level = 0
 affect = {
-"damage_base": 15,
+"damage_base": 6000,
 "heal_base": 15,
 "max_heal_base": 0,
 "mult_base": 0,
-"mult_multiplier": 1,
+"mult_multiplier": 0,
 "shield_base": 0
 }
 
@@ -34,8 +34,8 @@ affect = {
 "heal_base": 0,
 "max_heal_base": 0,
 "mult_base": 0,
-"mult_multiplier": 1,
-"shield_base": 5
+"mult_multiplier": 0,
+"shield_base": 0
 }
 
 [sub_resource type="Resource" id="Resource_r2sto"]
@@ -49,7 +49,7 @@ affect = {
 "heal_base": 0,
 "max_heal_base": 0,
 "mult_base": 0,
-"mult_multiplier": 1,
+"mult_multiplier": 0,
 "shield_base": 50
 }
 
@@ -79,7 +79,7 @@ affect = {
 "heal_base": 0,
 "max_heal_base": 0,
 "mult_base": 50,
-"mult_multiplier": 1,
+"mult_multiplier": 0,
 "shield_base": 0
 }
 

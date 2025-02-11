@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bs68130475ox3"]
+[gd_scene load_steps=16 format=3 uid="uid://bs68130475ox3"]
 
 [ext_resource type="PackedScene" uid="uid://l4otxvj8i56v" path="res://Scenes/PuzzleScenes/PuzzleCharacter.tscn" id="1_hebb5"]
 [ext_resource type="PackedScene" uid="uid://1qr0k3yfsbjb" path="res://Scenes/PuzzleScenes/PuzzleWall.tscn" id="2_fv36l"]
@@ -8,14 +8,30 @@
 [ext_resource type="PackedScene" uid="uid://cbuqk5k1icn0c" path="res://Scenes/PuzzleScenes/enemy.tscn" id="6_sx3aa"]
 [ext_resource type="Script" path="res://enemy_tpe.gd" id="7_y742r"]
 [ext_resource type="Script" path="res://card_class.gd" id="8_s60dw"]
+[ext_resource type="Texture2D" uid="uid://b4h6vw3eea612" path="res://SwordofPoweer.png" id="9_71a0s"]
 [ext_resource type="Script" path="res://joker_class.gd" id="9_d3tkh"]
 [ext_resource type="Texture2D" uid="uid://bd36ajlr1q3qx" path="res://E92EEE34-DB03-4682-8A19-85319085FFF4.png" id="10_gr5si"]
-[ext_resource type="Script" path="res://Scripts/PuzzleScenes/area_object.gd" id="10_ohubk"]
+[ext_resource type="Texture2D" uid="uid://byskq7wf21x44" path="res://Shield of Power.png" id="10_r5f0w"]
 
-[sub_resource type="Resource" id="Resource_2ob8b"]
-script = ExtResource("9_d3tkh")
-conditions = ExtResource("10_ohubk")
+[sub_resource type="Resource" id="Resource_mnbyq"]
+script = ExtResource("8_s60dw")
+texture = ExtResource("9_71a0s")
 type = 0
+played_card_type = 0
+level = 0
+affect = {
+"damage_base": 25,
+"heal_base": 0,
+"max_heal_base": 0,
+"mult_base": 0,
+"mult_multiplier": 0,
+"shield_base": 0
+}
+
+[sub_resource type="Resource" id="Resource_2ufv5"]
+script = ExtResource("8_s60dw")
+texture = ExtResource("10_r5f0w")
+type = 1
 played_card_type = 0
 level = 0
 affect = {
@@ -24,7 +40,7 @@ affect = {
 "max_heal_base": 0,
 "mult_base": 0,
 "mult_multiplier": 1,
-"shield_base": 0
+"shield_base": 25
 }
 
 [sub_resource type="Resource" id="Resource_mq0vb"]
@@ -32,21 +48,11 @@ script = ExtResource("7_y742r")
 health = 500
 max_health = 500
 shield = 60
-deck = Array[ExtResource("8_s60dw")]([])
-used = Array[ExtResource("8_s60dw")]([])
-jokers = Array[ExtResource("9_d3tkh")]([SubResource("Resource_2ob8b")])
-hand_size = 5
-sprite = ExtResource("10_gr5si")
-
-[sub_resource type="Resource" id="Resource_qfawu"]
-script = ExtResource("7_y742r")
-health = 600
-max_health = 600
-shield = 50
-deck = Array[ExtResource("8_s60dw")]([])
+deck = Array[ExtResource("8_s60dw")]([SubResource("Resource_mnbyq"), SubResource("Resource_2ufv5")])
 used = Array[ExtResource("8_s60dw")]([])
 jokers = Array[ExtResource("9_d3tkh")]([])
-hand_size = 5
+hand_size = 1
+sprite = ExtResource("10_gr5si")
 
 [node name="BasicPushPuzzle" type="Node2D"]
 position = Vector2(271, 166)
@@ -140,4 +146,4 @@ scale = Vector2(4.2806, 1)
 
 [node name="Enemy" parent="." instance=ExtResource("6_sx3aa")]
 position = Vector2(152, -172)
-encounter = Array[ExtResource("7_y742r")]([SubResource("Resource_mq0vb"), SubResource("Resource_qfawu")])
+encounter = Array[ExtResource("7_y742r")]([SubResource("Resource_mq0vb")])

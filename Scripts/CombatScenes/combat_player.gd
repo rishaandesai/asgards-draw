@@ -14,6 +14,14 @@ func _ready() -> void:
 func on_death() -> void:
 	get_parent().remove_child(self)
 
+func damage(i: int) -> void:
+	shield -= i
+	if shield < 0:
+		health += shield
+		shield = 0
+		if health <= 0:
+			on_death()
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass

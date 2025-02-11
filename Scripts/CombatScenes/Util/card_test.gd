@@ -27,7 +27,6 @@ func on_mouse_input(event: InputEvent):
 		if mouse_event.pressed:
 			animationvar = 0
 			pivot_offset = get_local_mouse_position()
-			print(get_local_mouse_position())
 		else:
 			if !$Area2D.get_overlapping_areas().is_empty():
 				var container: Control = $Area2D.get_overlapping_areas()[0].get_parent()
@@ -45,9 +44,6 @@ func on_mouse_input(event: InputEvent):
 		event = event as InputEventMouseMotion
 		if event.pressure == 1:
 			target_position = get_global_mouse_position()-pivot_offset
-			print(target_position)
-			print(get_local_mouse_position())
-			print(position)
 			target_angle = (position).angle_to(origin_position)
 
 func _process(delta: float) -> void:

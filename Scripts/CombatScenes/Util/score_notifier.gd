@@ -4,7 +4,6 @@ class_name CardNotifier
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Label.scale = Vector2.ZERO
-	await get_tree().create_timer(1).timeout
 	var TexRectTween: Tween = create_tween()
 	var LabelTween: Tween = create_tween()
 	LabelTween.set_parallel()
@@ -18,3 +17,7 @@ func _ready() -> void:
 	LabelTween.tween_property($Label, "scale", Vector2(2,2), .05)
 	LabelTween.chain().tween_property($Label, "rotation_degrees", 0, .1)
 	LabelTween.tween_property($Label, "scale", Vector2(1.5,1.5), .1)
+	await LabelTween.finished
+	await TexRectTween.finished
+	await get_tree().create_timer(.5).timeout
+	get_parent().remove_child.call_deferred(self)

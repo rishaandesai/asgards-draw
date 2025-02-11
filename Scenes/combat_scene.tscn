@@ -11,7 +11,7 @@
 resource_name = "play_hand"
 script/source = "extends Button
 
-
+var notifier: PackedScene = preload(\"res://Scenes/CombatScenes/Util/score_notifier.tscn\")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,7 +23,7 @@ func _ready() -> void:
 func _button_pressed() -> void:
 	if $\"../Playing\".Cards.is_empty(): return
 	if get_tree().get_nodes_in_group(\"enemies\").size() == 0:
-		pass
+		return
 	var cards: Array[Card] = []
 	for c: CanvasCard in $\"../Playing\".Cards:
 		cards.append(c.card)
@@ -51,8 +51,8 @@ func _button_pressed() -> void:
 			$\"../Deck\".hand.append(h.card)
 	for k in range (0, i):
 		fill_hand()
-	for e: CombatEnemy in get_tree().get_nodes_in_group(\"enemies\"):
-		e.take_turn()
+	#for e: CombatEnemy in get_tree().get_nodes_in_group(\"enemies\"):
+		#e.take_turn()
 
 func fill_hand() -> void: 
 	var c = CanvasCard.init($\"../Deck\".draw_card())
@@ -64,10 +64,23 @@ func fill_hand() -> void:
 	container.reorder()
 	c.z_index = z_index+1
 
-func play_hand(enemy: CombatEntity, friendly: CombatEntity, cards: Array[Card], jokers: Array[Joker]) -> void:
-	if cards.is_empty(): return
-	var dict = Card.affect_dict
-
+func play_hand(enemy: CombatEntity, friendly: CombatEntity, card: Array[Card], jokers: Array[Joker]) -> void:
+	if card.is_empty(): return
+	var dict = Card.affect_dict	
+	card = card.duplicate(true)
+	for c: Card in card:
+		for k in c.affect.keys():
+			if c.affect[k] != 0:
+				dict[k] += c.affect[k]
+				var notifier_instance = notifier.instantiate()
+				friendly.add_child(notifier_instance)
+				notifier_instance.position = Vector2(0, 0)
+				notifier_instance.z_index = friendly.z_index+1
+				notifier_instance.get_node(\"Label\").text = str(c.affect[k])
+				notifier_instance.get_node(\"Label\").position.x = -notifier_instance.get_node(\"Label\").size.x/2
+				await notifier_instance.tree_exited
+	enemy.damage(dict.damage_base)
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
