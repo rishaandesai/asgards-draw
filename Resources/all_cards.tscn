@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Resources/Play_Cards.gd" id="1_bdyji"]
 [ext_resource type="Script" path="res://card_class.gd" id="2_2a7f0"]
 [ext_resource type="Texture2D" uid="uid://ct4a7gllvn2g3" path="res://Transfeminator.png" id="3_v8sg4"]
-[ext_resource type="Texture2D" uid="uid://b4h6vw3eea612" path="res://SwordofPoweer.png" id="4_5yv4f"]
+[ext_resource type="Texture2D" uid="uid://b4h6vw3eea612" path="res://Resources/Cards/Sword of Power/SwordofPoweer.png" id="4_5yv4f"]
 [ext_resource type="Texture2D" uid="uid://byskq7wf21x44" path="res://Shield of Power.png" id="5_w8vp4"]
 [ext_resource type="Texture2D" uid="uid://pa7xqqqegiq1" path="res://mult.png" id="5_xobll"]
 
@@ -14,7 +14,7 @@ type = 0
 played_card_type = 0
 level = 0
 affect = {
-"damage": 5,
+"damage": 50,
 "heal": 0,
 "max_heal": 0,
 "mult": 0,

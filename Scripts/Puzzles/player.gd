@@ -6,7 +6,7 @@ const PUSH_FORCE = 10.0  # Adjust for stronger/weaker pushing
 @onready var animation_player = $AnimationPlayer
 var last_direction = "front"
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var direction_x := Input.get_axis("move_left", "move_right")
 	var direction_y := Input.get_axis("move_up", "move_down")
 
@@ -25,6 +25,8 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 	_handle_pushing()
+	
+	z_index = int(position.y)
 
 func _handle_pushing():
 	for i in get_slide_collision_count():

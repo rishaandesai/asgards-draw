@@ -21,6 +21,7 @@ static func init(i: EnemyType) -> CombatEnemy:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$Sprite2D.texture = sprite
 	for i in range(0, hand_size):
 		draw_card()
 	pass # Replace with function body.

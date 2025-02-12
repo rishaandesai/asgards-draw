@@ -1,8 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://rt6j0ajaffrt"]
 
-[ext_resource type="Texture2D" uid="uid://of556ujxxsvb" path="res://DeckTestImage.png" id="1_xlwa6"]
+[ext_resource type="Texture2D" uid="uid://7epiecikodkh" path="res://Resources/Textures/Player/CombatCharacter.png" id="1_iaghu"]
 
 [node name="CombatPlayer" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_xlwa6")
+scale = Vector2(5.95455, 5.95455)
+texture = ExtResource("1_iaghu")

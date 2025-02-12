@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c034mf20ewaqq"
-path="res://.godot/imported/idle_reversed.png-cc7be9f685f62a636f85f4cc7ce6ed73.ctex"
+uid="uid://b4h6vw3eea612"
+path="res://.godot/imported/SwordofPoweer.png-4b6277d608a194821bb6d00f32fab6d3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Textures/Player/idle_reversed.png"
-dest_files=["res://.godot/imported/idle_reversed.png-cc7be9f685f62a636f85f4cc7ce6ed73.ctex"]
+source_file="res://Resources/Cards/Sword of Power/SwordofPoweer.png"
+dest_files=["res://.godot/imported/SwordofPoweer.png-4b6277d608a194821bb6d00f32fab6d3.ctex"]
 
 [params]
 

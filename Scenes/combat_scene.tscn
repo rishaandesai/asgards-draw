@@ -58,8 +58,15 @@ func _button_pressed() -> void:
 			$\"../Deck\".hand.append(h.card)
 	for k in range (0, i):
 		fill_hand()
+	if get_tree().get_node_count_in_group(\"enemies\") == 0:
+		get_tree().change_scene_to_file(\"res://Scenes/Win-Loss/Win.tscn\")
+		return
+	if !get_parent().has_node(\"CombatPlayer\"):
+		get_tree().change_scene_to_file(\"res://Scenes/Win-Loss/Lose.tscn\")
+		return
 	for e: CombatEnemy in get_tree().get_nodes_in_group(\"enemies\"):
 		e.take_turn()
+		
 
 func fill_hand() -> void: 
 	var c = CanvasCard.init($\"../Deck\".draw_card())
@@ -71,7 +78,7 @@ func fill_hand() -> void:
 	container.reorder()
 	c.z_index = z_index+1
 
-func play_hand(enemy: CombatEntity, friendly: CombatEntity, card: Array[Card], jokers: Array[Joker]) -> void:
+func play_hand(enemy: CombatEntity, friendly: CombatEntity, card: Array[Card], _jokers: Array[Joker]) -> void:
 	if card.is_empty(): return
 	var dict = Card.affect_dict	
 	card = card.duplicate(true)
