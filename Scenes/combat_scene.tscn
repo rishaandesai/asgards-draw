@@ -87,7 +87,10 @@ func play_hand(enemy: CombatEntity, friendly: CombatEntity, card: Array[Card], _
 			if c.affect[k] != 0:
 				dict[k] += c.affect[k]
 				var notifier_instance = notifier.instantiate()
-				friendly.add_child(notifier_instance)
+				if k == \"damage\":
+					enemy.add_child(notifier_instance)
+				else:
+					friendly.add_child(notifier_instance)
 				notifier_instance.position = Vector2(0, 0)
 				print(k)
 				notifier_instance.get_node(\"TextureRect\").modulate = colours[k]

@@ -4,7 +4,6 @@ enum CardType {
 	DAMAGE,
 	HEALER,
 	MULT,
-	UTILITY,
 	JOKER
 }
 

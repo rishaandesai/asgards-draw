@@ -17,7 +17,7 @@
 [ext_resource type="Script" path="res://card_class.gd" id="13_25pbl"]
 [ext_resource type="Resource" uid="uid://bgxcgjr2mcpnb" path="res://Resources/Cards/Sword of Power/SwordofPower.tres" id="14_d0yig"]
 [ext_resource type="Texture2D" uid="uid://df0ujj1p3c2fc" path="res://Resources/Textures/Enemy_Placeholder.JPG" id="15_3p44c"]
-[ext_resource type="Script" path="res://joker_class.gd" id="15_sv3af"]
+[ext_resource type="Script" path="res://Scripts/Jokers/joker_class.gd" id="15_sv3af"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_myu3d"]
 texture = ExtResource("1_hd38b")
