@@ -643,12 +643,12 @@ _data = {
 
 [sub_resource type="Gradient" id="Gradient_18iom"]
 offsets = PackedFloat32Array(0, 0.271802)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+colors = PackedColorArray(1, 1, 0.756863, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3seim"]
 gradient = SubResource("Gradient_18iom")
-width = 300
-height = 300
+width = 250
+height = 250
 use_hdr = true
 fill = 1
 fill_from = Vector2(0.5, 0.5)
@@ -683,9 +683,11 @@ position_smoothing_speed = 10.0
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(0, 2)
 scale = Vector2(158.25, 157.375)
+energy = 0.0
 blend_mode = 2
 shadow_enabled = true
 shadow_color = Color(0.0470677, 0.0166552, 0.0264808, 1)
+shadow_filter = 1
 texture = SubResource("GradientTexture2D_3seim")
 texture_scale = 0.05
 

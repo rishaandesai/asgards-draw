@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 250.0
+const SPEED = 150.0
 const PUSH_FORCE = 10.0  # Adjust for stronger/weaker pushing
 
 @onready var animation_player = $AnimationPlayer
@@ -8,6 +8,8 @@ const PUSH_FORCE = 10.0  # Adjust for stronger/weaker pushing
 var last_direction = "front"
 
 func _ready() -> void:
+	var tweener = create_tween()
+	tweener.tween_property($PointLight2D, "energy", 1.0, 2)
 	$WASD.visible = true
 
 func _physics_process(_delta: float) -> void:
