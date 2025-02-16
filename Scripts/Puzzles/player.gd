@@ -4,12 +4,11 @@ const SPEED = 250.0
 const PUSH_FORCE = 10.0  # Adjust for stronger/weaker pushing
 
 @onready var animation_player = $AnimationPlayer
-@onready var wasd_prompt = $WASD  # Reference to the WASD prompt
 
 var last_direction = "front"
 
 func _ready() -> void:
-	wasd_prompt.visible = true  # Show the WASD prompt at the start
+	$WASD.visible = true
 
 func _physics_process(_delta: float) -> void:
 	var direction_x := Input.get_axis("move_left", "move_right")
@@ -24,7 +23,7 @@ func _physics_process(_delta: float) -> void:
 
 	if velocity.length() > 0:
 		animation_player.play("run_" + last_direction)
-		wasd_prompt.visible = false  # Hide prompt on movement
+		$WASD.visible = false  # Hide prompt on movement
 	else:
 		animation_player.play("idle_" + last_direction)
 
