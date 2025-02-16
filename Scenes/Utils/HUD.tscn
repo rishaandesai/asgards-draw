@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://blwcmxhpw2rxe"]
+
+[ext_resource type="Script" uid="uid://h1bcdvmxlwjb" path="res://Scenes/Utils/PauseGame.gd" id="1_68f7i"]
+[ext_resource type="Texture2D" uid="uid://4wonob8a0b6k" path="res://Resources/UI/IconsShadow-32.png" id="1_qmxw8"]
+[ext_resource type="Script" uid="uid://c52jfbo6rspcs" path="res://Scenes/Utils/RestartLevel.gd" id="3_8d4bx"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+process_mode = 3
+
+[node name="Pause" type="Button" parent="."]
+offset_left = 1957.0
+offset_top = 39.0
+offset_right = 2008.0
+offset_bottom = 88.0
+script = ExtResource("1_68f7i")
+
+[node name="PauseIcon" type="Sprite2D" parent="Pause"]
+position = Vector2(26, 24)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_qmxw8")
+region_enabled = true
+region_rect = Rect2(258.017, 257.976, 28.274, 28.0883)
+
+[node name="ResumeIcon" type="Sprite2D" parent="Pause"]
+position = Vector2(26, 24)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_qmxw8")
+region_enabled = true
+region_rect = Rect2(133.905, 226.119, 16.1947, 27.9975)
+
+[node name="Restart" type="Button" parent="."]
+offset_left = 1875.0
+offset_top = 40.0
+offset_right = 1926.0
+offset_bottom = 89.0
+script = ExtResource("3_8d4bx")
+
+[node name="RestartIcon" type="Sprite2D" parent="Restart"]
+position = Vector2(26, 24)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_qmxw8")
+region_enabled = true
+region_rect = Rect2(291.945, 257.937, 24.1905, 28.1274)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=38 format=4 uid="uid://bll4fs43d0x86"]
+[gd_scene load_steps=39 format=4 uid="uid://bll4fs43d0x86"]
 
 [ext_resource type="PackedScene" uid="uid://dpbglpsa0dedh" path="res://Scenes/Puzzle/Player.tscn" id="1_g5x23"]
 [ext_resource type="Texture2D" uid="uid://dkaxpvkoe8t43" path="res://Resources/Textures/World/Dungeon_Tileset.png" id="1_mdv3u"]
+[ext_resource type="PackedScene" uid="uid://blwcmxhpw2rxe" path="res://Scenes/Utils/HUD.tscn" id="1_ti1bm"]
 [ext_resource type="PackedScene" uid="uid://ddho1cag5vw4w" path="res://Scenes/Puzzle/MoveableBox.tscn" id="2_hf7vf"]
 [ext_resource type="PackedScene" uid="uid://ca72xlhs8s4vt" path="res://Scenes/Puzzle/Door.tscn" id="3_0xdip"]
 [ext_resource type="PackedScene" uid="uid://dxe674mclqi16" path="res://Scenes/Puzzle/Trigger.tscn" id="4_iuctw"]
@@ -511,6 +512,8 @@ hand_size = 1
 sprite = ExtResource("15_3p44c")
 
 [node name="World" type="Node2D"]
+
+[node name="CanvasLayer" parent="." instance=ExtResource("1_ti1bm")]
 
 [node name="Ground Tilemap" type="TileMapLayer" parent="."]
 z_index = -2
