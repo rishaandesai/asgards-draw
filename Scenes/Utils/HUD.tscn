@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://blwcmxhpw2rxe"]
 
-[ext_resource type="Script" uid="uid://h1bcdvmxlwjb" path="res://Scenes/Utils/PauseGame.gd" id="1_68f7i"]
+[ext_resource type="Script" uid="uid://h1bcdvmxlwjb" path="res://Scripts/Utils/PauseGame.gd" id="1_68f7i"]
 [ext_resource type="Texture2D" uid="uid://4wonob8a0b6k" path="res://Resources/UI/IconsShadow-32.png" id="1_qmxw8"]
-[ext_resource type="Script" uid="uid://c52jfbo6rspcs" path="res://Scenes/Utils/RestartLevel.gd" id="3_8d4bx"]
+[ext_resource type="Script" uid="uid://c52jfbo6rspcs" path="res://Scripts/Utils/RestartLevel.gd" id="3_8d4bx"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 process_mode = 3

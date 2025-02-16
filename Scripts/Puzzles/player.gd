@@ -10,7 +10,6 @@ var last_direction = "front"
 func _ready() -> void:
 	var tweener = create_tween()
 	tweener.tween_property($PointLight2D, "energy", 1.0, 2)
-	$WASD.visible = true
 
 func _physics_process(_delta: float) -> void:
 	var direction_x := Input.get_axis("move_left", "move_right")
@@ -25,7 +24,6 @@ func _physics_process(_delta: float) -> void:
 
 	if velocity.length() > 0:
 		animation_player.play("run_" + last_direction)
-		$WASD.visible = false
 	else:
 		animation_player.play("idle_" + last_direction)
 

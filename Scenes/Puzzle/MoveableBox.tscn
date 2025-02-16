@@ -10,6 +10,7 @@ size = Vector2(63.3333, 42.8999)
 [node name="Box" type="RigidBody2D"]
 lock_rotation = true
 script = ExtResource("1_inbfd")
+friction = 7.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(5.36442e-07, 13.0201)

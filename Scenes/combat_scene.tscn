@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bbx1nawk7xl5d"]
+[gd_scene load_steps=12 format=3 uid="uid://bbx1nawk7xl5d"]
 
 [ext_resource type="PackedScene" uid="uid://b5l372d456hso" path="res://Scenes/CombatScenes/card_container.tscn" id="1_ck2br"]
 [ext_resource type="PackedScene" uid="uid://dv4u7nqs3roj7" path="res://Scenes/CombatScenes/Util/deck.tscn" id="2_kja1g"]
 [ext_resource type="PackedScene" uid="uid://rt6j0ajaffrt" path="res://Scenes/CombatScenes/combat_player.tscn" id="5_yn8se"]
 [ext_resource type="Script" uid="uid://budef7ube60t6" path="res://Scripts/CombatScenes/combat_player.gd" id="6_c4mj5"]
 [ext_resource type="Script" uid="uid://dh4en45236kku" path="res://Scripts/CombatScenes/Util/target.gd" id="6_j624e"]
+[ext_resource type="PackedScene" uid="uid://blwcmxhpw2rxe" path="res://Scenes/Utils/HUD.tscn" id="7_loea4"]
 [ext_resource type="Script" uid="uid://0fx714n61jm6" path="res://Scripts/CombatScenes/Util/enemy_manager.gd" id="7_m4rks"]
 
 [sub_resource type="GDScript" id="GDScript_tsf48"]
@@ -129,6 +130,43 @@ func play_hand(enemy: CombatEntity, friendly: CombatEntity, cards: Array[Card], 
 	
 "
 
+[sub_resource type="Animation" id="Animation_vtehv"]
+resource_name = "Combat Startup animation"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CombatPlayer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(0.774623, 0.466518),
+"update": 0,
+"values": [Vector2(-73, 373), Vector2(596, 373)]
+}
+
+[sub_resource type="Animation" id="Animation_loea4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CombatPlayer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-73, 373)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sv7pb"]
+_data = {
+&"Combat Startup animation": SubResource("Animation_vtehv"),
+&"RESET": SubResource("Animation_loea4")
+}
+
 [node name="CombatScene" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -183,7 +221,7 @@ text = "Play Hand"
 script = SubResource("GDScript_tsf48")
 
 [node name="CombatPlayer" parent="." instance=ExtResource("5_yn8se")]
-position = Vector2(632, 388)
+position = Vector2(-73, 373)
 script = ExtResource("6_c4mj5")
 health = 600
 max_health = 600
@@ -240,3 +278,10 @@ script = ExtResource("7_m4rks")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1024, 512)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_sv7pb")
+}
+
+[node name="CanvasLayer" parent="." instance=ExtResource("7_loea4")]
