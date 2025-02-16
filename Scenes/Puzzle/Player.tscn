@@ -1,6 +1,6 @@
-[gd_scene load_steps=66 format=3 uid="uid://dpbglpsa0dedh"]
+[gd_scene load_steps=68 format=3 uid="uid://dpbglpsa0dedh"]
 
-[ext_resource type="Script" path="res://Scripts/Puzzles/player.gd" id="1_gufl8"]
+[ext_resource type="Script" uid="uid://cfaa8xy3xqc3n" path="res://Scripts/Puzzles/player.gd" id="1_gufl8"]
 [ext_resource type="Texture2D" uid="uid://l2qeoe5d6iqi" path="res://Resources/Textures/Player/idle.png" id="1_kna8y"]
 [ext_resource type="Texture2D" uid="uid://c034mf20ewaqq" path="res://Resources/Textures/Player/idle_reversed.png" id="2_eaiqo"]
 [ext_resource type="Texture2D" uid="uid://bjt31fx6rggjm" path="res://Resources/Textures/Player/run.png" id="2_sq6j3"]
@@ -629,16 +629,30 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j2n2k"]
 _data = {
-"RESET": SubResource("Animation_hr4x4"),
-"idle_back": SubResource("Animation_lcrcv"),
-"idle_front": SubResource("Animation_33p8d"),
-"idle_left": SubResource("Animation_qpma3"),
-"idle_right": SubResource("Animation_dasex"),
-"run_back": SubResource("Animation_nhuv8"),
-"run_front": SubResource("Animation_qhw74"),
-"run_left": SubResource("Animation_xfxay"),
-"run_right": SubResource("Animation_14ewv")
+&"RESET": SubResource("Animation_hr4x4"),
+&"idle_back": SubResource("Animation_lcrcv"),
+&"idle_front": SubResource("Animation_33p8d"),
+&"idle_left": SubResource("Animation_qpma3"),
+&"idle_right": SubResource("Animation_dasex"),
+&"run_back": SubResource("Animation_nhuv8"),
+&"run_front": SubResource("Animation_qhw74"),
+&"run_left": SubResource("Animation_xfxay"),
+&"run_right": SubResource("Animation_14ewv")
 }
+
+[sub_resource type="Gradient" id="Gradient_18iom"]
+offsets = PackedFloat32Array(0, 0.271802)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3seim"]
+gradient = SubResource("Gradient_18iom")
+width = 300
+height = 300
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+repeat = 1
 
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
@@ -657,8 +671,19 @@ animation = &"idle"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_j2n2k")
+&"": SubResource("AnimationLibrary_j2n2k")
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, 2)
+scale = Vector2(158.25, 157.375)
+blend_mode = 2
+shadow_enabled = true
+shadow_color = Color(0.0470677, 0.0166552, 0.0264808, 1)
+texture = SubResource("GradientTexture2D_3seim")
+texture_scale = 0.05

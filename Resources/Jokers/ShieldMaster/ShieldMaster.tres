@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Joker" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Resources/Jokers/ShieldMaster/ShieldMaster.gd" id="1_pupyt"]
+[ext_resource type="Script" path="res://Scripts/Jokers/joker_class.gd" id="2_0libv"]
+
+[resource]
+script = ExtResource("2_0libv")
+conditions = ExtResource("1_pupyt")
+type = 4
+played_card_type = 0
+level = 0
+affect = {
+"damage": 0,
+"heal": 0,
+"max_heal": 0,
+"mult": 0,
+"shield": 0
+} 

@@ -5,6 +5,11 @@ extends StaticBody2D
 func _ready():
 	DoorManager.register_door(self, door_id)
 
+func _exit_tree():
+	# Clean up collision shape
+	if has_node("CollisionShape2D"):
+		$CollisionShape2D.queue_free()
+
 func open_door():
 	$CollisionShape2D.set_deferred("disabled", true)  # Make door passable
 	modulate = Color(1, 1, 1, 0.1)  # Keep door visible

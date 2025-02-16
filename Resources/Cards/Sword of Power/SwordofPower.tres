@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://bgxcgjr2mcpnb"]
 
-[ext_resource type="Script" path="res://card_class.gd" id="1_7e571"]
+[ext_resource type="Script" uid="uid://chyoxxykbrsah" path="res://card_class.gd" id="1_7e571"]
 [ext_resource type="Texture2D" uid="uid://b4h6vw3eea612" path="res://Resources/Cards/Sword of Power/SwordofPoweer.png" id="2_i3wu8"]
 
 [resource]

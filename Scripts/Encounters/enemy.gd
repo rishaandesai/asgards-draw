@@ -18,8 +18,9 @@ func trigger_combat():
 	parent.remove_child(self)
 	scene.pack(parent)
 	SaveData.save_scene = scene
+	for id in DoorManager.doors_by_id:
+		DoorManager.unregister_trigger(id)
 	parent.get_tree().change_scene_to_file("res://Scenes/combat_scene.tscn")
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
