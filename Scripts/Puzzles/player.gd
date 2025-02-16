@@ -23,7 +23,7 @@ func _physics_process(_delta: float) -> void:
 
 	if velocity.length() > 0:
 		animation_player.play("run_" + last_direction)
-		$WASD.visible = false  # Hide prompt on movement
+		$WASD.visible = false
 	else:
 		animation_player.play("idle_" + last_direction)
 
