@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://bll4fs43d0x86"]
+[gd_scene load_steps=42 format=4 uid="uid://bll4fs43d0x86"]
 
 [ext_resource type="PackedScene" uid="uid://dpbglpsa0dedh" path="res://Scenes/Puzzle/Player.tscn" id="1_g5x23"]
 [ext_resource type="Texture2D" uid="uid://dkaxpvkoe8t43" path="res://Resources/Textures/World/Dungeon_Tileset.png" id="1_mdv3u"]
@@ -512,6 +512,20 @@ jokers = Array[ExtResource("15_sv3af")]([])
 hand_size = 1
 sprite = ExtResource("15_3p44c")
 
+[sub_resource type="Gradient" id="Gradient_8l3nt"]
+offsets = PackedFloat32Array(0.986971, 1)
+colors = PackedColorArray(1, 1, 0.756863, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kwl8l"]
+gradient = SubResource("Gradient_8l3nt")
+width = 250
+height = 250
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+repeat = 1
+
 [node name="World" type="Node2D"]
 
 [node name="CanvasLayer" parent="." instance=ExtResource("1_ti1bm")]
@@ -544,7 +558,7 @@ scale = Vector2(0.5, 0.5)
 encounter = Array[ExtResource("12_8jjnw")]([SubResource("Resource_df5km")])
 
 [node name="Player" parent="." instance=ExtResource("1_g5x23")]
-position = Vector2(314, 301)
+position = Vector2(933, 159)
 scale = Vector2(0.5, 0.5)
 
 [node name="RigidBody2D2" parent="." instance=ExtResource("2_hf7vf")]
@@ -645,3 +659,13 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("13_op4cu")
 region_enabled = true
 region_rect = Rect2(47.9337, 143.952, 15.1058, 16.0165)
+
+[node name="EditorLight" type="PointLight2D" parent="."]
+position = Vector2(698, 505)
+scale = Vector2(79.125, 78.6875)
+editor_only = true
+blend_mode = 2
+shadow_color = Color(0.0470677, 0.0166552, 0.0264808, 1)
+shadow_filter = 1
+texture = SubResource("GradientTexture2D_kwl8l")
+texture_scale = 0.05

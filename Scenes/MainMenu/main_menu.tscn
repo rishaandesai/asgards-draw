@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://ci88icfnl4g5e"]
+[gd_scene load_steps=3 format=3 uid="uid://ci88icfnl4g5e"]
 
 [ext_resource type="Script" uid="uid://c0iokc8hcuiy1" path="res://Scripts/MainMenu/main_menu.gd" id="1_uqdog"]
+[ext_resource type="Texture2D" uid="uid://b306kvw5bk206" path="res://Scenes/MainMenu/Group 6.png" id="2_v763k"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -11,9 +12,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_uqdog")
 
-[node name="Button" type="Button" parent="."]
+[node name="TextureButton" type="TextureButton" parent="."]
 layout_mode = 0
-offset_right = 1636.0
-offset_bottom = 800.0
-
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("2_v763k")

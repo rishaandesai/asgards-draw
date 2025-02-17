@@ -640,12 +640,12 @@ _data = {
 &"run_right": SubResource("Animation_14ewv")
 }
 
-[sub_resource type="Gradient" id="Gradient_18iom"]
-offsets = PackedFloat32Array(0, 0.271802)
-colors = PackedColorArray(1, 1, 0.756863, 1, 0, 0, 0, 1)
+[sub_resource type="Gradient" id="Gradient_orne2"]
+offsets = PackedFloat32Array(0.00488599, 0.271802)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3seim"]
-gradient = SubResource("Gradient_18iom")
+gradient = SubResource("Gradient_orne2")
 width = 250
 height = 250
 use_hdr = true
