@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ct4a7gllvn2g3"
-path="res://.godot/imported/Transfeminator.png-86d49e20f1b12dcbd87b2eb1b44387d9.ctex"
+uid="uid://0gnol4beddpt"
+path="res://.godot/imported/chest-Sheet.png-f3b1becf59d1687588d9c6bb0a002fc7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Transfeminator.png"
-dest_files=["res://.godot/imported/Transfeminator.png-86d49e20f1b12dcbd87b2eb1b44387d9.ctex"]
+source_file="res://Resources/Textures/World/Objects/chest-Sheet.png"
+dest_files=["res://.godot/imported/chest-Sheet.png-f3b1becf59d1687588d9c6bb0a002fc7.ctex"]
 
 [params]
 

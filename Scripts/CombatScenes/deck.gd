@@ -5,9 +5,6 @@ extends Control
 @onready var hand: Array[Card] = []
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass
-
 func draw_card() -> Card:
 	if deck.filter(func(c: Card): return !used.has(c)).is_empty():
 		used = hand

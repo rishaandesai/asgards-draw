@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b57h1lwg4vldy"]
 
-[ext_resource type="Script" path="res://Scripts/CombatScenes/Util/card_test.gd" id="1_5ibw6"]
-[ext_resource type="Texture2D" uid="uid://ct4a7gllvn2g3" path="res://Transfeminator.png" id="2_x765x"]
+[ext_resource type="Script" uid="uid://30vn685f7srj" path="res://Scripts/CombatScenes/Util/card_test.gd" id="1_5ibw6"]
+[ext_resource type="Texture2D" uid="uid://ct4a7gllvn2g3" path="res://Resources/Jokers/Transfeminator/Transfeminator.png" id="2_x765x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ceyy8"]
 size = Vector2(151, 210)

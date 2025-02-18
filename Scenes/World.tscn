@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://bll4fs43d0x86"]
+[gd_scene load_steps=44 format=4 uid="uid://bll4fs43d0x86"]
 
 [ext_resource type="PackedScene" uid="uid://dpbglpsa0dedh" path="res://Scenes/Puzzle/Player.tscn" id="1_g5x23"]
 [ext_resource type="Texture2D" uid="uid://dkaxpvkoe8t43" path="res://Resources/Textures/World/Dungeon_Tileset.png" id="1_mdv3u"]
@@ -10,8 +10,10 @@
 [ext_resource type="Script" uid="uid://cf0d7ols6vlkk" path="res://enemy_tpe.gd" id="12_8jjnw"]
 [ext_resource type="Script" uid="uid://chyoxxykbrsah" path="res://card_class.gd" id="13_25pbl"]
 [ext_resource type="Texture2D" uid="uid://u3fovhq7q6k4" path="res://Resources/Textures/Player/wasd-icons.png" id="13_op4cu"]
+[ext_resource type="PackedScene" uid="uid://d04gjnousl6hx" path="res://Scenes/Objects/Chest.tscn" id="14_8l3nt"]
 [ext_resource type="Resource" uid="uid://bgxcgjr2mcpnb" path="res://Resources/Cards/Sword of Power/SwordofPower.tres" id="14_d0yig"]
 [ext_resource type="Texture2D" uid="uid://df0ujj1p3c2fc" path="res://Resources/Textures/Enemy_Placeholder.JPG" id="15_3p44c"]
+[ext_resource type="Resource" uid="uid://cbee8niac5m5y" path="res://Resources/Jokers/Transfeminator/Transfeminator.tres" id="15_kwl8l"]
 [ext_resource type="Script" uid="uid://cq25g6c1lqxxd" path="res://Scripts/Jokers/joker_class.gd" id="15_sv3af"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_op4cu"]
@@ -528,7 +530,7 @@ repeat = 1
 
 [node name="World" type="Node2D"]
 
-[node name="CanvasLayer" parent="." instance=ExtResource("1_ti1bm")]
+[node name="HUD" parent="." instance=ExtResource("1_ti1bm")]
 
 [node name="Ground Tilemap" type="TileMapLayer" parent="."]
 z_index = -2
@@ -558,11 +560,11 @@ scale = Vector2(0.5, 0.5)
 encounter = Array[ExtResource("12_8jjnw")]([SubResource("Resource_df5km")])
 
 [node name="Player" parent="." instance=ExtResource("1_g5x23")]
-position = Vector2(933, 159)
+position = Vector2(629, 682)
 scale = Vector2(0.5, 0.5)
 
 [node name="RigidBody2D2" parent="." instance=ExtResource("2_hf7vf")]
-position = Vector2(305, 520)
+position = Vector2(630, 714)
 
 [node name="Trigger" parent="." instance=ExtResource("4_iuctw")]
 z_index = 6
@@ -661,7 +663,7 @@ region_enabled = true
 region_rect = Rect2(47.9337, 143.952, 15.1058, 16.0165)
 
 [node name="EditorLight" type="PointLight2D" parent="."]
-position = Vector2(698, 505)
+position = Vector2(1804, 280)
 scale = Vector2(79.125, 78.6875)
 editor_only = true
 blend_mode = 2
@@ -669,3 +671,8 @@ shadow_color = Color(0.0470677, 0.0166552, 0.0264808, 1)
 shadow_filter = 1
 texture = SubResource("GradientTexture2D_kwl8l")
 texture_scale = 0.05
+
+[node name="Chest" parent="." instance=ExtResource("14_8l3nt")]
+position = Vector2(621, 580)
+possible_cards = Array[ExtResource("13_25pbl")]([ExtResource("15_kwl8l"), ExtResource("14_d0yig")])
+num_cards = 2

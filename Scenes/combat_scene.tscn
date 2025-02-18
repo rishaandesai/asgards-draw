@@ -24,6 +24,7 @@ var colours: Dictionary = {
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pressed.connect(_button_pressed)
+	draw_jokers.call_deferred()
 	for i in range(0,5):
 		call_deferred(\"fill_hand\")
 	pass # Replace with function body.
@@ -68,6 +69,17 @@ func _button_pressed() -> void:
 	for e: CombatEnemy in get_tree().get_nodes_in_group(\"enemies\"):
 		e.take_turn()
 		
+
+func draw_jokers() -> void:
+	for joker: Joker in SaveData.jokers:
+		var c = CanvasCard.init(joker)
+		get_parent().add_child(c)
+		var container = get_node(\"../Jokers\")
+		c.parent_array = container.get_path()
+		c.position = $\"../Jokers\".position
+		container.Cards.append(c)
+		container.reorder()
+		c.z_index = z_index+1
 
 func fill_hand() -> void: 
 	var c = CanvasCard.init($\"../Deck\".draw_card())
@@ -177,6 +189,8 @@ offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="CanvasLayer" parent="." instance=ExtResource("7_loea4")]
+
 [node name="Jokers" parent="." instance=ExtResource("1_ck2br")]
 layout_mode = 1
 offset_left = 636.0
@@ -283,5 +297,3 @@ position = Vector2(1024, 512)
 libraries = {
 &"": SubResource("AnimationLibrary_sv7pb")
 }
-
-[node name="CanvasLayer" parent="." instance=ExtResource("7_loea4")]
