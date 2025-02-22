@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bbx1nawk7xl5d"]
+[gd_scene load_steps=9 format=3 uid="uid://bbx1nawk7xl5d"]
 
 [ext_resource type="PackedScene" uid="uid://b5l372d456hso" path="res://Scenes/CombatScenes/card_container.tscn" id="1_ck2br"]
 [ext_resource type="PackedScene" uid="uid://dv4u7nqs3roj7" path="res://Scenes/CombatScenes/Util/deck.tscn" id="2_kja1g"]
@@ -142,43 +142,6 @@ func play_hand(enemy: CombatEntity, friendly: CombatEntity, cards: Array[Card], 
 	
 "
 
-[sub_resource type="Animation" id="Animation_vtehv"]
-resource_name = "Combat Startup animation"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CombatPlayer:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(0.774623, 0.466518),
-"update": 0,
-"values": [Vector2(-73, 373), Vector2(596, 373)]
-}
-
-[sub_resource type="Animation" id="Animation_loea4"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CombatPlayer:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-73, 373)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_sv7pb"]
-_data = {
-&"Combat Startup animation": SubResource("Animation_vtehv"),
-&"RESET": SubResource("Animation_loea4")
-}
-
 [node name="CombatScene" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -189,7 +152,7 @@ offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CanvasLayer" parent="." instance=ExtResource("7_loea4")]
+[node name="HUD" parent="." instance=ExtResource("7_loea4")]
 
 [node name="Jokers" parent="." instance=ExtResource("1_ck2br")]
 layout_mode = 1
@@ -207,7 +170,7 @@ offset_top = 735.0
 offset_right = -1586.0
 offset_bottom = -273.0
 scale = Vector2(50, 10)
-allowedTypes = Array[int]([0, 1, 2, 3])
+allowedTypes = Array[int]([0, 1, 2])
 
 [node name="Deck" parent="." instance=ExtResource("2_kja1g")]
 layout_mode = 1
@@ -223,7 +186,7 @@ offset_top = 505.0
 offset_right = -1590.0
 offset_bottom = -503.0
 scale = Vector2(50, 10)
-allowedTypes = Array[int]([0, 1, 2, 3])
+allowedTypes = Array[int]([0, 1, 2])
 
 [node name="PlayHand" type="Button" parent="."]
 layout_mode = 0
@@ -235,7 +198,7 @@ text = "Play Hand"
 script = SubResource("GDScript_tsf48")
 
 [node name="CombatPlayer" parent="." instance=ExtResource("5_yn8se")]
-position = Vector2(-73, 373)
+position = Vector2(659, 378)
 script = ExtResource("6_c4mj5")
 health = 600
 max_health = 600
@@ -292,8 +255,3 @@ script = ExtResource("7_m4rks")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1024, 512)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_sv7pb")
-}

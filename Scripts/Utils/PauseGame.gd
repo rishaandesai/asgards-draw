@@ -16,8 +16,6 @@ func update_icons():
 	if get_tree().paused:
 		$PauseIcon.visible = false
 		$ResumeIcon.visible = true
-		print("Paused")
 	else:
 		$PauseIcon.visible = true
 		$ResumeIcon.visible = false
-		print("Resumed")

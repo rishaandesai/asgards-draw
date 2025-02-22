@@ -9,6 +9,7 @@ class_name CombatEntity
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$AnimationPlayer.play("Combat Start")
 	pass # Replace with function body.
 
 func on_death() -> void:

@@ -9,4 +9,3 @@ func _on_button_pressed():
 	var _current_scene = get_tree().current_scene.scene_file_path
 	get_tree().paused = false 
 	get_tree().reload_current_scene()
-	print("Level Restarted")

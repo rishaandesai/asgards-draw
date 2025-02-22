@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4tlntw1bs3yu"]
+
+[ext_resource type="Script" uid="uid://3i4hhmr4ylkb" path="res://Scripts/Puzzles/enemy_path.gd" id="1_s8ksj"]
+
+[node name="EnemyPath" type="Path2D"]
+script = ExtResource("1_s8ksj")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]

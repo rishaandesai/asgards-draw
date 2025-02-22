@@ -1,6 +1,9 @@
-extends Node2D
+extends CharacterBody2D
 
 @export var encounter: Array[EnemyType] = []
+@export var path: Path2D
+@export var SPEED: int = 250
+var progress: float = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -22,5 +25,13 @@ func trigger_combat():
 		DoorManager.unregister_trigger(id)
 	parent.get_tree().change_scene_to_file("res://Scenes/combat_scene.tscn")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
+
+
+
+func _physics_process(delta: float) -> void:
+	progress += 0.4*delta
+	progress = fmod(progress, 2)
+	path.get_node("PathFollow2D").progress_ratio = progress
+	$NavigationAgent2D.target_position = path.position+path.get_node("PathFollow2D").position
+	velocity = SPEED*position.direction_to($NavigationAgent2D.get_next_path_position())
+	move_and_slide()

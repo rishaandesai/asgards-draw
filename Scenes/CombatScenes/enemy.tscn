@@ -1,21 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbuqk5k1icn0c"]
+[gd_scene load_steps=5 format=3 uid="uid://cbuqk5k1icn0c"]
 
-[ext_resource type="Script" path="res://Scripts/Encounters/enemy.gd" id="1_4vmqp"]
+[ext_resource type="Script" uid="uid://be0qng0wwww1s" path="res://Scripts/Encounters/enemy.gd" id="1_4vmqp"]
 [ext_resource type="Texture2D" uid="uid://df0ujj1p3c2fc" path="res://Resources/Textures/Enemy_Placeholder.JPG" id="2_cggb4"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_5jkv8"]
-radius = 268.151
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wbq1e"]
+size = Vector2(178, 83)
 
-[node name="Enemy" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_acbfv"]
+size = Vector2(178, 88)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_4vmqp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 41.5)
+shape = SubResource("RectangleShape2D_wbq1e")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_5jkv8")
+position = Vector2(0, 127)
+shape = SubResource("RectangleShape2D_acbfv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.317308, 0.317308)
 texture = ExtResource("2_cggb4")
 
-[connection signal="body_entered" from="Area2D" to="." method="on_body_enter"]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+max_speed = 10.0
