@@ -6,8 +6,9 @@ func _ready():
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 
-func _on_body_entered(_body):
+func _on_body_entered(body):
+	print(body)
 	DoorManager.register_trigger(trigger_id)  # Notify DoorManager when object steps on it
 
-func _on_body_exited(_body):
-	DoorManager.unregister_trigger(trigger_id)  # Notify when object leaves
+func _on_body_exited(body):
+	DoorManager.unregister_trigger(trigger_id) # Notify when object leaves

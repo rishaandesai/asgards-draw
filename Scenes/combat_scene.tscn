@@ -73,19 +73,19 @@ func _button_pressed() -> void:
 func draw_jokers() -> void:
 	for joker: Joker in SaveData.jokers:
 		var c = CanvasCard.init(joker)
-		get_parent().add_child(c)
+		get_parent().get_node(\"Jokers/HBoxContainer\").add_child(c)
 		var container = get_node(\"../Jokers\")
 		c.parent_array = container.get_path()
-		c.position = $\"../Jokers\".position
 		container.Cards.append(c)
 		container.reorder()
 		c.z_index = z_index+1
 
 func fill_hand() -> void: 
 	var c = CanvasCard.init($\"../Deck\".draw_card())
-	get_parent().add_child(c)
-	var container = get_node(\"../Hand\")
+	get_parent().get_node(\"../VBoxContainer/Hand/HBoxContainer\").add_child(c)
+	var container = get_node(\"../VBoxContainer/Hand\")
 	c.parent_array = container.get_path()
+	print($\"../Deck\".position)
 	c.position = $\"../Deck\".position
 	container.Cards.append(c)
 	container.reorder()
@@ -142,68 +142,12 @@ func play_hand(enemy: CombatEntity, friendly: CombatEntity, cards: Array[Card], 
 	
 "
 
-[node name="CombatScene" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 7.0
-offset_bottom = 4.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="CombatScene" type="Node2D"]
 
 [node name="HUD" parent="." instance=ExtResource("7_loea4")]
 
-[node name="Jokers" parent="." instance=ExtResource("1_ck2br")]
-layout_mode = 1
-offset_left = 636.0
-offset_top = 61.0
-offset_right = -1399.0
-offset_bottom = -947.0
-scale = Vector2(30, 10)
-allowedTypes = Array[int]([4])
-
-[node name="Hand" parent="." instance=ExtResource("1_ck2br")]
-layout_mode = 1
-offset_left = 449.0
-offset_top = 735.0
-offset_right = -1586.0
-offset_bottom = -273.0
-scale = Vector2(50, 10)
-allowedTypes = Array[int]([0, 1, 2])
-
-[node name="Deck" parent="." instance=ExtResource("2_kja1g")]
-layout_mode = 1
-offset_left = 1583.0
-offset_top = 751.0
-offset_right = -365.0
-offset_bottom = -133.0
-
-[node name="Playing" parent="." instance=ExtResource("1_ck2br")]
-layout_mode = 1
-offset_left = 445.0
-offset_top = 505.0
-offset_right = -1590.0
-offset_bottom = -503.0
-scale = Vector2(50, 10)
-allowedTypes = Array[int]([0, 1, 2])
-
-[node name="PlayHand" type="Button" parent="."]
-layout_mode = 0
-offset_left = 1486.0
-offset_top = 547.0
-offset_right = 1700.0
-offset_bottom = 663.0
-text = "Play Hand"
-script = SubResource("GDScript_tsf48")
-
-[node name="CombatPlayer" parent="." instance=ExtResource("5_yn8se")]
-position = Vector2(659, 378)
-script = ExtResource("6_c4mj5")
-health = 600
-max_health = 600
-
 [node name="Target" type="Control" parent="."]
+layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -215,43 +159,113 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="SpawnLocation1" type="Control" parent="."]
-layout_mode = 1
+layout_mode = 3
 anchor_right = 0.19
 anchor_bottom = 0.137
 offset_left = 1052.0
 offset_top = 374.0
-offset_right = 702.88
-offset_bottom = 273.712
+offset_right = 1052.0
+offset_bottom = 374.0
 
 [node name="SpawnLocation2" type="Control" parent="."]
-layout_mode = 1
+layout_mode = 3
 anchor_right = 0.19
 anchor_bottom = 0.137
 offset_left = 1112.0
 offset_top = 374.0
-offset_right = 762.88
-offset_bottom = 273.712
+offset_right = 1112.0
+offset_bottom = 374.0
 
 [node name="SpawnLocation3" type="Control" parent="."]
-layout_mode = 1
+layout_mode = 3
 anchor_right = 0.19
 anchor_bottom = 0.137
 offset_left = 1172.0
 offset_top = 374.0
-offset_right = 822.88
-offset_bottom = 273.712
+offset_right = 1172.0
+offset_bottom = 374.0
 
 [node name="SpawnLocation4" type="Control" parent="."]
-layout_mode = 1
+layout_mode = 3
 anchor_right = 0.19
 anchor_bottom = 0.137
 offset_left = 1232.0
 offset_top = 374.0
-offset_right = 882.88
-offset_bottom = 273.712
+offset_right = 1232.0
+offset_bottom = 374.0
 
 [node name="EnemyManager" type="Node" parent="."]
 script = ExtResource("7_m4rks")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1024, 512)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_left = -5.0
+offset_right = 2048.0
+offset_bottom = 1024.0
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Jokers" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_ck2br")]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+allowedTypes = Array[int]([4])
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CombatPlayer" parent="MarginContainer/VBoxContainer/AspectRatioContainer" instance=ExtResource("5_yn8se")]
+position = Vector2(459, 180)
+script = ExtResource("6_c4mj5")
+health = 600
+max_health = 600
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 15
+
+[node name="Playing" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource("1_ck2br")]
+layout_mode = 2
+size_flags_vertical = 3
+allowedTypes = Array[int]([0, 1, 2])
+
+[node name="Hand" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource("1_ck2br")]
+layout_mode = 2
+size_flags_vertical = 3
+allowedTypes = Array[int]([0, 1, 2])
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.17
+theme_override_constants/separation = 50
+
+[node name="PlayHand" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Play Hand"
+script = SubResource("GDScript_tsf48")
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Deck" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/CenterContainer" instance=ExtResource("2_kja1g")]
+custom_minimum_size = Vector2(100, 140)
+layout_mode = 2
+size_flags_horizontal = 0

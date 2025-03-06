@@ -27,6 +27,7 @@ func on_mouse_input(event: InputEvent):
 		if mouse_event.pressed:
 			animationvar = 0
 			pivot_offset = get_local_mouse_position()
+			print(owner)
 		else:
 			if !$Area2D.get_overlapping_areas().is_empty():
 				var container: Control = $Area2D.get_overlapping_areas()[0].get_parent()

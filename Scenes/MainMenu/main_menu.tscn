@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://ci88icfnl4g5e"]
+[gd_scene load_steps=6 format=3 uid="uid://ci88icfnl4g5e"]
 
 [ext_resource type="Script" uid="uid://c0iokc8hcuiy1" path="res://Scripts/MainMenu/main_menu.gd" id="1_uqdog"]
 [ext_resource type="Texture2D" uid="uid://b306kvw5bk206" path="res://Scenes/MainMenu/Group 6.png" id="2_v763k"]
+[ext_resource type="Texture2D" uid="uid://bhukfgsfgo50y" path="res://Resources/UI/Play Button.png" id="3_0qgbs"]
+[ext_resource type="Texture2D" uid="uid://bsf4jn3l8gnfj" path="res://Resources/UI/Play_button_pressed.png" id="4_adu2g"]
+[ext_resource type="Texture2D" uid="uid://xrqx1n3dneh6" path="res://Resources/UI/Quit Button.png" id="5_adu2g"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -12,8 +15,42 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_uqdog")
 
-[node name="TextureButton" type="TextureButton" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture_normal = ExtResource("2_v763k")
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1087.16
+offset_bottom = -590.0
+scale = Vector2(2, 2)
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 75
+theme_override_constants/margin_bottom = 75
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_v763k")
+stretch_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_0qgbs")
+texture_pressed = ExtResource("4_adu2g")
+
+[node name="TextureButton2" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_adu2g")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TextureButton" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TextureButton2" to="." method="_on_quit_pressed"]

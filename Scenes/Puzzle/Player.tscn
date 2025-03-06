@@ -689,3 +689,14 @@ shadow_color = Color(0.0470677, 0.0166552, 0.0264808, 1)
 shadow_filter = 1
 texture = SubResource("GradientTexture2D_3seim")
 texture_scale = 0.05
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(0, 316.75)
+scale = Vector2(25043.1, 24766.9)
+editor_only = true
+blend_mode = 2
+shadow_enabled = true
+shadow_color = Color(0.0470677, 0.0166552, 0.0264808, 1)
+shadow_filter = 1
+texture = SubResource("GradientTexture2D_3seim")
+texture_scale = 0.05

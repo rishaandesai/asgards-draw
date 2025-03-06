@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://blwcmxhpw2rxe"]
+[gd_scene load_steps=10 format=3 uid="uid://blwcmxhpw2rxe"]
 
 [ext_resource type="Script" uid="uid://h1bcdvmxlwjb" path="res://Scripts/Utils/PauseGame.gd" id="1_68f7i"]
 [ext_resource type="Texture2D" uid="uid://4wonob8a0b6k" path="res://Resources/UI/IconsShadow-32.png" id="1_qmxw8"]
 [ext_resource type="Script" uid="uid://bdgdfnhhbluns" path="res://Scripts/Utils/hud.gd" id="1_rvj6a"]
 [ext_resource type="Script" uid="uid://c52jfbo6rspcs" path="res://Scripts/Utils/RestartLevel.gd" id="3_8d4bx"]
+[ext_resource type="PackedScene" uid="uid://cmrssrtdfhfqu" path="res://Scenes/HUD UI/pickup_notifier.tscn" id="5_rvj6a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rvj6a"]
 bg_color = Color(1, 0.313321, 0.457187, 1)
@@ -26,66 +27,66 @@ process_mode = 3
 script = ExtResource("1_rvj6a")
 Styles = Array[Theme]([SubResource("Theme_pnwva"), SubResource("Theme_dbx5u")])
 
-[node name="Pause" type="Button" parent="."]
-custom_minimum_size = Vector2(50, 50)
-anchors_preset = -1
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 1
 anchor_left = 1.0
-anchor_top = 0.062
 anchor_right = 1.0
-anchor_bottom = 0.062
-offset_left = -91.0
-offset_top = -24.488
-offset_right = -41.0
-offset_bottom = 25.512
+offset_left = -150.0
+offset_bottom = 270.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/separation = 200
+alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 13
+
+[node name="Pause" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
 script = ExtResource("1_68f7i")
 
-[node name="PauseIcon" type="Sprite2D" parent="Pause"]
+[node name="PauseIcon" type="Sprite2D" parent="VBoxContainer/MarginContainer/HBoxContainer/Pause"]
 position = Vector2(26, 24)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_qmxw8")
 region_enabled = true
 region_rect = Rect2(258.017, 257.976, 28.274, 28.0883)
 
-[node name="ResumeIcon" type="Sprite2D" parent="Pause"]
+[node name="ResumeIcon" type="Sprite2D" parent="VBoxContainer/MarginContainer/HBoxContainer/Pause"]
 position = Vector2(26, 24)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_qmxw8")
 region_enabled = true
 region_rect = Rect2(133.905, 226.119, 16.1947, 27.9975)
 
-[node name="Restart" type="Button" parent="."]
+[node name="Restart" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(50, 50)
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.063
-anchor_right = 1.0
-anchor_bottom = 0.063
-offset_left = -173.0
-offset_top = -24.512
-offset_right = -123.0
-offset_bottom = 25.488
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("3_8d4bx")
 
-[node name="RestartIcon" type="Sprite2D" parent="Restart"]
+[node name="RestartIcon" type="Sprite2D" parent="VBoxContainer/MarginContainer/HBoxContainer/Restart"]
 position = Vector2(26, 24)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_qmxw8")
 region_enabled = true
 region_rect = Rect2(291.945, 257.937, 24.1905, 28.1274)
 
-[node name="PickupNotifierContainer" type="VBoxContainer" parent="."]
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.227
-anchor_right = 1.0
-anchor_bottom = 0.227
-offset_left = -150.0
-offset_top = -0.448013
-offset_bottom = 149.552
-grow_horizontal = 0
-pivot_offset = Vector2(150, 0)
+[node name="PickupNotifierContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
 alignment = 1
+
+[node name="PickupNotifier" parent="VBoxContainer/PickupNotifierContainer" instance=ExtResource("5_rvj6a")]
+layout_mode = 2

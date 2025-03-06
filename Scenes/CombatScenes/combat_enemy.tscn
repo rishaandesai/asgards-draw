@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://sokg2n47yfep"]
 
 [ext_resource type="Texture2D" uid="uid://bd36ajlr1q3qx" path="res://E92EEE34-DB03-4682-8A19-85319085FFF4.png" id="1_1mjft"]
-[ext_resource type="Script" path="res://Scripts/CombatScenes/combat_enemy.gd" id="1_id26y"]
+[ext_resource type="Script" uid="uid://cnyq83udcng8p" path="res://Scripts/CombatScenes/combat_enemy.gd" id="1_id26y"]
 
 [node name="CombatEnemy" type="Node2D" groups=["enemies"]]
 script = ExtResource("1_id26y")

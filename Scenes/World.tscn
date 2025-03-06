@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dpbglpsa0dedh" path="res://Scenes/Puzzle/Player.tscn" id="1_g5x23"]
 [ext_resource type="Texture2D" uid="uid://dkaxpvkoe8t43" path="res://Resources/Textures/World/Dungeon_Tileset.png" id="1_mdv3u"]
 [ext_resource type="PackedScene" uid="uid://blwcmxhpw2rxe" path="res://Scenes/Utils/HUD.tscn" id="1_ti1bm"]
-[ext_resource type="PackedScene" uid="uid://cbuqk5k1icn0c" path="res://Scenes/CombatScenes/enemy.tscn" id="2_8l3nt"]
+[ext_resource type="PackedScene" uid="uid://cbuqk5k1icn0c" path="res://Scenes/Puzzle/enemy.tscn" id="2_8l3nt"]
 [ext_resource type="PackedScene" uid="uid://ddho1cag5vw4w" path="res://Scenes/Puzzle/MoveableBox.tscn" id="2_hf7vf"]
 [ext_resource type="PackedScene" uid="uid://c4tlntw1bs3yu" path="res://Scenes/Puzzle/enemy_path.tscn" id="2_op4cu"]
 [ext_resource type="PackedScene" uid="uid://ca72xlhs8s4vt" path="res://Scenes/Puzzle/Door.tscn" id="3_0xdip"]
@@ -532,7 +532,7 @@ repeat = 1
 [node name="HUD" parent="." instance=ExtResource("1_ti1bm")]
 
 [node name="Enemy" parent="." node_paths=PackedStringArray("path") instance=ExtResource("2_8l3nt")]
-position = Vector2(673, 697)
+position = Vector2(573, 526)
 scale = Vector2(0.20001, 0.20001)
 path = NodePath("../EnemyPath")
 
@@ -569,7 +569,7 @@ scale = Vector2(4.04, 3)
 door_id = "D"
 
 [node name="Player" parent="." instance=ExtResource("1_g5x23")]
-position = Vector2(600, 517)
+position = Vector2(333, 574)
 scale = Vector2(0.5, 0.5)
 
 [node name="RigidBody2D2" parent="." instance=ExtResource("2_hf7vf")]
@@ -614,13 +614,13 @@ door_id = "G"
 [node name="Trigger5" parent="." instance=ExtResource("4_iuctw")]
 z_index = 6
 position = Vector2(315, 811)
-scale = Vector2(2.01212, 0.579439)
+scale = Vector2(2.01212, 0.699478)
 trigger_id = "D"
 
 [node name="Trigger6" parent="." instance=ExtResource("4_iuctw")]
 z_index = 6
 position = Vector2(313, 811)
-scale = Vector2(2.25212, 0.55208)
+scale = Vector2(2.25212, 0.632119)
 trigger_id = "E"
 
 [node name="WASD" type="Control" parent="."]
@@ -680,7 +680,7 @@ num_cards = 2
 position = Vector2(949, 341)
 
 [node name="EditorLight" type="PointLight2D" parent="."]
-position = Vector2(505, 591)
+position = Vector2(704, 663)
 scale = Vector2(106.67, 106.08)
 editor_only = true
 blend_mode = 2
