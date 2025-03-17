@@ -4,7 +4,7 @@ var b: PackedScene = preload("res://Scenes/CombatScenes/combat_enemy.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print("fuck")
+	print("ready")
 	configure_jokers()
 	pass # Replace with function body.
 
