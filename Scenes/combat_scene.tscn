@@ -7,140 +7,7 @@
 [ext_resource type="Script" uid="uid://dh4en45236kku" path="res://Scripts/CombatScenes/Util/target.gd" id="6_j624e"]
 [ext_resource type="PackedScene" uid="uid://blwcmxhpw2rxe" path="res://Scenes/Utils/HUD.tscn" id="7_loea4"]
 [ext_resource type="Script" uid="uid://0fx714n61jm6" path="res://Scripts/CombatScenes/Util/enemy_manager.gd" id="7_m4rks"]
-
-[sub_resource type="GDScript" id="GDScript_tsf48"]
-resource_name = "play_hand"
-script/source = "extends Button
-
-var notifier: PackedScene = preload(\"res://Scenes/CombatScenes/Util/score_notifier.tscn\")
-var colours: Dictionary = {
-	damage = \"ac3232\",
-	shield = \"5b6ee1\",
-	heal = \"5b6ee1\",
-	mult = \"76428a\"
-}
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pressed.connect(_button_pressed)
-	draw_jokers.call_deferred()
-	for i in range(0,5):
-		call_deferred(\"fill_hand\")
-	pass # Replace with function body.
-
-func _button_pressed() -> void:
-	if $\"../Playing\".Cards.is_empty(): return
-	if get_tree().get_nodes_in_group(\"enemies\").size() == 0:
-		return
-	var cards: Array[Card] = []
-	for c: CanvasCard in $\"../Playing\".Cards:
-		cards.append(c.card)
-	$\"../Deck\".hand = cards
-	var jokers: Array[Joker] = []
-	for j: CanvasCard in $\"../Jokers\".Cards:
-		cards.append(j.card as Joker)
-	await play_hand(get_tree().get_nodes_in_group(\"enemies\")[$\"../Target\".target], $\"../CombatPlayer\", cards, jokers)
-	var i: int = $\"../Playing\".Cards.size()
-	for c: CanvasCard in $\"../Playing\".Cards:
-		c.target_position = $\"../Deck\".position
-		c.origin_position = c.target_position
-		c.animationvar = 0
-		var temp: Timer = Timer.new()
-		get_parent().add_child(temp)
-		temp.start(0.5)
-		temp.timeout.connect(func(): 
-			$\"../Playing\".Cards = $\"../Playing\".Cards.filter(func(g: CanvasCard): return g != c)
-			get_parent().remove_child(c)
-			temp.stop()
-			temp.get_parent().remove_child(temp)
-		)
-		$\"../Deck\".hand.clear()
-		for h: CanvasCard in ($\"../Hand\" as CardContainer).Cards:
-			$\"../Deck\".hand.append(h.card)
-	for k in range (0, i):
-		fill_hand()
-	if get_tree().get_node_count_in_group(\"enemies\") == 0:
-		get_tree().change_scene_to_packed(SaveData.save_scene)
-		return
-	if !get_parent().has_node(\"CombatPlayer\"):
-		get_tree().change_scene_to_file(\"res://Scenes/Win-Loss/Lose.tscn\")
-		return
-	for e: CombatEnemy in get_tree().get_nodes_in_group(\"enemies\"):
-		e.take_turn()
-		
-
-func draw_jokers() -> void:
-	for joker: Joker in SaveData.jokers:
-		var c = CanvasCard.init(joker)
-		get_parent().get_node(\"Jokers/HBoxContainer\").add_child(c)
-		var container = get_node(\"../Jokers\")
-		c.parent_array = container.get_path()
-		container.Cards.append(c)
-		container.reorder()
-		c.z_index = z_index+1
-
-func fill_hand() -> void: 
-	var c = CanvasCard.init($\"../Deck\".draw_card())
-	get_parent().get_node(\"../VBoxContainer/Hand/HBoxContainer\").add_child(c)
-	var container = get_node(\"../VBoxContainer/Hand\")
-	c.parent_array = container.get_path()
-	print($\"../Deck\".position)
-	c.position = $\"../Deck\".position
-	container.Cards.append(c)
-	container.reorder()
-	c.z_index = z_index+1
-
-func play_hand(enemy: CombatEntity, friendly: CombatEntity, cards: Array[Card], jokers: Array[Joker]) -> void:
-	if cards.is_empty(): return
-	var dict = Card.affect_dict.duplicate()
-	cards = cards.duplicate(true)
-	
-	# Apply base card effects first
-	for c: Card in cards:
-		for k in c.affect.keys():
-			if c.affect[k] != 0:
-				dict[k] += c.affect[k]
-				var notifier_instance = notifier.instantiate()
-				if k == \"damage\":
-					enemy.add_child(notifier_instance)
-				else:
-					friendly.add_child(notifier_instance)
-				notifier_instance.position = Vector2(0, 0)
-				notifier_instance.get_node(\"TextureRect\").modulate = colours[k]
-				notifier_instance.z_index = friendly.z_index+1
-				notifier_instance.get_node(\"Label\").text = str(c.affect[k])
-				notifier_instance.get_node(\"Label\").position.x = -notifier_instance.get_node(\"Label\").size.x/2
-				await notifier_instance.tree_exited
-	
-	# Apply joker effects
-	var pre_joker_dict = dict.duplicate()
-	for joker in jokers:
-		if joker.conditions:
-			joker.conditions.affect(cards, dict, jokers)
-	
-	# Show joker effect differences
-	for k in dict.keys():
-		var difference = dict[k] - pre_joker_dict[k]
-		if difference != 0:
-			var notifier_instance = notifier.instantiate()
-			if k == \"damage\":
-				enemy.add_child(notifier_instance)
-			else:
-				friendly.add_child(notifier_instance)
-			notifier_instance.position = Vector2(0, 0)
-			notifier_instance.get_node(\"TextureRect\").modulate = colours[k]
-			notifier_instance.z_index = friendly.z_index+1
-			notifier_instance.get_node(\"Label\").text = \"+\" + str(difference) + \" (Joker)\"
-			notifier_instance.get_node(\"Label\").position.x = -notifier_instance.get_node(\"Label\").size.x/2
-			await notifier_instance.tree_exited
-	
-	# Apply final effects
-	enemy.damage(dict.damage * dict.mult)
-	friendly.heal(dict.heal * dict.mult)
-	friendly.shield += dict.shield
-	
-"
+[ext_resource type="Script" uid="uid://chp2w4b6vfq1g" path="res://Scripts/CombatScenes/play_hand.gd" id="7_sv7pb"]
 
 [node name="CombatScene" type="Node2D"]
 
@@ -260,7 +127,7 @@ theme_override_constants/separation = 50
 layout_mode = 2
 size_flags_vertical = 3
 text = "Play Hand"
-script = SubResource("GDScript_tsf48")
+script = ExtResource("7_sv7pb")
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2

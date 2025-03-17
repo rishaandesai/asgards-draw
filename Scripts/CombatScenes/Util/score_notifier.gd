@@ -1,6 +1,15 @@
 extends Control
 class_name CardNotifier
 
+static func notify(text: String, color: String, parent: Node2D) -> void:
+	var instance = preload("res://Scenes/CombatScenes/Util/score_notifier.tscn").instantiate()
+	parent.add_child(instance)
+	instance.get_node("Label").text = text
+	instance.get_node("TextureRect").modulate = Color(color)
+	instance.position = Vector2.ZERO
+	instance.z_index = parent.z_index + 1
+	instance.get_node("Label").position.x = -instance.get_node("Label").size.x/2
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Label.scale = Vector2.ZERO
@@ -20,4 +29,4 @@ func _ready() -> void:
 	await LabelTween.finished
 	await TexRectTween.finished
 	await get_tree().create_timer(.5).timeout
-	get_parent().remove_child.call_deferred(self)
+	queue_free()

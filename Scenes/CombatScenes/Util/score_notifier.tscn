@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cgd6my4jfhdsw"]
 
 [ext_resource type="FontFile" uid="uid://dr8m8fvrwkl2b" path="res://Resources/DisplayFont.ttf" id="1_dwa31"]
-[ext_resource type="Script" path="res://Scripts/CombatScenes/Util/score_notifier.gd" id="1_nepnt"]
+[ext_resource type="Script" uid="uid://bs3umvnaoal5h" path="res://Scripts/CombatScenes/Util/score_notifier.gd" id="1_nepnt"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_rd4h7"]
 
