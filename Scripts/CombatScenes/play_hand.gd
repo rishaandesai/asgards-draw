@@ -46,6 +46,12 @@ func _button_pressed() -> void:
 	for k in range (0, i):
 		fill_hand()
 	if get_tree().get_node_count_in_group("enemies") == 0:
+		var tempPlayer: CombatEntity = $"../../../AspectRatioContainer/CombatPlayer"
+		SaveData.playerStats = {
+			health = tempPlayer.health,
+			max_health = tempPlayer.max_health,
+			shield = tempPlayer.shield,
+		}
 		get_tree().change_scene_to_packed(SaveData.save_scene)
 		return
 	if !get_parent().has_node("CombatPlayer"):

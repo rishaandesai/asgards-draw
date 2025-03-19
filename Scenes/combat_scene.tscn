@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bbx1nawk7xl5d"]
+[gd_scene load_steps=8 format=3 uid="uid://bbx1nawk7xl5d"]
 
 [ext_resource type="PackedScene" uid="uid://b5l372d456hso" path="res://Scenes/CombatScenes/card_container.tscn" id="1_ck2br"]
 [ext_resource type="PackedScene" uid="uid://dv4u7nqs3roj7" path="res://Scenes/CombatScenes/Util/deck.tscn" id="2_kja1g"]
 [ext_resource type="PackedScene" uid="uid://rt6j0ajaffrt" path="res://Scenes/CombatScenes/combat_player.tscn" id="5_yn8se"]
-[ext_resource type="Script" uid="uid://budef7ube60t6" path="res://Scripts/CombatScenes/combat_player.gd" id="6_c4mj5"]
 [ext_resource type="Script" uid="uid://dh4en45236kku" path="res://Scripts/CombatScenes/Util/target.gd" id="6_j624e"]
 [ext_resource type="PackedScene" uid="uid://blwcmxhpw2rxe" path="res://Scenes/Utils/HUD.tscn" id="7_loea4"]
 [ext_resource type="Script" uid="uid://0fx714n61jm6" path="res://Scripts/CombatScenes/Util/enemy_manager.gd" id="7_m4rks"]
@@ -92,7 +91,6 @@ size_flags_vertical = 3
 
 [node name="CombatPlayer" parent="MarginContainer/VBoxContainer/AspectRatioContainer" instance=ExtResource("5_yn8se")]
 position = Vector2(459, 180)
-script = ExtResource("6_c4mj5")
 health = 600
 max_health = 600
 

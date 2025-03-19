@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://rt6j0ajaffrt"]
+[gd_scene load_steps=15 format=3 uid="uid://rt6j0ajaffrt"]
 
 [ext_resource type="Texture2D" uid="uid://bjt31fx6rggjm" path="res://Resources/Textures/Player/run.png" id="1_gw821"]
+[ext_resource type="Script" uid="uid://budef7ube60t6" path="res://Scripts/CombatScenes/combat_player.gd" id="1_nsvsh"]
 
 [sub_resource type="Animation" id="Animation_gw821"]
 resource_name = "Combat Start"
@@ -116,6 +117,7 @@ animations = [{
 }]
 
 [node name="CombatPlayer" type="Node2D"]
+script = ExtResource("1_nsvsh")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

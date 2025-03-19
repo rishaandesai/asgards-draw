@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Dungeon" load_steps=3 format=3 uid="uid://w86q1llkuued"]
+
+[ext_resource type="Script" uid="uid://l6dl6mtnyi3v" path="res://Scripts/Utils/dungeons.gd" id="1_lk5wa"]
+[ext_resource type="PackedScene" uid="uid://daay405xwbq1m" path="res://Scenes/Puzzle/Dungeons/Boss Rooms/Aion's Keep.tscn" id="2_f5sva"]
+
+[resource]
+script = ExtResource("1_lk5wa")
+type = 3
+rarity = 4
+difficulty = 9.0
+scene = ExtResource("2_f5sva")
+metadata/_custom_type_script = ExtResource("1_lk5wa")

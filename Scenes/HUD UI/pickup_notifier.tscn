@@ -46,9 +46,8 @@ anchors_preset = -1
 anchor_top = 0.073
 anchor_bottom = 0.073
 offset_left = 87.0
-offset_top = -74.752
 offset_right = 237.0
-offset_bottom = 75.248
+offset_bottom = 150.0
 script = ExtResource("1_ansq7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

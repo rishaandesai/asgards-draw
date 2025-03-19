@@ -2,10 +2,14 @@ extends Area2D
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if body is CharacterBody2D:
-		load_next_level()
+	if body.name == "Player":
+		load_overworld()
 
-func load_next_level() -> void:
+func load_overworld() -> void:
+	get_tree().change_scene_to_file.call_deferred()
+	pass
+
+func dep_load_next_level() -> void:
 	var currentScene: StringName = owner.scene_file_path
 	var nextArray: PackedStringArray = DirAccess.get_files_at("res://Scenes/Puzzle/Puzzles")
 	if nextArray.has(currentScene.get_file()):
