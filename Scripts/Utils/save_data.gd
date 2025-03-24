@@ -2,25 +2,31 @@ extends Node
 
 var save_scene: PackedScene
 var enemies: Array[EnemyType]
-var playerStats: Dictionary = {
-	health = 100,
-	maxHealth = 100,
-	shield = 0,
+@export var serialize: Dictionary = {
+	playerStats = {
+		health = 100,
+		maxHealth = 100,
+		shield = 0
+	},
+	deck = [],
+	jokers = []
 }
-@export var deck: Array[Card] = []
-@export var jokers: Array[Joker] = []
-
 func _ready() -> void:
-	_save()
+	(load('res://Scripts/Utils/populate_POIs.gd') as Script).generate_POI_positions()
 	for i in range(0, 6):
 		for b: Card in (load("res://Resources/all_cards.tscn") as PackedScene).instantiate().AllCards:
 			var c: Card = b.duplicate(true)
 			c.affect = b.affect
-			deck.append(c)
+			serialize.deck.append(c)
+
+func _as_resource() -> Resource:
+	var temp: Resource = Resource.new()
+	for key: StringName in serialize.keys():
+		temp[key] = serialize[key]
+	return temp
+
+func _get(property: StringName) -> Variant:
+	return serialize.get(property)
 
 func _save() -> void:
-	var save_file = FileAccess.open("user://Saves/"+SaveData.save_name, FileAccess.WRITE)
-	var json = JSON.new()
-	for v in (get_script() as Script).get_script_property_list():
-		save_file.store_line(json.stringify(v))
-		
+	ResourceSaver.save(self._as_resource(), "user://Saves/"+SaveData.save_name)

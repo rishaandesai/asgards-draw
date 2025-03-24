@@ -1,6 +1,6 @@
 extends Control
 
-@export var deck: Array[Card] = SaveData.deck
+@export var deck: Array = SaveData.get("deck")
 @export var used: Array[Card] = []
 @onready var hand: Array[Card] = []
 

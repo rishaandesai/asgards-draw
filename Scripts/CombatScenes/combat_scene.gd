@@ -9,7 +9,7 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func configure_jokers() -> void:
-	var jokers: Array[Joker] = SaveData.jokers
+	var jokers: Array[Joker] = SaveData.get("jokers")
 	for j: Joker in jokers:
 		var c: CanvasCard = (load("res://Scenes/CombatScenes/Util/card.tscn") as PackedScene).instantiate()
 		c.parent_array = $Jokers.get_path()
