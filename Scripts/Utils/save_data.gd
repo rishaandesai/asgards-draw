@@ -12,7 +12,7 @@ var enemies: Array[EnemyType]
 	jokers = []
 }
 func _ready() -> void:
-	(load('res://Scripts/Utils/populate_POIs.gd') as Script).generate_POI_positions()
+	#(load('res://Scripts/Utils/populate_POIs.gd') as Script).generate_POI_positions()
 	for i in range(0, 6):
 		for b: Card in (load("res://Resources/all_cards.tscn") as PackedScene).instantiate().AllCards:
 			var c: Card = b.duplicate(true)

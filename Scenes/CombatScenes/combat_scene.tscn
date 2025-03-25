@@ -1,0 +1,138 @@
+[gd_scene load_steps=9 format=3 uid="uid://bbx1nawk7xl5d"]
+
+[ext_resource type="PackedScene" uid="uid://b5l372d456hso" path="res://Scenes/CombatScenes/card_container.tscn" id="1_ck2br"]
+[ext_resource type="PackedScene" uid="uid://dv4u7nqs3roj7" path="res://Scenes/CombatScenes/Util/deck.tscn" id="2_kja1g"]
+[ext_resource type="PackedScene" uid="uid://rt6j0ajaffrt" path="res://Scenes/CombatScenes/combat_player.tscn" id="5_yn8se"]
+[ext_resource type="Script" uid="uid://budef7ube60t6" path="res://Scripts/CombatScenes/combat_player.gd" id="6_c4mj5"]
+[ext_resource type="Script" uid="uid://dh4en45236kku" path="res://Scripts/CombatScenes/Util/target.gd" id="6_j624e"]
+[ext_resource type="PackedScene" uid="uid://blwcmxhpw2rxe" path="res://Scenes/Utils/HUD.tscn" id="7_loea4"]
+[ext_resource type="Script" uid="uid://0fx714n61jm6" path="res://Scripts/CombatScenes/Util/enemy_manager.gd" id="7_m4rks"]
+[ext_resource type="Script" path="res://Scripts/CombatScenes/play_hand.gd" id="7_sv7pb"]
+
+[node name="CombatScene" type="Node2D"]
+
+[node name="HUD" parent="." instance=ExtResource("7_loea4")]
+
+[node name="Target" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_j624e")
+
+[node name="TextureRect" type="TextureRect" parent="Target"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SpawnLocation1" type="Control" parent="."]
+layout_mode = 3
+anchor_right = 0.19
+anchor_bottom = 0.137
+offset_left = 1052.0
+offset_top = 374.0
+offset_right = 1052.0
+offset_bottom = 374.0
+
+[node name="SpawnLocation2" type="Control" parent="."]
+layout_mode = 3
+anchor_right = 0.19
+anchor_bottom = 0.137
+offset_left = 1112.0
+offset_top = 374.0
+offset_right = 1112.0
+offset_bottom = 374.0
+
+[node name="SpawnLocation3" type="Control" parent="."]
+layout_mode = 3
+anchor_right = 0.19
+anchor_bottom = 0.137
+offset_left = 1172.0
+offset_top = 374.0
+offset_right = 1172.0
+offset_bottom = 374.0
+
+[node name="SpawnLocation4" type="Control" parent="."]
+layout_mode = 3
+anchor_right = 0.19
+anchor_bottom = 0.137
+offset_left = 1232.0
+offset_top = 374.0
+offset_right = 1232.0
+offset_bottom = 374.0
+
+[node name="EnemyManager" type="Node" parent="."]
+script = ExtResource("7_m4rks")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1024, 512)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_left = -5.0
+offset_right = 2048.0
+offset_bottom = 1024.0
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Jokers" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_ck2br")]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+allowedTypes = Array[int]([4])
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CombatPlayer" parent="MarginContainer/VBoxContainer/AspectRatioContainer" instance=ExtResource("5_yn8se")]
+position = Vector2(459, 180)
+script = ExtResource("6_c4mj5")
+health = 600
+max_health = 600
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 15
+
+[node name="Playing" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource("1_ck2br")]
+layout_mode = 2
+size_flags_vertical = 3
+allowedTypes = Array[int]([0, 1, 2])
+
+[node name="Hand" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource("1_ck2br")]
+layout_mode = 2
+size_flags_vertical = 3
+allowedTypes = Array[int]([0, 1, 2])
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.17
+theme_override_constants/separation = 50
+
+[node name="PlayHand" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Play Hand"
+script = ExtResource("7_sv7pb")
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Deck" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/CenterContainer" instance=ExtResource("2_kja1g")]
+custom_minimum_size = Vector2(100, 140)
+layout_mode = 2
+size_flags_horizontal = 0
