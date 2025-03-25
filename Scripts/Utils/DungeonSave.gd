@@ -8,7 +8,7 @@ class_name DungeonSave
 ## Position is assigned in generation
 @export var position: Vector2i
 ## ID of the dungeon save
-@export var id: int
+@export var uid: int
 
 func _init(worldSize: Vector2i, pos: Vector2i, id: int) -> void:
 	position = pos
@@ -19,6 +19,7 @@ n 	var dungeon_resc: Dungeon = load(folder.get_files()[range(0, folder.get_files
 	rarity = dungeon_resc.rarity
 	type = dungeon_resc.type
 	scene = dungeon_resc.scene
+	uid = id
 	super(dungeon_resc.name)
 
 static func weights(d_r: float) -> PackedFloat32Array:
@@ -30,4 +31,4 @@ static func weights(d_r: float) -> PackedFloat32Array:
 	return PackedFloat32Array(c)
 
 static func bell_curve(x: float, mean: float, std_dev: float=0.2) -> float:
-	return (1/(std_dev*sqrt(2*PI)))*exp(1)**(-(1/10)*((x-mean)/std_dev)**2)
+	return (1.0/(std_dev*sqrt(2.0*PI)))*exp(1.0)**(-(1.0/10.0)*((x-mean)/std_dev)**2.0)

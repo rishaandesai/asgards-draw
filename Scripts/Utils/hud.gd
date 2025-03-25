@@ -1,4 +1,5 @@
 extends Node
+class_name HUD
 
 @export var Styles: Array[Theme]
 

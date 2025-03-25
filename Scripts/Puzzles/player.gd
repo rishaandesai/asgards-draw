@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 const SPEED = 150.0
 const PUSH_FORCE = 10.0  # Adjust for stronger/weaker pushing

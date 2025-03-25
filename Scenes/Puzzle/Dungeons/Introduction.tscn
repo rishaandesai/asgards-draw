@@ -1,19 +1,19 @@
 [gd_scene load_steps=44 format=4 uid="uid://bll4fs43d0x86"]
 
-[ext_resource type="PackedScene" uid="uid://dpbglpsa0dedh" path="res://Scenes/Puzzle/Player.tscn" id="1_g5x23"]
-[ext_resource type="Texture2D" uid="uid://dkaxpvkoe8t43" path="res://Resources/Textures/World/Dungeon_Tileset.png" id="1_mdv3u"]
-[ext_resource type="PackedScene" uid="uid://blwcmxhpw2rxe" path="res://Scenes/Utils/HUD.tscn" id="1_ti1bm"]
-[ext_resource type="PackedScene" uid="uid://cbuqk5k1icn0c" path="res://Scenes/Puzzle/enemy.tscn" id="2_8l3nt"]
-[ext_resource type="PackedScene" uid="uid://ddho1cag5vw4w" path="res://Scenes/Puzzle/MoveableBox.tscn" id="2_hf7vf"]
-[ext_resource type="PackedScene" uid="uid://c4tlntw1bs3yu" path="res://Scenes/Puzzle/enemy_path.tscn" id="2_op4cu"]
-[ext_resource type="PackedScene" uid="uid://ca72xlhs8s4vt" path="res://Scenes/Puzzle/Door.tscn" id="3_0xdip"]
-[ext_resource type="PackedScene" uid="uid://dxe674mclqi16" path="res://Scenes/Puzzle/Trigger.tscn" id="4_iuctw"]
-[ext_resource type="Script" uid="uid://chyoxxykbrsah" path="res://card_class.gd" id="13_25pbl"]
-[ext_resource type="Texture2D" uid="uid://u3fovhq7q6k4" path="res://Resources/Textures/Player/wasd-icons.png" id="13_op4cu"]
-[ext_resource type="PackedScene" uid="uid://d04gjnousl6hx" path="res://Scenes/Objects/Chest.tscn" id="14_8l3nt"]
-[ext_resource type="Resource" uid="uid://bgxcgjr2mcpnb" path="res://Resources/Cards/Sword of Power/SwordofPower.tres" id="14_d0yig"]
-[ext_resource type="Resource" uid="uid://cbee8niac5m5y" path="res://Resources/Jokers/Transfeminator/Transfeminator.tres" id="15_kwl8l"]
-[ext_resource type="PackedScene" uid="uid://dnhf3dqoap620" path="res://Scenes/Puzzle/level_win.tscn" id="16_xiqgv"]
+[ext_resource type="PackedScene" uid="uid://blwcmxhpw2rxe" path="res://Scenes/Utils/HUD.tscn" id="1_rx1i6"]
+[ext_resource type="PackedScene" uid="uid://cbuqk5k1icn0c" path="res://Scenes/Puzzle/enemy.tscn" id="2_xonnj"]
+[ext_resource type="PackedScene" uid="uid://c4tlntw1bs3yu" path="res://Scenes/Puzzle/enemy_path.tscn" id="3_wu77e"]
+[ext_resource type="Texture2D" uid="uid://dkaxpvkoe8t43" path="res://Resources/Textures/World/Dungeon_Tileset.png" id="4_w61yd"]
+[ext_resource type="PackedScene" uid="uid://ca72xlhs8s4vt" path="res://Scenes/Puzzle/Door.tscn" id="5_suq1r"]
+[ext_resource type="PackedScene" uid="uid://dpbglpsa0dedh" path="res://Scenes/Puzzle/Player.tscn" id="6_dr1wo"]
+[ext_resource type="PackedScene" uid="uid://ddho1cag5vw4w" path="res://Scenes/Puzzle/MoveableBox.tscn" id="7_v77ao"]
+[ext_resource type="PackedScene" uid="uid://dxe674mclqi16" path="res://Scenes/Puzzle/Trigger.tscn" id="8_73cgr"]
+[ext_resource type="Texture2D" uid="uid://u3fovhq7q6k4" path="res://Resources/Textures/Player/wasd-icons.png" id="9_mky6w"]
+[ext_resource type="PackedScene" uid="uid://d04gjnousl6hx" path="res://Scenes/Objects/Chest.tscn" id="10_5lk7u"]
+[ext_resource type="Script" uid="uid://chyoxxykbrsah" path="res://card_class.gd" id="11_86y2r"]
+[ext_resource type="Resource" uid="uid://cbee8niac5m5y" path="res://Resources/Jokers/Transfeminator/Transfeminator.tres" id="12_gcylb"]
+[ext_resource type="Resource" uid="uid://bgxcgjr2mcpnb" path="res://Resources/Cards/Sword of Power/SwordofPower.tres" id="13_rkav8"]
+[ext_resource type="PackedScene" uid="uid://dnhf3dqoap620" path="res://Scenes/Puzzle/level_win.tscn" id="14_q6noo"]
 
 [sub_resource type="Curve2D" id="Curve2D_8l3nt"]
 _data = {
@@ -85,7 +85,7 @@ polygon = PackedVector2Array(0.591555, -0.807205, -8, -0.708284, -8, 8, 0.7894, 
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kwl8l"]
-texture = ExtResource("1_mdv3u")
+texture = ExtResource("4_w61yd")
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 1
@@ -529,14 +529,14 @@ repeat = 1
 
 [node name="StartWorld" type="Node2D"]
 
-[node name="HUD" parent="." instance=ExtResource("1_ti1bm")]
+[node name="HUD" parent="." instance=ExtResource("1_rx1i6")]
 
-[node name="Enemy" parent="." node_paths=PackedStringArray("path") instance=ExtResource("2_8l3nt")]
+[node name="Enemy" parent="." node_paths=PackedStringArray("path") instance=ExtResource("2_xonnj")]
 position = Vector2(573, 526)
 scale = Vector2(0.20001, 0.20001)
 path = NodePath("../EnemyPath")
 
-[node name="EnemyPath" parent="." instance=ExtResource("2_op4cu")]
+[node name="EnemyPath" parent="." instance=ExtResource("3_wu77e")]
 position = Vector2(626, 344)
 scale = Vector2(0.6, 0.6)
 curve = SubResource("Curve2D_8l3nt")
@@ -563,61 +563,61 @@ z_index = -1
 position = Vector2(749.261, 433.72)
 tile_set = SubResource("TileSet_tdap5")
 
-[node name="Door" parent="." instance=ExtResource("3_0xdip")]
+[node name="Door" parent="." instance=ExtResource("5_suq1r")]
 position = Vector2(312, 834)
 scale = Vector2(4.04, 3)
 door_id = "D"
 
-[node name="Player" parent="." instance=ExtResource("1_g5x23")]
+[node name="Player" parent="." instance=ExtResource("6_dr1wo")]
 position = Vector2(312, 575)
 scale = Vector2(0.5, 0.5)
 
-[node name="RigidBody2D2" parent="." instance=ExtResource("2_hf7vf")]
+[node name="RigidBody2D2" parent="." instance=ExtResource("7_v77ao")]
 position = Vector2(289, 613)
 
-[node name="Trigger" parent="." instance=ExtResource("4_iuctw")]
+[node name="Trigger" parent="." instance=ExtResource("8_73cgr")]
 z_index = 6
 position = Vector2(622, 642)
 scale = Vector2(0.332117, 0.35208)
 trigger_id = "A"
 
-[node name="Door2" parent="." instance=ExtResource("3_0xdip")]
+[node name="Door2" parent="." instance=ExtResource("5_suq1r")]
 position = Vector2(900, 532)
 scale = Vector2(6.5, 3)
 door_id = "A"
 
-[node name="Door4" parent="." instance=ExtResource("3_0xdip")]
+[node name="Door4" parent="." instance=ExtResource("5_suq1r")]
 position = Vector2(311, 789)
 scale = Vector2(3.99999, 3)
 door_id = "E"
 
-[node name="Trigger2" parent="." instance=ExtResource("4_iuctw")]
+[node name="Trigger2" parent="." instance=ExtResource("8_73cgr")]
 z_index = 6
 position = Vector2(459, 738)
 scale = Vector2(0.332117, 0.35208)
 trigger_id = "G"
 
-[node name="RigidBody2D3" parent="." instance=ExtResource("2_hf7vf")]
+[node name="RigidBody2D3" parent="." instance=ExtResource("7_v77ao")]
 position = Vector2(350, 614)
 
-[node name="Trigger4" parent="." instance=ExtResource("4_iuctw")]
+[node name="Trigger4" parent="." instance=ExtResource("8_73cgr")]
 z_index = 6
 position = Vector2(349, 626)
 scale = Vector2(0.332117, 0.35208)
 trigger_id = "E"
 
-[node name="Door3" parent="." instance=ExtResource("3_0xdip")]
+[node name="Door3" parent="." instance=ExtResource("5_suq1r")]
 position = Vector2(623, 799)
 scale = Vector2(6.5, 3)
 door_id = "G"
 
-[node name="Trigger5" parent="." instance=ExtResource("4_iuctw")]
+[node name="Trigger5" parent="." instance=ExtResource("8_73cgr")]
 z_index = 6
 position = Vector2(315, 811)
 scale = Vector2(2.01212, 0.699478)
 trigger_id = "D"
 
-[node name="Trigger6" parent="." instance=ExtResource("4_iuctw")]
+[node name="Trigger6" parent="." instance=ExtResource("8_73cgr")]
 z_index = 6
 position = Vector2(313, 811)
 scale = Vector2(2.25212, 0.632119)
@@ -630,6 +630,7 @@ offset_left = 293.0
 offset_top = 264.0
 offset_right = 333.0
 offset_bottom = 304.0
+metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="WASD"]
 layout_mode = 1
@@ -647,37 +648,37 @@ scale = Vector2(0.48, 0.47998)
 [node name="W" type="Sprite2D" parent="WASD/VBoxContainer"]
 position = Vector2(19, -4)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("13_op4cu")
+texture = ExtResource("9_mky6w")
 region_enabled = true
 region_rect = Rect2(95.9318, 176.069, 15.0717, 15.8898)
 
 [node name="A" type="Sprite2D" parent="WASD/VBoxContainer"]
 position = Vector2(-6, 22)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("13_op4cu")
+texture = ExtResource("9_mky6w")
 region_enabled = true
 region_rect = Rect2(0.00647068, 144.008, 15.0326, 15.9405)
 
 [node name="S" type="Sprite2D" parent="WASD/VBoxContainer"]
 position = Vector2(19, 22)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("13_op4cu")
+texture = ExtResource("9_mky6w")
 region_enabled = true
 region_rect = Rect2(31.9395, 176.069, 15.1521, 15.8898)
 
 [node name="D" type="Sprite2D" parent="WASD/VBoxContainer"]
 position = Vector2(44, 22)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("13_op4cu")
+texture = ExtResource("9_mky6w")
 region_enabled = true
 region_rect = Rect2(47.9337, 143.952, 15.1058, 16.0165)
 
-[node name="Chest" parent="." instance=ExtResource("14_8l3nt")]
+[node name="Chest" parent="." instance=ExtResource("10_5lk7u")]
 position = Vector2(621, 580)
-possible_cards = Array[ExtResource("13_25pbl")]([ExtResource("15_kwl8l"), ExtResource("14_d0yig")])
+possible_cards = Array[ExtResource("11_86y2r")]([ExtResource("12_gcylb"), ExtResource("13_rkav8")])
 num_cards = 2
 
-[node name="LevelWin" parent="." instance=ExtResource("16_xiqgv")]
+[node name="LevelWin" parent="." instance=ExtResource("14_q6noo")]
 position = Vector2(949, 341)
 
 [node name="EditorLight" type="PointLight2D" parent="."]
