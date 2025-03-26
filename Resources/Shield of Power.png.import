@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4xmj4arkjf5m"
-path="res://.godot/imported/mainlevbuild.png-d963511bbb0dbca319fd54349afb621f.ctex"
+uid="uid://byskq7wf21x44"
+path="res://.godot/imported/Shield of Power.png-5a0ae7ac13189ef97ff044d5af724c9c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mainlevbuild.png"
-dest_files=["res://.godot/imported/mainlevbuild.png-d963511bbb0dbca319fd54349afb621f.ctex"]
+source_file="res://Resources/Shield of Power.png"
+dest_files=["res://.godot/imported/Shield of Power.png-5a0ae7ac13189ef97ff044d5af724c9c.ctex"]
 
 [params]
 

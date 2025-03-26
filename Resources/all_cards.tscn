@@ -1,11 +1,11 @@
 [gd_scene load_steps=11 format=3 uid="uid://dra5ryvhaquj6"]
 
 [ext_resource type="Script" uid="uid://ba8ujomlsd2bh" path="res://Resources/Play_Cards.gd" id="1_bdyji"]
-[ext_resource type="Script" uid="uid://chyoxxykbrsah" path="res://card_class.gd" id="2_2a7f0"]
+[ext_resource type="Script" uid="uid://chyoxxykbrsah" path="res://Scripts/card_class.gd" id="2_2a7f0"]
 [ext_resource type="Texture2D" uid="uid://ct4a7gllvn2g3" path="res://Resources/Jokers/Transfeminator/Transfeminator.png" id="3_v8sg4"]
 [ext_resource type="Texture2D" uid="uid://b4h6vw3eea612" path="res://Resources/Cards/Sword of Power/SwordofPoweer.png" id="4_5yv4f"]
-[ext_resource type="Texture2D" uid="uid://byskq7wf21x44" path="res://Shield of Power.png" id="5_w8vp4"]
-[ext_resource type="Texture2D" uid="uid://pa7xqqqegiq1" path="res://mult.png" id="5_xobll"]
+[ext_resource type="Texture2D" uid="uid://byskq7wf21x44" path="res://Resources/Shield of Power.png" id="5_w8vp4"]
+[ext_resource type="Texture2D" uid="uid://pa7xqqqegiq1" path="res://Resources/mult.png" id="5_xobll"]
 
 [sub_resource type="Resource" id="Resource_4bdno"]
 script = ExtResource("2_2a7f0")

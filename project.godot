@@ -12,9 +12,9 @@ config_version=5
 
 config/name="Asgard's Draw"
 run/main_scene="uid://ci88icfnl4g5e"
-config/features=PackedStringArray("4.4", "C#", "Forward Plus")
-boot_splash/image="res://Asgard's Draw.png"
-config/icon="res://Asgard's Draw.svg"
+config/features=PackedStringArray("4.4", "Forward Plus")
+boot_splash/image="res://Resources/Asgard's Draw.png"
+config/icon="res://Resources/Asgard's Draw.svg"
 
 [autoload]
 

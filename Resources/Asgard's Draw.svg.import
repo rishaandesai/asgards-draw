@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://byskq7wf21x44"
-path="res://.godot/imported/Shield of Power.png-de635d12b2cdc0f1b33dba90f3716027.ctex"
+uid="uid://dv06odlant100"
+path="res://.godot/imported/Asgard's Draw.svg-697bcdc52695f509deba9fc070b2ed65.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shield of Power.png"
-dest_files=["res://.godot/imported/Shield of Power.png-de635d12b2cdc0f1b33dba90f3716027.ctex"]
+source_file="res://Resources/Asgard's Draw.svg"
+dest_files=["res://.godot/imported/Asgard's Draw.svg-697bcdc52695f509deba9fc070b2ed65.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

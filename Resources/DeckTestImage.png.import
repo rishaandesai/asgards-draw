@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bagal18tust7j"
-path="res://.godot/imported/Asgard's Draw.png-e76b2d674e711f616e10c2b0399a3dfd.ctex"
+uid="uid://of556ujxxsvb"
+path="res://.godot/imported/DeckTestImage.png-a8166d8a9e2000f12ed964f882649e13.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asgard's Draw.png"
-dest_files=["res://.godot/imported/Asgard's Draw.png-e76b2d674e711f616e10c2b0399a3dfd.ctex"]
+source_file="res://Resources/DeckTestImage.png"
+dest_files=["res://.godot/imported/DeckTestImage.png-a8166d8a9e2000f12ed964f882649e13.ctex"]
 
 [params]
 

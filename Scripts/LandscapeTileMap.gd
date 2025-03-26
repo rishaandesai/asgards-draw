@@ -4,7 +4,7 @@ var noise = FastNoiseLite.new()
 var moisture_noise = FastNoiseLite.new()
 
 var world_size = 4096
-var chunk_size: int = 16
+var chunk_size: int = 4096
 var terrain_layer = 0
 
 var deep_water_tile = Vector2i(3, 0)
@@ -36,7 +36,7 @@ func _ready():
 	moisture_noise.fractal_octaves = 5
 	moisture_noise.fractal_gain = 0.4
 
-	var gradient = load_square_gradient("res://square_gradient.png")
+	var gradient = load_square_gradient("res://Resources/square_gradient.png")
 	var raw_noise_map = generate_raw_noise()
 	generate_island(raw_noise_map, gradient)
 

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Joker" load_steps=3 format=3]
 
-[ext_resource type="Script" path="res://Resources/Jokers/ComboMaster/ComboMaster.gd" id="1_pupyt"]
-[ext_resource type="Script" path="res://Scripts/Jokers/joker_class.gd" id="2_0libv"]
+[ext_resource type="Script" uid="uid://dxi4un27gqwmt" path="res://Resources/Jokers/ComboMaster/ComboMaster.gd" id="1_pupyt"]
+[ext_resource type="Script" uid="uid://cq25g6c1lqxxd" path="res://Scripts/Jokers/joker_class.gd" id="2_0libv"]
 
 [resource]
 script = ExtResource("2_0libv")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dv06odlant100"
-path="res://.godot/imported/Asgard's Draw.svg-00fa8f9604756328aa65d5190f00f3d6.ctex"
+uid="uid://b4xmj4arkjf5m"
+path="res://.godot/imported/mainlevbuild.png-eadb43f4e9b55a13016419ac301ff6c2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asgard's Draw.svg"
-dest_files=["res://.godot/imported/Asgard's Draw.svg-00fa8f9604756328aa65d5190f00f3d6.ctex"]
+source_file="res://Resources/mainlevbuild.png"
+dest_files=["res://.godot/imported/mainlevbuild.png-eadb43f4e9b55a13016419ac301ff6c2.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false
