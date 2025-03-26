@@ -1,10 +1,10 @@
 extends TileMap
 
-var dungeon_noise := FastNoiseLite.new()
-var dungeon_tile := Vector2i(0, 3)
-var dungeon_layer := 0
-var global_seed := 87885
-var world_size := 4096
+var dungeon_noise: FastNoiseLite = FastNoiseLite.new()
+var dungeon_tile: Vector2i = Vector2i(0, 3)
+var dungeon_layer: int = 0
+var global_seed: int = 87885
+var world_size: int = 4096
 
 func generate_dungeons(land_positions: Array):
 	print("dungeon generation started")
@@ -37,6 +37,7 @@ func generate_dungeons(land_positions: Array):
 					var tile_pos = chunk_origin + Vector2i(dx, dy)
 					if tile_pos in land_set:
 						set_cell(dungeon_layer, tile_pos, 0, dungeon_tile)
+						SaveData.dungeons.append(DungeonSave.new(Vector2i(world_size, world_size), Vector2i(tile_pos), SaveData.dungeons.size()))
 			used[chunk_origin] = true
 
 	var total_time = (Time.get_ticks_msec() - start_time) / 1000.0

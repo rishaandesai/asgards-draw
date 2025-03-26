@@ -1,9 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://do65h7y1jo0vp"]
+[gd_scene load_steps=7 format=3 uid="uid://3oblft0iouyq"]
 
 [ext_resource type="Texture2D" uid="uid://cilhppecjec3g" path="res://tiles2.png" id="1_kqxwy"]
 [ext_resource type="Script" uid="uid://dcdksjvxydvno" path="res://LandscapeTileMap.gd" id="2_6sewn"]
 [ext_resource type="Script" uid="uid://db08jcnjarh4j" path="res://StructuresTileMap.gd" id="3_03na7"]
-[ext_resource type="PackedScene" path="res://character_body_2d.tscn" id="3_urwxa"]
+[ext_resource type="PackedScene" uid="uid://bll20e2uo08n0" path="res://character_body_2d.tscn" id="3_urwxa"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ptltt"]
 texture = ExtResource("1_kqxwy")

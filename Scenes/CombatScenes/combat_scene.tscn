@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bbx1nawk7xl5d"]
+[gd_scene load_steps=9 format=3 uid="uid://c55c2431783b8"]
 
 [ext_resource type="PackedScene" uid="uid://b5l372d456hso" path="res://Scenes/CombatScenes/card_container.tscn" id="1_ck2br"]
 [ext_resource type="PackedScene" uid="uid://dv4u7nqs3roj7" path="res://Scenes/CombatScenes/Util/deck.tscn" id="2_kja1g"]

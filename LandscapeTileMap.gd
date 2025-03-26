@@ -4,6 +4,7 @@ var noise = FastNoiseLite.new()
 var moisture_noise = FastNoiseLite.new()
 
 var world_size = 4096
+var chunk_size: int = 16
 var terrain_layer = 0
 
 var deep_water_tile = Vector2i(3, 0)
@@ -49,7 +50,7 @@ func _place_player_and_dungeons():
 	$"../StructuresTilemap".generate_dungeons(land_positions)
 
 func load_square_gradient(path):
-	var img = Image.new()
+	var img: Image = Image.new()
 	if img.load(path) == OK:
 		print("loaded %s" % path)
 		var gradient = []
@@ -84,32 +85,32 @@ func generate_raw_noise():
 	return raw_noise
 
 func generate_island(raw_noise, gradient):
-	for x in range(world_size):
-		for y in range(world_size):
-			var noise_val = raw_noise[x][y]
-			var final_val = clamp(noise_val - (gradient[x][y] * 0.8), 0.0, 1.0)
-
-			if x == 0 or y == 0 or x == world_size - 1 or y == world_size - 1:
-				set_cell(terrain_layer, Vector2i(x, y), 0, deep_water_tile)
-				continue
-
-			if final_val < 0.2:
-				set_cell(terrain_layer, Vector2i(x, y), 0, deep_water_tile)
-				water_positions.append(Vector2i(x, y))
-			elif final_val < 0.25:
-				set_cell(terrain_layer, Vector2i(x, y), 0, shallow_water_tile)
-			elif final_val > 0.7:
-				set_cell(terrain_layer, Vector2i(x, y), 0, snow_tile)
-				land_positions.append(Vector2i(x, y))
-			else:
-				var moisture_val = moisture_noise.get_noise_2d(float(x), float(y)) * 0.5 + 0.5
-				if moisture_val > 0.7:
-					set_cell(terrain_layer, Vector2i(x, y), 0, wet_grass_tile)
-				elif moisture_val < 0.3:
-					set_cell(terrain_layer, Vector2i(x, y), 0, dry_grass_tile)
+	for c in range((world_size/chunk_size)**2):
+		var curr_chunk: Array[Tile] = []
+		for x in range(chunk_size):
+			for y in range(chunk_size):
+				var noise_val = raw_noise[x][y]
+				var final_val = clamp(noise_val - (gradient[x][y] * 0.8), 0.0, 1.0)
+	
+				if final_val < 0.2:
+					set_cell(terrain_layer, Vector2i(x, y), 0, deep_water_tile)
+					water_positions.append(Vector2i(x, y))
+					curr_chunk.append(Tile.new(Vector2i(c*chunk_size+x, c*chunk_size+y), Tile.TileTypes.deep_water_tile))
+				elif final_val < 0.25:
+					set_cell(terrain_layer, Vector2i(x, y), 0, shallow_water_tile)
+					curr_chunk.append(Tile.new(Vector2i(c*chunk_size+x, c*chunk_size+y), Tile.TileTypes.deep_water_tile))
+				elif final_val > 0.7:
+					set_cell(terrain_layer, Vector2i(x, y), 0, snow_tile)
+					land_positions.append(Vector2i(x, y))
 				else:
-					set_cell(terrain_layer, Vector2i(x, y), 0, normal_grass_tile)
-				land_positions.append(Vector2i(x, y))
+					var moisture_val = moisture_noise.get_noise_2d(float(x), float(y)) * 0.5 + 0.5
+					if moisture_val > 0.7:
+						set_cell(terrain_layer, Vector2i(x, y), 0, wet_grass_tile)
+					elif moisture_val < 0.3:
+						set_cell(terrain_layer, Vector2i(x, y), 0, dry_grass_tile)
+					else:
+						set_cell(terrain_layer, Vector2i(x, y), 0, normal_grass_tile)
+					land_positions.append(Vector2i(x, y))
 
 func place_player_on_land():
 	if land_positions.size() > 0:
