@@ -19,7 +19,8 @@ particle_flag_disable_z = true
 emission_shape = 3
 emission_box_extents = Vector3(1024, 1, 1)
 gravity = Vector3(0, 200, 0)
-scale_max = 7.0
+scale_min = 0.75
+scale_max = 5.25
 color_initial_ramp = SubResource("GradientTexture1D_gtit6")
 alpha_curve = SubResource("CurveTexture_fsaj5")
 turbulence_enabled = true
@@ -27,9 +28,10 @@ turbulence_influence_min = 0.02
 turbulence_influence_max = 0.08
 
 [node name="SnowParticles" type="Node2D"]
+scale = Vector2(1, 1.03291)
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-position = Vector2(1024, 0)
+position = Vector2(1082, 14.5221)
 amount = 5000
 lifetime = 30.0
 preprocess = 30.0

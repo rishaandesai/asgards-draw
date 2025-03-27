@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://3oblft0iouyq"]
+[gd_scene load_steps=11 format=3 uid="uid://3oblft0iouyq"]
 
 [ext_resource type="Texture2D" uid="uid://cilhppecjec3g" path="res://Resources/tiles2.png" id="1_kqxwy"]
 [ext_resource type="Script" uid="uid://dcdksjvxydvno" path="res://Scripts/LandscapeTileMap.gd" id="2_6sewn"]
 [ext_resource type="Script" uid="uid://db08jcnjarh4j" path="res://Scripts/StructuresTileMap.gd" id="3_03na7"]
-[ext_resource type="PackedScene" uid="uid://bll20e2uo08n0" path="res://Scenes/character_body_2d.tscn" id="3_urwxa"]
+[ext_resource type="Texture2D" uid="uid://dfy2g3a1f7ksd" path="res://Resources/4_Seasons_Trees.png" id="4_bof3k"]
+[ext_resource type="PackedScene" uid="uid://dpbglpsa0dedh" path="res://Scenes/Puzzle/Player.tscn" id="4_wjo83"]
+[ext_resource type="PackedScene" uid="uid://dpnm1gs222nrg" path="res://Scenes/ParticleEffects/Environment.tscn" id="5_wjo83"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ptltt"]
 texture = ExtResource("1_kqxwy")
@@ -27,6 +29,42 @@ texture = ExtResource("1_kqxwy")
 [sub_resource type="TileSet" id="TileSet_md0cj"]
 sources/0 = SubResource("TileSetAtlasSource_ptltt")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wsdrl"]
+texture = ExtResource("4_bof3k")
+0:0/next_alternative_id = 2
+0:0/0 = 0
+1:0/next_alternative_id = 2
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+0:1/next_alternative_id = 2
+0:1/0 = 0
+1:1/next_alternative_id = 2
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+0:2/next_alternative_id = 2
+0:2/0 = 0
+1:2/next_alternative_id = 2
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_86376"]
+sources/0 = SubResource("TileSetAtlasSource_wsdrl")
+
 [node name="Node2D" type="Node2D"]
 
 [node name="LandscapeTilemap" type="TileMap" parent="."]
@@ -39,5 +77,12 @@ tile_set = SubResource("TileSet_md0cj")
 format = 2
 script = ExtResource("3_03na7")
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("3_urwxa")]
-scale = Vector2(0.1, 0.1)
+[node name="EnvironmentTilemap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_86376")
+format = 2
+
+[node name="Player" parent="." instance=ExtResource("4_wjo83")]
+scale = Vector2(0.4, 0.4)
+
+[node name="Environment" parent="." instance=ExtResource("5_wjo83")]
+visible = false

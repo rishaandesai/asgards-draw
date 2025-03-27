@@ -1,3 +1,8 @@
-[gd_scene format=3 uid="uid://edpaytsqosof"]
+[gd_scene load_steps=2 format=3 uid="uid://edpaytsqosof"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_28lcy"]
 
 [node name="UpwardSparks" type="Node2D"]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("ShaderMaterial_28lcy")

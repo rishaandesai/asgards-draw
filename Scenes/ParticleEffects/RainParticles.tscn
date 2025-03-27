@@ -1,3 +1,5 @@
-[gd_scene format=3 uid="uid://bhq70riysrygf"]
+[gd_scene format=3 uid="uid://ri80urra1q1u"]
 
 [node name="RainParticles" type="Node2D"]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]

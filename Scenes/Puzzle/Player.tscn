@@ -1,7 +1,8 @@
-[gd_scene load_steps=68 format=3 uid="uid://dpbglpsa0dedh"]
+[gd_scene load_steps=69 format=3 uid="uid://dpbglpsa0dedh"]
 
 [ext_resource type="Script" uid="uid://cfaa8xy3xqc3n" path="res://Scripts/Puzzles/player.gd" id="1_gufl8"]
 [ext_resource type="Texture2D" uid="uid://l2qeoe5d6iqi" path="res://Resources/Textures/Player/idle.png" id="1_kna8y"]
+[ext_resource type="Script" uid="uid://b8khvcgb06de2" path="res://Scenes/Puzzle/Make_Ellipse.gd" id="2_5cq3y"]
 [ext_resource type="Texture2D" uid="uid://c034mf20ewaqq" path="res://Resources/Textures/Player/idle_reversed.png" id="2_eaiqo"]
 [ext_resource type="Texture2D" uid="uid://bjt31fx6rggjm" path="res://Resources/Textures/Player/run.png" id="2_sq6j3"]
 [ext_resource type="Texture2D" uid="uid://dd4ev7yahptsc" path="res://Resources/Textures/Player/run_reversed.png" id="4_jg5l8"]
@@ -663,6 +664,12 @@ position = Vector2(-0.5, 12)
 scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_x0ipt")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.554337, 12.0289)
+rotation = 3.14159
+scale = Vector2(0.159998, -21.84)
+script = ExtResource("2_5cq3y")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -1)
 scale = Vector2(3, 3)
@@ -676,10 +683,10 @@ libraries = {
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
-position_smoothing_enabled = true
-position_smoothing_speed = 10.0
+position_smoothing_speed = 25.0
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
 position = Vector2(0, 2)
 scale = Vector2(158.25, 157.375)
 energy = 0.0
@@ -691,6 +698,7 @@ texture = SubResource("GradientTexture2D_3seim")
 texture_scale = 0.05
 
 [node name="PointLight2D2" type="PointLight2D" parent="."]
+visible = false
 position = Vector2(0, 316.75)
 scale = Vector2(25043.1, 24766.9)
 editor_only = true
@@ -700,3 +708,5 @@ shadow_color = Color(0.0470677, 0.0166552, 0.0264808, 1)
 shadow_filter = 1
 texture = SubResource("GradientTexture2D_3seim")
 texture_scale = 0.05
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
