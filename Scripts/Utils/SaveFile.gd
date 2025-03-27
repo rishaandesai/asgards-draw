@@ -26,8 +26,7 @@ var completed_dungeons: Array[int] = []
 ## All dungeons within the world
 var dungeons: Array[DungeonSave] = []
 ## World Data
-# TODO Rishaan please implement this variable
-var world
+var world: Dictionary[Vector2i, Chunk] = {}
 
 # Contructor, will create a new save file.
 func _init() -> void:
@@ -45,7 +44,7 @@ func _init() -> void:
 	deck = []
 	jokers = []
 	dungeons = load('res://Scripts/Utils/populate_POIs.gd').generate_POI_positions()
-	# world = generate_world() TODO 
+	world = load('res://Scripts/World/LandscapeTileMap.gd').generate_island()
 	save()
 
 func save() -> void:
