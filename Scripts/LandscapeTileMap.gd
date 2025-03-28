@@ -159,17 +159,29 @@ func _place_player_and_dungeons():
 
 func place_player_on_land():
 	if land_positions.size() > 0:
-		var spawn_position = land_positions.pick_random()
-		var tile_size = Vector2(16, 16)
-		var world_pos = Vector2(spawn_position) * tile_size
-		player.position = world_pos + tile_size / 2
-		print("player spawned on land at %s" % spawn_position)
+		var center_tile = Vector2i(world_size / 2, world_size / 2)
+		var candidate_positions = []
+		for pos in land_positions:
+			if pos.x >= center_tile.x - 300 and pos.x <= center_tile.x + 300 and pos.y >= center_tile.y - 300 and pos.y <= center_tile.y + 300:
+				candidate_positions.append(pos)
+		if candidate_positions.size() > 0:
+			var spawn_position = candidate_positions.pick_random()
+			var tile_size = Vector2(16, 16)
+			var world_pos = Vector2(spawn_position) * tile_size
+			player.position = world_pos + tile_size / 2
+			print("player spawned on land at %s" % spawn_position)
+		else:
+			var fallback = center_tile
+			var tile_size = Vector2(16, 16)
+			var world_pos = Vector2(fallback) * tile_size
+			player.position = world_pos + tile_size / 2
+			print("no valid land positions found in center region. placing player at fallback: %s" % fallback)
 	else:
 		var fallback = Vector2i(world_size / 2, world_size / 2)
 		var world_pos = Vector2(fallback) * Vector2(16, 16)
 		player.position = world_pos + Vector2(8, 8)
 		print("no valid land positions found. placing player at fallback: %s" % fallback)
-		
+
 # attaches water shader to the TileMap material and passes relevant parameters
 func apply_water_shader():
 	var shader := preload("res://Resources/Shaders/WaterShader.gdshader")

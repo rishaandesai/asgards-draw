@@ -68,6 +68,7 @@ sources/0 = SubResource("TileSetAtlasSource_wsdrl")
 [node name="Node2D" type="Node2D"]
 
 [node name="LandscapeTilemap" type="TileMap" parent="."]
+position = Vector2(0, 1)
 tile_set = SubResource("TileSet_md0cj")
 format = 2
 script = ExtResource("2_6sewn")

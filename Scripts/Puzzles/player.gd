@@ -11,22 +11,24 @@ const TILE_SIZE = 16
 @onready var camera = $Camera2D
 @onready var animation_player = $AnimationPlayer
 @onready var ray = $RayCast2D
-@onready var terrain = $"../LandscapeTilemap"
 
+var terrain
 var last_direction = "front"
 
-var last_position = Vector2()
-var target_position = Vector2()
-var movedir = Vector2()
+var last_position = Vector2.ZERO
+var target_position = Vector2.ZERO
+var movedir = Vector2.ZERO
 
 func _ready() -> void:
-	position = position.snapped(Vector2(TILE_SIZE, TILE_SIZE))
-	last_position = position
-	target_position = position
+	terrain = $"../LandscapeTilemap"
 	var tweener = create_tween()
 	tweener.tween_property($PointLight2D, "energy", 1.0, 2)
 
 func _physics_process(delta: float) -> void:
+	if last_position == Vector2.ZERO:
+		last_position = position
+		target_position = position
+
 	if position == target_position:
 		get_movedir()
 		last_position = position
@@ -76,9 +78,7 @@ func get_movedir():
 	movedir.x = -int(LEFT) + int(RIGHT)
 	movedir.y = -int(UP) + int(DOWN)
 
-	if movedir.x != 0 and movedir.y != 0:
-		movedir = Vector2.ZERO
-	if movedir != Vector2.ZERO:
+	if movedir != Vector2.ZERO and terrain != null:
 		var target_tile_pos = terrain.local_to_map(position + movedir * TILE_SIZE)
 		var tile_id = terrain.get_cell_source_id(0, target_tile_pos)
 		var tile_name = "None"
