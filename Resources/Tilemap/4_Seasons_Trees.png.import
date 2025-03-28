@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dfy2g3a1f7ksd"
-path="res://.godot/imported/4_Seasons_Trees.png-01c93cd7e84ed972879995c50c914865.ctex"
+path="res://.godot/imported/4_Seasons_Trees.png-2d223739eb38a21cab10665130d0afb3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/4_Seasons_Trees.png"
-dest_files=["res://.godot/imported/4_Seasons_Trees.png-01c93cd7e84ed972879995c50c914865.ctex"]
+source_file="res://Resources/Tilemap/4_Seasons_Trees.png"
+dest_files=["res://.godot/imported/4_Seasons_Trees.png-2d223739eb38a21cab10665130d0afb3.ctex"]
 
 [params]
 

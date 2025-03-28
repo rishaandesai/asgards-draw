@@ -4,7 +4,7 @@ class_name Player
 const SPEED = 150.0
 const PUSH_FORCE = 10.0
 const ZOOM_FACTOR = 10.0
-const MIN_ZOOM = 0.1
+const MIN_ZOOM = 0.05
 const MAX_ZOOM = 3.0
 const TILE_SIZE = 16
 

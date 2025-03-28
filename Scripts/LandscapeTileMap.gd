@@ -19,6 +19,7 @@ var snow_tile = Vector2i(0, 0)
 
 # player reference
 @onready var player = get_parent().get_node("Player")
+@onready var props_tilemap = $"../PropsTilemap"
 
 # track terrain type for other systems
 var land_positions = []
@@ -31,21 +32,18 @@ func _ready():
 	print("world generation started")
 	var start_time = Time.get_ticks_msec()
 
-	# base noise setup
 	noise.noise_type = FastNoiseLite.TYPE_SIMPLEX
 	noise.seed = global_seed
 	noise.frequency = 0.001
 	noise.fractal_octaves = log(world_size)/log(2)
 	noise.fractal_gain = 0.5
 
-	# secondary moisture noise
 	moisture_noise.noise_type = FastNoiseLite.TYPE_SIMPLEX
 	moisture_noise.seed = global_seed + 9999
 	moisture_noise.frequency = 0.0007
 	moisture_noise.fractal_octaves = 5
 	moisture_noise.fractal_gain = 0.4
 
-	# load gradient map & generate noise/island
 	var gradient = load_square_gradient("res://Resources/square_gradient.png")
 	var raw_noise_map = generate_raw_noise()
 	generate_island(raw_noise_map, gradient)
@@ -54,7 +52,6 @@ func _ready():
 	var total_time = (Time.get_ticks_msec() - start_time) / 1000.0
 	print("world generation complete. (%.2f seconds total)" % total_time)
 
-# loads a square gradient texture and samples it into a 2D float array
 func load_square_gradient(path):
 	var img: Image = Image.new()
 	if img.load(path) == OK:
@@ -64,7 +61,6 @@ func load_square_gradient(path):
 		var img_size = img.get_size()
 		var img_width = img_size.x
 		var img_height = img_size.y
-
 		for x in range(world_size):
 			gradient[x] = []
 			for y in range(world_size):
@@ -79,7 +75,6 @@ func load_square_gradient(path):
 		printerr("square gradient not loaded from %s" % path)
 		return null
 
-# generates raw base noise values (0.0 to 1.0)
 func generate_raw_noise():
 	var raw_noise = []
 	raw_noise.resize(world_size)
@@ -90,11 +85,7 @@ func generate_raw_noise():
 			raw_noise[x].append(noise_val)
 	return raw_noise
 
-# builds island terrain using base noise and gradient mask
 func generate_island(raw_noise, gradient):
-	var total_tiles = world_size * world_size
-	var processed_tiles = 0
-
 	var normal_grass_tiles = [Vector2i(1, 10), Vector2i(2, 10), Vector2i(3, 10)]
 	var wet_grass_tiles = [Vector2i(1, 11), Vector2i(2, 11), Vector2i(3, 11)]
 	var dry_grass_tiles = [Vector2i(6, 14), Vector2i(7, 14), Vector2i(8, 14)]
@@ -131,26 +122,20 @@ func generate_island(raw_noise, gradient):
 					continue
 				elif final_val > 0.7:
 					if ice_mask[x][y]:
-						var ice_variant = ice_tiles.pick_random()
-						set_cell(terrain_layer, tile_pos, 0, ice_variant)
+						set_cell(terrain_layer, tile_pos, 0, ice_tiles.pick_random())
 					else:
-						var snow_variant = snow_tiles.pick_random()
-						set_cell(terrain_layer, tile_pos, 0, snow_variant)
+						set_cell(terrain_layer, tile_pos, 0, snow_tiles.pick_random())
 					land_positions.append(tile_pos)
 				else:
-					var moisture_val = moisture_noise.get_noise_2d(float(x), float(y)) * 0.5 + 0.5
-					if moisture_val > 0.7:
-						var wet_variant = wet_grass_tiles.pick_random()
-						set_cell(terrain_layer, tile_pos, 0, wet_variant)
-					elif moisture_val < 0.3:
-						var dry_variant = dry_grass_tiles.pick_random()
-						set_cell(terrain_layer, tile_pos, 0, dry_variant)
+					var m = moisture_noise.get_noise_2d(float(x), float(y)) * 0.5 + 0.5
+					if m > 0.7:
+						set_cell(terrain_layer, tile_pos, 0, wet_grass_tiles.pick_random())
+					elif m < 0.3:
+						set_cell(terrain_layer, tile_pos, 0, dry_grass_tiles.pick_random())
 					else:
-						var normal_variant = normal_grass_tiles.pick_random()
-						set_cell(terrain_layer, tile_pos, 0, normal_variant)
+						set_cell(terrain_layer, tile_pos, 0, normal_grass_tiles.pick_random())
 					land_positions.append(tile_pos)
 
-# smoothing pass to eliminate tiny noisy edges
 func smooth_terrain_pass():
 	for x in range(1, world_size - 1):
 		for y in range(1, world_size - 1):
@@ -170,9 +155,8 @@ func smooth_terrain_pass():
 			elif land_count <= 3 and (center != deep_water_tile and center != shallow_water_tile):
 				set_cell(terrain_layer, Vector2i(x, y), 0, deep_water_tile)
 
-# places the player on a random land tile, or fallback center
 func _place_player_and_dungeons():
-	await get_tree().process_frame  # Ensures terrain is fully ready
+	await get_tree().process_frame
 	place_player_on_land()
 	smooth_terrain_pass()
 	land_positions.clear()
@@ -182,6 +166,7 @@ func _place_player_and_dungeons():
 			if cell != deep_water_tile and cell != shallow_water_tile:
 				land_positions.append(Vector2i(x, y))
 	$"../StructuresTilemap".generate_dungeons(land_positions)
+	generate_big_trees()
 
 func place_player_on_land():
 	if land_positions.size() > 0:
@@ -193,22 +178,18 @@ func place_player_on_land():
 		if candidate_positions.size() > 0:
 			var spawn_position = candidate_positions.pick_random()
 			var tile_size = Vector2(16, 16)
-			var world_pos = Vector2(spawn_position) * tile_size
-			player.position = world_pos + tile_size / 2
+			player.position = Vector2(spawn_position) * tile_size + tile_size / 2
 			print("player spawned on land at %s" % spawn_position)
 		else:
 			var fallback = center_tile
 			var tile_size = Vector2(16, 16)
-			var world_pos = Vector2(fallback) * tile_size
-			player.position = world_pos + tile_size / 2
+			player.position = Vector2(fallback) * tile_size + tile_size / 2
 			print("no valid land positions found in center region. placing player at fallback: %s" % fallback)
 	else:
 		var fallback = Vector2i(world_size / 2, world_size / 2)
-		var world_pos = Vector2(fallback) * Vector2(16, 16)
-		player.position = world_pos + Vector2(8, 8)
+		player.position = Vector2(fallback) * Vector2(16, 16) + Vector2(8, 8)
 		print("no valid land positions found. placing player at fallback: %s" % fallback)
 
-# attaches water shader to the TileMap material and passes relevant parameters
 func apply_water_shader():
 	var shader := preload("res://Resources/Shaders/WaterShader.gdshader")
 	var mat := ShaderMaterial.new()
@@ -220,3 +201,66 @@ func apply_water_shader():
 	mat.set_shader_parameter("toneColor", Color(0.8, 0.9, 1.0, 1.0))
 	mat.set_shader_parameter("topColor", Color(1.0, 1.0, 1.0, 1.0))
 	self.material = mat
+
+func generate_big_trees():
+	var rng = RandomNumberGenerator.new()
+	rng.seed = global_seed + 5678
+	var occupied = {}
+
+	for tile_pos in land_positions:
+		if rng.randf() > 0.04:
+			continue
+
+		if tile_pos in occupied:
+			continue
+
+		var atlas_tile = get_cell_atlas_coords(terrain_layer, tile_pos)
+		var land_type = "normal"
+		if atlas_tile in [Vector2i(1, 14), Vector2i(2, 14), Vector2i(3, 14)]:
+			land_type = "cold"
+		elif atlas_tile in [Vector2i(1, 11), Vector2i(2, 11), Vector2i(3, 11)]:
+			land_type = "wet"
+		elif atlas_tile in [Vector2i(6, 14), Vector2i(7, 14), Vector2i(8, 14)]:
+			land_type = "dry"
+
+		var pattern_indices = []
+
+		# normal trees
+		if land_type == "normal":
+			pattern_indices = [0, 1, 2, 3]
+			if rng.randf() < 0.05:
+				pattern_indices += [12, 13, 14, 15, 16, 17, 18]
+
+		# cold trees
+		elif land_type == "cold":
+			pattern_indices = [4, 5, 6, 7, 22, 23, 24, 25]
+
+		# wet trees
+		elif land_type == "wet":
+			pattern_indices = [8, 9, 10, 11]
+
+		# dry trees
+		elif land_type == "dry":
+			pattern_indices = [19, 20, 21]
+
+		var pattern_id = pattern_indices.pick_random()
+		var pattern = props_tilemap.tile_set.get_pattern(pattern_id)
+		if not pattern:
+			continue
+
+		var offsets = pattern.get_cell_positions()
+		var overlap = false
+		for offset in offsets:
+			var abs_pos = tile_pos + offset
+			if abs_pos in occupied:
+				overlap = true
+				break
+
+		if overlap:
+			continue
+
+		for offset in offsets:
+			occupied[tile_pos + offset] = true
+
+		props_tilemap.set_pattern(0, tile_pos, pattern)
+		props_tilemap.set_layer_z_index(0, 1)
