@@ -3,9 +3,9 @@ class_name Player
 
 const SPEED = 150.0
 const PUSH_FORCE = 10.0
-const ZOOM_FACTOR = 5.0
+const ZOOM_FACTOR = 10.0
 const MIN_ZOOM = 0.1
-const MAX_ZOOM = 5.0
+const MAX_ZOOM = 3.0
 const TILE_SIZE = 16
 
 @onready var camera = $Camera2D
@@ -18,6 +18,11 @@ var last_direction = "front"
 var last_position = Vector2.ZERO
 var target_position = Vector2.ZERO
 var movedir = Vector2.ZERO
+
+var zoom_hold_add = false
+var zoom_hold_sub = false
+var zoom_hold_timer_add = 0.0
+var zoom_hold_timer_sub = 0.0
 
 func _ready() -> void:
 	terrain = $"../LandscapeTilemap"
@@ -49,17 +54,40 @@ func _physics_process(delta: float) -> void:
 	else:
 		animation_player.play("idle_" + last_direction)
 
-	if Input.is_physical_key_pressed(KEY_EQUAL) or Input.is_physical_key_pressed(KEY_KP_ADD):
-		camera.zoom *= ZOOM_FACTOR
-		camera.zoom = camera.zoom.clamp(Vector2(MIN_ZOOM, MIN_ZOOM), Vector2(MAX_ZOOM, MAX_ZOOM))
+	if zoom_hold_add:
+		zoom_hold_timer_add += delta
+		if zoom_hold_timer_add >= 0.5:
+			camera.zoom *= ZOOM_FACTOR
+			camera.zoom = camera.zoom.clamp(Vector2(MIN_ZOOM, MIN_ZOOM), Vector2(MAX_ZOOM, MAX_ZOOM))
+			zoom_hold_timer_add = 0.0
 
-	if Input.is_physical_key_pressed(KEY_MINUS) or Input.is_physical_key_pressed(KEY_KP_SUBTRACT):
-		camera.zoom /= ZOOM_FACTOR
-		camera.zoom = camera.zoom.clamp(Vector2(MIN_ZOOM, MIN_ZOOM), Vector2(MAX_ZOOM, MAX_ZOOM))
-		await get_tree().create_timer(0.25).timeout
+	if zoom_hold_sub:
+		zoom_hold_timer_sub += delta
+		if zoom_hold_timer_sub >= 0.5:
+			camera.zoom /= ZOOM_FACTOR
+			camera.zoom = camera.zoom.clamp(Vector2(MIN_ZOOM, MIN_ZOOM), Vector2(MAX_ZOOM, MAX_ZOOM))
+			zoom_hold_timer_sub = 0.0
 
 	_handle_pushing()
 	z_index = clamp(int(position.y), 0, 4096)
+
+func _input(event):
+	if event is InputEventKey and event.pressed:
+		if event.physical_keycode == KEY_EQUAL or event.physical_keycode == KEY_KP_ADD:
+			camera.zoom *= ZOOM_FACTOR
+			camera.zoom = camera.zoom.clamp(Vector2(MIN_ZOOM, MIN_ZOOM), Vector2(MAX_ZOOM, MAX_ZOOM))
+			zoom_hold_add = true
+			zoom_hold_timer_add = 0.0
+		elif event.physical_keycode == KEY_MINUS or event.physical_keycode == KEY_KP_SUBTRACT:
+			camera.zoom /= ZOOM_FACTOR
+			camera.zoom = camera.zoom.clamp(Vector2(MIN_ZOOM, MIN_ZOOM), Vector2(MAX_ZOOM, MAX_ZOOM))
+			zoom_hold_sub = true
+			zoom_hold_timer_sub = 0.0
+	elif event is InputEventKey and not event.pressed:
+		if event.physical_keycode == KEY_EQUAL or event.physical_keycode == KEY_KP_ADD:
+			zoom_hold_add = false
+		elif event.physical_keycode == KEY_MINUS or event.physical_keycode == KEY_KP_SUBTRACT:
+			zoom_hold_sub = false
 
 func _handle_pushing():
 	for i in get_slide_collision_count():
@@ -75,8 +103,24 @@ func get_movedir():
 	var UP = Input.is_action_pressed("move_up")
 	var DOWN = Input.is_action_pressed("move_down")
 
-	movedir.x = -int(LEFT) + int(RIGHT)
-	movedir.y = -int(UP) + int(DOWN)
+	var dir_x = -int(LEFT) + int(RIGHT)
+	var dir_y = -int(UP) + int(DOWN)
+
+	var test_dir = Vector2.ZERO
+
+	if dir_x != 0:
+		var check_pos = terrain.local_to_map(position + Vector2(dir_x, 0) * TILE_SIZE)
+		var tile_coords = terrain.get_cell_atlas_coords(0, check_pos)
+		if tile_coords != Vector2i(3, 0) and tile_coords != Vector2i(3, 2):
+			test_dir.x = dir_x
+
+	if dir_y != 0:
+		var check_pos = terrain.local_to_map(position + Vector2(0, dir_y) * TILE_SIZE)
+		var tile_coords = terrain.get_cell_atlas_coords(0, check_pos)
+		if tile_coords != Vector2i(3, 0) and tile_coords != Vector2i(3, 2):
+			test_dir.y = dir_y
+
+	movedir = test_dir.normalized()
 
 	if movedir != Vector2.ZERO:
 		ray.target_position = movedir * TILE_SIZE / 2
