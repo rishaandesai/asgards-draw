@@ -95,34 +95,60 @@ func generate_island(raw_noise, gradient):
 	var total_tiles = world_size * world_size
 	var processed_tiles = 0
 
-	for c in range((world_size/chunk_size)**2):
-		var curr_chunk: Array[Tile] = []
+	var normal_grass_tiles = [Vector2i(1, 10), Vector2i(2, 10), Vector2i(3, 10)]
+	var wet_grass_tiles = [Vector2i(1, 11), Vector2i(2, 11), Vector2i(3, 11)]
+	var dry_grass_tiles = [Vector2i(6, 14), Vector2i(7, 14), Vector2i(8, 14)]
+	var snow_tiles = [Vector2i(1, 14), Vector2i(2, 14), Vector2i(3, 14)]
+	var ice_tiles = [Vector2i(0, 24), Vector2i(0, 25), Vector2i(1, 24), Vector2i(1, 25)]
+
+	var rng = RandomNumberGenerator.new()
+	rng.seed = global_seed
+
+	var ice_mask = []
+	for x in range(world_size):
+		ice_mask.append([])
+		for y in range(world_size):
+			ice_mask[x].append(false)
+
+	for i in range(world_size / 50):
+		var w = rng.randi_range(1, 6)
+		var h = rng.randi_range(1, 6)
+		var start_x = rng.randi_range(0, world_size - w - 1)
+		var start_y = rng.randi_range(0, world_size - h - 1)
+		for dx in range(w):
+			for dy in range(h):
+				ice_mask[start_x + dx][start_y + dy] = true
+
+	for c in range((world_size / chunk_size) ** 2):
 		for x in range(chunk_size):
 			for y in range(chunk_size):
+				var tile_pos = Vector2i(x, y)
 				var noise_val = raw_noise[x][y]
 				var final_val = smoothstep(0.0, 1.0, clamp(noise_val - (gradient[x][y] * 0.8), 0.0, 1.0))
 
 				if final_val < 0.2:
-					set_cell(terrain_layer, Vector2i(x, y), 0, deep_water_tile)
-					water_positions.append(Vector2i(x, y))
-					curr_chunk.append(Tile.new(Vector2i(c*chunk_size+x, c*chunk_size+y), Tile.TileTypes.deep_water_tile))
-				elif final_val < 0.25:
-					set_cell(terrain_layer, Vector2i(x, y), 0, shallow_water_tile)
-					water_positions.append(Vector2i(x, y))
-					curr_chunk.append(Tile.new(Vector2i(c*chunk_size+x, c*chunk_size+y), Tile.TileTypes.shallow_water_tile))
+					water_positions.append(tile_pos)
+					continue
 				elif final_val > 0.7:
-					set_cell(terrain_layer, Vector2i(x, y), 0, snow_tile)
-					land_positions.append(Vector2i(x, y))
+					if ice_mask[x][y]:
+						var ice_variant = ice_tiles.pick_random()
+						set_cell(terrain_layer, tile_pos, 0, ice_variant)
+					else:
+						var snow_variant = snow_tiles.pick_random()
+						set_cell(terrain_layer, tile_pos, 0, snow_variant)
+					land_positions.append(tile_pos)
 				else:
 					var moisture_val = moisture_noise.get_noise_2d(float(x), float(y)) * 0.5 + 0.5
 					if moisture_val > 0.7:
-						set_cell(terrain_layer, Vector2i(x, y), 0, wet_grass_tile)
+						var wet_variant = wet_grass_tiles.pick_random()
+						set_cell(terrain_layer, tile_pos, 0, wet_variant)
 					elif moisture_val < 0.3:
-						set_cell(terrain_layer, Vector2i(x, y), 0, dry_grass_tile)
+						var dry_variant = dry_grass_tiles.pick_random()
+						set_cell(terrain_layer, tile_pos, 0, dry_variant)
 					else:
-						set_cell(terrain_layer, Vector2i(x, y), 0, normal_grass_tile)
-					land_positions.append(Vector2i(x, y))
-				processed_tiles += 1
+						var normal_variant = normal_grass_tiles.pick_random()
+						set_cell(terrain_layer, tile_pos, 0, normal_variant)
+					land_positions.append(tile_pos)
 
 # smoothing pass to eliminate tiny noisy edges
 func smooth_terrain_pass():
