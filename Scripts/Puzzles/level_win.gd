@@ -6,7 +6,7 @@ func _on_body_entered(body: Node2D) -> void:
 		load_overworld()
 
 func load_overworld() -> void:
-	get_tree().change_scene_to_file.call_deferred()
+	get_tree().change_scene_to_file.call_deferred("res://Scenes/World.tscn")
 	pass
 
 func dep_load_next_level() -> void:
