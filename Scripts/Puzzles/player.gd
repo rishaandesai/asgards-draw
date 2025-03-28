@@ -78,22 +78,8 @@ func get_movedir():
 	movedir.x = -int(LEFT) + int(RIGHT)
 	movedir.y = -int(UP) + int(DOWN)
 
-	if movedir != Vector2.ZERO and terrain != null:
-		var target_tile_pos = terrain.local_to_map(position + movedir * TILE_SIZE)
-		var tile_id = terrain.get_cell_source_id(0, target_tile_pos)
-		var tile_name = "None"
-		if tile_id != -1:
-			tile_name = terrain.tile_set.get_source(tile_id).resource_name
-		var walkable = [
-			"normal_grass_tile",
-			"wet_grass_tile",
-			"dry_grass_tile",
-			"snow_tile"
-		]
-		if tile_name not in walkable:
-			movedir = Vector2.ZERO
-		else:
-			ray.target_position = movedir * TILE_SIZE / 2
+	if movedir != Vector2.ZERO:
+		ray.target_position = movedir * TILE_SIZE / 2
 
 func get_tile(tile_map):
 	if tile_map is TileMap:
