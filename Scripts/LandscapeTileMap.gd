@@ -210,7 +210,6 @@ func generate_big_trees():
 	for tile_pos in land_positions:
 		if rng.randf() > 0.04:
 			continue
-
 		if tile_pos in occupied:
 			continue
 
@@ -248,7 +247,7 @@ func generate_big_trees():
 		if not pattern:
 			continue
 
-		var offsets = pattern.get_cell_positions()
+		var offsets = pattern.get_used_cells()
 		var overlap = false
 		for offset in offsets:
 			var abs_pos = tile_pos + offset
@@ -263,4 +262,3 @@ func generate_big_trees():
 			occupied[tile_pos + offset] = true
 
 		props_tilemap.set_pattern(0, tile_pos, pattern)
-		props_tilemap.set_layer_z_index(0, 1)
