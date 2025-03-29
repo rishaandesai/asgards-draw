@@ -50,29 +50,29 @@ func _place_player_and_dungeons():
 	$"../StructuresTilemap".generate_dungeons(land_positions)
 
 func load_square_gradient(path):
-	var img: Image = Image.new()
-	if img.load(path) == OK:
-		print("loaded %s" % path)
-		var gradient = []
-		gradient.resize(world_size)
-		var img_size = img.get_size()
-		var img_width = img_size.x
-		var img_height = img_size.y
+	var image_texture = load(path)
+	if image_texture is Texture2D:
+		var img: Image = image_texture.get_image()
+		if img:
+			print("loaded %s" % path)
+			var gradient = []
+			gradient.resize(world_size)
+			var img_size = img.get_size()
+			var img_width = img_size.x
+			var img_height = img_size.y
 
-		for x in range(world_size):
-			gradient[x] = []
-			for y in range(world_size):
-				var scaled_x = int(float(x) / world_size * img_width)
-				var scaled_y = int(float(y) / world_size * img_height)
-				scaled_x = clamp(scaled_x, 0, img_width - 1)
-				scaled_y = clamp(scaled_y, 0, img_height - 1)
-				var color = img.get_pixel(scaled_x, scaled_y)
-				gradient[x].append(color.r)
-
-		return gradient
-	else:
-		printerr("square gradient not loaded from %s" % path)
-		return null
+			for x in range(world_size):
+				gradient[x] = []
+				for y in range(world_size):
+					var scaled_x = int(float(x) / world_size * img_width)
+					var scaled_y = int(float(y) / world_size * img_height)
+					scaled_x = clamp(scaled_x, 0, img_width - 1)
+					scaled_y = clamp(scaled_y, 0, img_height - 1)
+					var color = img.get_pixel(scaled_x, scaled_y)
+					gradient[x].append(color.r)
+			return gradient
+	printerr("Failed to load image from: %s" % path)
+	return null
 
 func generate_raw_noise():
 	var raw_noise = []
