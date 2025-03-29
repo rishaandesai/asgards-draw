@@ -42,15 +42,10 @@ func _init() -> void:
 		shield = 100
 	}
 	deck = []
-	for i in range(0, 6):
-		for b: Card in (load("res://Resources/all_cards.tscn") as PackedScene).instantiate().AllCards:
-			var c: Card = b.duplicate(true)
-			c.affect = b.affect
-			deck.append(c)
 	jokers = []
-	var worldgen: Script = load('res://Scripts/World/LandscapeTileMap.gd')
+	var worldgen: Script = load('res://Scripts/LandscapeTileMap.gd')
 	world = worldgen.generate_island()
-	dungeons = load('res://StructuresTileMap.gd').generate_dungeons(worldgen.land_positions)
+	dungeons = load('res://Scripts/StructuresTileMap.gd').generate_dungeons(worldgen.land_positions)
 	save()
 
 func save() -> void:

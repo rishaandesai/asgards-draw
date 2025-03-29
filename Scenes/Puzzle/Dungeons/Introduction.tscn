@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dxe674mclqi16" path="res://Scenes/Puzzle/Trigger.tscn" id="8_73cgr"]
 [ext_resource type="Texture2D" uid="uid://u3fovhq7q6k4" path="res://Resources/Textures/Player/wasd-icons.png" id="9_mky6w"]
 [ext_resource type="PackedScene" uid="uid://d04gjnousl6hx" path="res://Scenes/Objects/Chest.tscn" id="10_5lk7u"]
-[ext_resource type="Script" uid="uid://chyoxxykbrsah" path="res://Scripts/card_class.gd" id="11_86y2r"]
+[ext_resource type="Script" path="res://card_class.gd" id="11_86y2r"]
 [ext_resource type="Resource" uid="uid://cbee8niac5m5y" path="res://Resources/Jokers/Transfeminator/Transfeminator.tres" id="12_gcylb"]
 [ext_resource type="Resource" uid="uid://bgxcgjr2mcpnb" path="res://Resources/Cards/Sword of Power/SwordofPower.tres" id="13_rkav8"]
 [ext_resource type="PackedScene" uid="uid://dnhf3dqoap620" path="res://Scenes/Puzzle/level_win.tscn" id="14_q6noo"]

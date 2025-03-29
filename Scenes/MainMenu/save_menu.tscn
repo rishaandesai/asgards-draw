@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dvxofoj5xeov6"]
 
 [ext_resource type="Script" uid="uid://ceks1wrd4yn0h" path="res://Scenes/MainMenu/save_menu.gd" id="1_njkui"]
-[ext_resource type="Texture2D" uid="uid://bqbcr5k3cmnfp" path="res://shine ;3.png" id="3_s43e3"]
+[ext_resource type="Texture2D" uid="uid://bqbcr5k3cmnfp" path="res://Resources/shine ;3.png" id="3_s43e3"]
 
 [node name="SaveMenu" type="Control"]
 layout_mode = 3
