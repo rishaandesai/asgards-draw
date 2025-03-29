@@ -25,7 +25,9 @@ var zoom_hold_timer_add = 0.0
 var zoom_hold_timer_sub = 0.0
 
 func _ready() -> void:
-	terrain = $"../LandscapeTilemap"
+	terrain = get_tree().get_root().find_child("LandscapeTilemap", true, false)
+	if terrain == null:
+		push_error("LandscapeTilemap not found — terrain is null and movement will crash.")
 	var tweener = create_tween()
 	tweener.tween_property($PointLight2D, "energy", 1.0, 2)
 

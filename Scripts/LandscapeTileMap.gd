@@ -36,7 +36,7 @@ func _ready():
 	moisture_noise.fractal_octaves = 5
 	moisture_noise.fractal_gain = 0.4
 
-	var gradient = load_square_gradient("res://square_gradient.png")
+	var gradient = load_square_gradient("res://Resources/square_gradient.png")
 	var raw_noise_map = generate_raw_noise()
 	generate_island(raw_noise_map, gradient)
 
@@ -85,7 +85,7 @@ func generate_raw_noise():
 	return raw_noise
 
 func generate_island(raw_noise, gradient) -> Dictionary[Vector2i, Chunk]:
-	var chunks: Dictionary
+	var chunks: Dictionary[Vector2i, Chunk] = {}
 	for c in range((world_size/chunk_size)**2):
 		var curr_chunk: Array[Tile] = []
 		var chunk_pos: Vector2i = Vector2i(c % (world_size/chunk_size), c/(world_size/chunk_size))

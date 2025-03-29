@@ -7,7 +7,7 @@ var global_seed: int = 87885
 var world_size: int = 4096
 var min_distance: int = 150
 
-func generate_dungeons(land_positions: Array):
+func generate_dungeons(land_positions: Array) -> Array[DungeonSave]:
 	print("dungeon generation started")
 	var start_time = Time.get_ticks_msec()
 
@@ -50,5 +50,13 @@ func generate_dungeons(land_positions: Array):
 			used[chunk_origin] = true
 			dungeon_positions.append(chunk_origin)
 
+	var result: Array[DungeonSave] = []
+	for i in dungeon_positions.size():
+		var pos = dungeon_positions[i]
+		var dungeon = DungeonSave.new(Vector2i(world_size, world_size), pos, i)
+		result.append(dungeon)
+
 	var total_time = (Time.get_ticks_msec() - start_time) / 1000.0
 	print("dungeon generation complete. (%.2f seconds total)" % total_time)
+
+	return result

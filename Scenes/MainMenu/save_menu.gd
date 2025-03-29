@@ -8,7 +8,10 @@ func _ready() -> void:
 	dir = DirAccess.open("user://Saves")
 	for str: StringName in dir.get_files():
 		var file = ResourceLoader.load("user://Saves/"+str)
-		$"./MarginContainer/VBoxContainer".add_child(SaveDisplay.new(file))
+		var SaveDisplayScene = preload("res://Scenes/MainMenu/Util/Save.tscn")
+		var display = SaveDisplayScene.instantiate()
+		display.save = file
+		$"./MarginContainer/VBoxContainer".add_child(display)
 
 
 func _on_panel_container_gui_input(event: InputEvent) -> void:
@@ -18,4 +21,4 @@ func _on_panel_container_gui_input(event: InputEvent) -> void:
 	if event.is_pressed():
 		var file: SaveFile = SaveFile.new()
 		SaveData.saveFile = file
-		get_tree().change_scene_to_file("res://Scenes/PUzzle/Dungeons/Introduction.tscn")
+		get_tree().change_scene_to_file("res://Scenes/Puzzle/Dungeons/Introduction.tscn")
