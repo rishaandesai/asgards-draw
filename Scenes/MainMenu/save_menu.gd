@@ -6,7 +6,7 @@ func _ready() -> void:
 	if not dir:
 		DirAccess.make_dir_absolute("user://Saves")
 	dir = DirAccess.open("user://Saves")
-	for str: StringName in dir.get_files().slice(0, 2):
+	for str: StringName in dir.get_files().slice(0, 1):
 		var file = ResourceLoader.load("user://Saves/"+str)
 		var SaveDisplayScene = preload("res://Scenes/MainMenu/Util/Save.tscn")
 		var display = SaveDisplayScene.instantiate()

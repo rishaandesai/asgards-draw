@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dhqac31vhypmg"]
 
-[ext_resource type="Script" uid="uid://dx7pqgbk7tnqk" path="res://Scripts/Puzzles/CunkRender.gd" id="1_5nsto"]
+[ext_resource type="Script" uid="uid://dx7pqgbk7tnqk" path="res://Scripts/Puzzles/ChunkRender.gd" id="1_5nsto"]
 [ext_resource type="Texture2D" uid="uid://cilhppecjec3g" path="res://Resources/tiles2.png" id="2_gjpho"]
 [ext_resource type="PackedScene" uid="uid://dpbglpsa0dedh" path="res://Scenes/Puzzle/Player.tscn" id="3_p70al"]
 
