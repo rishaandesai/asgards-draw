@@ -3,20 +3,19 @@ extends Node2D
 var render_distance: int = 5
 var unrender_distance: int = 10
 var loaded_chunks: Dictionary[Vector2i, Chunk] = {}
-var LandscapeScript: Script = load("res://LandscapeTileMap.gd")
 
 func _ready() -> void:
-	$Player.position = Vector2(LandscapeScript.world_size/2, LandscapeScript.world_size/2)
+	$Player.position = Vector2(SaveData.saveFile.world_size/2, SaveData.saveFile.world_size/2)
 
 func _process(_delta: float) -> void:
-	var player_chunk: Vector2i = Vector2i($Player.position/LandscapeScript.chunk_size)
+	var player_chunk: Vector2i = Vector2i($Player.position/SaveData.saveFile.chunk_size)
 	
 	# Load chunks within render distance
 	for x: int in range(player_chunk.x-render_distance, player_chunk.x+render_distance):
-		if x < 0 or x > LandscapeScript.world_size/LandscapeScript.chunk_size: 
+		if x < 0 or x > SaveData.saveFile.world_size/SaveData.saveFile.chunk_size: 
 			continue
 		for y: int in range(player_chunk.y-render_distance, player_chunk.y+render_distance):
-			if y < 0 or y > LandscapeScript.world_size/LandscapeScript.chunk_size: 
+			if y < 0 or y > SaveData.saveFile.world_size/SaveData.saveFile.chunk_size: 
 				continue
 				
 			var chunk_pos = Vector2i(x,y)
@@ -24,10 +23,10 @@ func _process(_delta: float) -> void:
 				continue
 				
 			# Set all tiles for this chunk (including deep water for empty spaces)
-			for local_x in range(LandscapeScript.chunk_size):
-				for local_y in range(LandscapeScript.chunk_size):
+			for local_x in range(SaveData.saveFile.chunk_size):
+				for local_y in range(SaveData.saveFile.chunk_size):
 					var local_pos = Vector2i(local_x, local_y)
-					var global_pos = local_pos + (chunk_pos * LandscapeScript.chunk_size)
+					var global_pos = local_pos + (chunk_pos * SaveData.saveFile.chunk_size)
 					
 					var tile_type = Tile.TileTypes.deep_water_tile
 					
@@ -41,7 +40,7 @@ func _process(_delta: float) -> void:
 							tile_type = chunk.tiles[local_pos].type
 					
 					# Set the tile on the tilemap
-					$"World Layer".set_cells_terrain_connect(0, [global_pos], 0, tile_type)
+					$"LandscapeTilemap".set_cells_terrain_connect([global_pos],0 , 0, tile_type)
 	
 	# Unload chunks outside unrender distance
 	var chunks_to_unload = []
@@ -51,10 +50,10 @@ func _process(_delta: float) -> void:
 			chunks_to_unload.append(chunk_pos)
 			
 			# Clear all tiles for this chunk
-			for local_x in range(LandscapeScript.chunk_size):
-				for local_y in range(LandscapeScript.chunk_size):
+			for local_x in range(SaveData.saveFile.chunk_size):
+				for local_y in range(SaveData.saveFile.chunk_size):
 					var local_pos = Vector2i(local_x, local_y)
-					var global_pos = local_pos + (chunk_pos * LandscapeScript.chunk_size)
+					var global_pos = local_pos + (chunk_pos * SaveData.saveFile.chunk_size)
 					$"World Layer".erase_cell(0, global_pos)
 	
 	# Remove unloaded chunks from loaded_chunks

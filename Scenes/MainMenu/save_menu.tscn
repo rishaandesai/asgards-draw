@@ -41,10 +41,6 @@ theme_override_constants/separation = 50
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="ClickCatcher" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer"]
-layout_mode = 2
-flat = true
-
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 20

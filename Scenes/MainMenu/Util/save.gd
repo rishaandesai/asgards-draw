@@ -19,4 +19,4 @@ func _ready():
 func _on_click():
 	print("Loading save:", save.name)
 	SaveData.saveFile = save
-	get_tree().change_scene_to_file("res://Scenes/World/world.tscn")
+	get_tree().change_scene_to_file("res://Scenes/world.tscn")
