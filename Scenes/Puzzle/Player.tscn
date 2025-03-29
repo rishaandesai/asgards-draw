@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cfaa8xy3xqc3n" path="res://Scripts/Puzzles/player.gd" id="1_gufl8"]
 [ext_resource type="Texture2D" uid="uid://l2qeoe5d6iqi" path="res://Resources/Textures/Player/idle.png" id="1_kna8y"]
-[ext_resource type="Script" path="res://Scenes/Puzzle/Make_Ellipse.gd" id="2_5cq3y"]
+[ext_resource type="Script" uid="uid://b8khvcgb06de2" path="res://Scenes/Puzzle/Make_Ellipse.gd" id="2_5cq3y"]
 [ext_resource type="Texture2D" uid="uid://c034mf20ewaqq" path="res://Resources/Textures/Player/idle_reversed.png" id="2_eaiqo"]
 [ext_resource type="Texture2D" uid="uid://bjt31fx6rggjm" path="res://Resources/Textures/Player/run.png" id="2_sq6j3"]
 [ext_resource type="Texture2D" uid="uid://dd4ev7yahptsc" path="res://Resources/Textures/Player/run_reversed.png" id="4_jg5l8"]

@@ -112,13 +112,13 @@ func get_movedir():
 
 	if dir_x != 0:
 		var check_pos = terrain.local_to_map(position + Vector2(dir_x, 0) * TILE_SIZE)
-		var tile_coords = terrain.get_cell_atlas_coords(0, check_pos)
+		var tile_coords = terrain.get_cell_atlas_coords(check_pos)
 		if tile_coords != Vector2i(3, 0) and tile_coords != Vector2i(3, 2):
 			test_dir.x = dir_x
 
 	if dir_y != 0:
 		var check_pos = terrain.local_to_map(position + Vector2(0, dir_y) * TILE_SIZE)
-		var tile_coords = terrain.get_cell_atlas_coords(0, check_pos)
+		var tile_coords = terrain.get_cell_atlas_coords(check_pos)
 		if tile_coords != Vector2i(3, 0) and tile_coords != Vector2i(3, 2):
 			test_dir.y = dir_y
 
