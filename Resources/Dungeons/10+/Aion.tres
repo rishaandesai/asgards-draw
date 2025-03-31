@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_lk5wa")
 name = &"aions_keep"
-type = 3
-rarity = 4
-difficulty = 10.5
+type = 1
+rarity = 1
+difficulty = 2.0
 scene = ExtResource("2_f5sva")
 metadata/_custom_type_script = ExtResource("1_lk5wa")
