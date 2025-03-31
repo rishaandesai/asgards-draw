@@ -12,15 +12,17 @@ class_name DungeonSave
 
 func _init(worldSize: Vector2i, pos: Vector2i, id: int) -> void:
 	position = pos
+	print_debug("new_dungeon")
 	var diff_rating: float = (pos.distance_to(worldSize/2)/(worldSize.length()**2))*(sqrt(2)/24) ## this can go up to 12 difficulty... somehow
 	#var folder_name: String = "10+" if int(diff_rating) >= 10 else type_string(int(diff_rating))
 	var folder_name: String = "10+"
 	var folder: DirAccess = DirAccess.open("res://Resources/Dungeons/"+folder_name)
-	var dungeon_resc: Dungeon = load(folder.get_files()[range(0, folder.get_files().size()).pick_random()])
+	var dungeon_resc: Dungeon = load("res://Resources/Dungeons/"+folder_name+"/"+folder.get_files()[range(0, folder.get_files().size()).pick_random()])
 	rarity = dungeon_resc.rarity
 	type = dungeon_resc.type
 	scene = dungeon_resc.scene
 	uid = id
+	print_debug(str(uid)+" "+str(type)+" "+str(rarity))
 	super(dungeon_resc.name)
 
 static func weights(d_r: float) -> PackedFloat32Array:

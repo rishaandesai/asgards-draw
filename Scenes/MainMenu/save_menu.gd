@@ -11,7 +11,7 @@ func _ready() -> void:
 		var SaveDisplayScene = preload("res://Scenes/MainMenu/Util/Save.tscn")
 		var display = SaveDisplayScene.instantiate()
 		display.save = file
-		$"./MarginContainer/VBoxContainer".add_child(display)
+		$"./MarginContainer/ScrollContainer/VBoxContainer".add_child(display)
 
 
 func _on_panel_container_gui_input(event: InputEvent) -> void:
@@ -19,6 +19,6 @@ func _on_panel_container_gui_input(event: InputEvent) -> void:
 	event = event as InputEventMouseButton
 	
 	if event.is_pressed():
-		var file: SaveFile = SaveFile.new()
+		var file: SaveFile = SaveFile.new(true)
 		SaveData.saveFile = file
 		get_tree().change_scene_to_file("res://Scenes/Puzzle/Dungeons/Introduction.tscn")

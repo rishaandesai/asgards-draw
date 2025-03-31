@@ -11,7 +11,7 @@ var deck: Array[Card] = []
 var jokers: Array[Card] = []
 var completed_dungeons: Array[int] = []
 var dungeons: Array[DungeonSave] = []
-var world: Dictionary[Vector2i, Chunk] = {}
+@export var world: StringName ## Folder Position of the WorldFile
 var worldgen_node: Node = null
 
 var noise = FastNoiseLite.new()
@@ -33,6 +33,9 @@ var water_positions = []
 
 var global_seed = 87885
 
+var raw_noise
+var gradient
+
 func _init(new_file: bool = false) -> void:
 	var save_dir: DirAccess = DirAccess.open("user://Saves/")
 	name = StringName("Save_" + str(save_dir.get_files().size()))
@@ -47,16 +50,21 @@ func _init(new_file: bool = false) -> void:
 	}
 	deck = []
 	jokers = []
-	if new_file:
-		worldgen_node = load("res://Scripts/LandscapeTileMap.gd").new()
-		worldgen_node.name = "LandscapeTilemap"
-		var gradient = worldgen_node.load_square_gradient("res://Resources/square_gradient.png")
-		var raw_noise = worldgen_node.generate_raw_noise()
-		world = worldgen_node.generate_island(raw_noise, gradient)
-		var struct_map = load("res://Scripts/StructuresTileMap.gd").new()
-		dungeons = struct_map.generate_dungeons(worldgen_node.land_positions)
-		save()
 
+	if new_file:
+		global_seed = RandomNumberGenerator.new().randi()
+		gradient = load_square_gradient("res://Resources/square_gradient.png")
+		raw_noise = generate_raw_noise()
+		var struct_map = load("res://Scripts/StructuresTileMap.gd").new()
+
+func place_player_on_land() -> Vector2:
+	if land_positions.size() > 0:
+		var spawn_position = land_positions.pick_random()
+		return spawn_position + Vector2(12.5, 12.5)
+		print("player spawned at %s (on land)" % spawn_position)
+	else:
+		print("no valid land positions found. placing player at center of map")
+		return Vector2(world_size / 2, world_size / 2) + Vector2(12.5, 12.5)
 
 func generate_raw_noise():
 	var raw_noise = []
@@ -67,37 +75,69 @@ func generate_raw_noise():
 			var noise_val = noise.get_noise_2d(float(x), float(y)) * 0.5 + 0.5
 			raw_noise[x].append(noise_val)
 	return raw_noise
+func get_tile(global_x: int, global_y: int) -> int:
+	var noise_val = raw_noise[global_x][global_y]
+	var final_val = clamp(noise_val - (gradient[global_x][global_y] * 0.8), 0.0, 1.0)
+	var global_pos = Vector2i(global_x, global_y)
+		
+	# Determine tile type based on noise value
+	if final_val < 0.2:
+		return Tile.TileTypes.deep_water_tile
+	elif final_val < 0.25:
+		return Tile.TileTypes.shallow_water_tile
+	elif final_val > 0.7:
+		return Tile.TileTypes.snow_tile
+	else:
+		var moisture_val = 0.5
+		if moisture_val > 0.7:
+			return Tile.TileTypes.wet_grass_tile
+		elif moisture_val < 0.3:
+			return Tile.TileTypes.dry_grass_tile
+		else:
+			return Tile.TileTypes.normal_grass_tile
+
+func is_dungeon_on_tile(tile: Vector2i):
+	pass
 
 func generate_island(raw_noise, gradient) -> Dictionary[Vector2i, Chunk]:
-	var chunks: Dictionary
-	for c in range((world_size/chunk_size)**2):
-		var curr_chunk: Array[Tile] = []
-		var chunk_pos: Vector2i = Vector2i(c % (world_size/chunk_size), c/(world_size/chunk_size))
-		for x in range(chunk_size):
-			for y in range(chunk_size):
-				var noise_val = raw_noise[x][y]
-				var final_val = clamp(noise_val - (gradient[x][y] * 0.8), 0.0, 1.0)
-				var pos: Vector2i = Vector2i()
-	
-				if final_val < 0.2:
-					water_positions.append(Vector2i(x, y))
-					curr_chunk.append(Tile.new(Vector2i(c*chunk_size+x, c*chunk_size+y), Tile.TileTypes.deep_water_tile))
-				elif final_val < 0.25:
-					water_positions.append(Vector2i(x, y))
-					curr_chunk.append(Tile.new(Vector2i(c*chunk_size+x, c*chunk_size+y), Tile.TileTypes.shallow_water_tile))
-				elif final_val > 0.7:
-					land_positions.append(Vector2i(x, y))
-					curr_chunk.append(Tile.new(Vector2i(c*chunk_size+x, c*chunk_size+y), Tile.TileTypes.snow_tile))
-				else:
-					var moisture_val = 0.5 #moisture_noise.get_noise_2d(float(x), float(y)) * 0.5 + 0.5
-					if moisture_val > 0.7:
-						curr_chunk.append(Tile.new(Vector2i(c*chunk_size+x, c*chunk_size+y), Tile.TileTypes.wet_grass_tile))
-					elif moisture_val < 0.3:
-						curr_chunk.append(Tile.new(Vector2i(c*chunk_size+x, c*chunk_size+y), Tile.TileTypes.dry_grass_tile))
+	var chunks: Dictionary[Vector2i, Chunk]
+	for chunk_x in range(world_size/chunk_size):
+		for chunk_y in range(world_size/chunk_size):
+			var curr_chunk: Array[Tile] = []
+			var chunk_pos = Vector2i(chunk_x, chunk_y)
+			
+			for local_x in range(chunk_size):
+				for local_y in range(chunk_size):
+					var global_x = chunk_x * chunk_size + local_x
+					var global_y = chunk_y * chunk_size + local_y
+					
+					# Get noise value for this position
+					var noise_val = raw_noise[global_x][global_y]
+					var final_val = clamp(noise_val - (gradient[global_x][global_y] * 0.8), 0.0, 1.0)
+					var local_pos = Vector2i(local_x, local_y)
+					var global_pos = Vector2i(global_x, global_y)
+		
+					# Determine tile type based on noise value
+					if final_val < 0.2:
+						water_positions.append(global_pos)
+						curr_chunk.append(Tile.new(local_pos, Tile.TileTypes.deep_water_tile))
+					elif final_val < 0.25:
+						water_positions.append(global_pos)
+						curr_chunk.append(Tile.new(local_pos, Tile.TileTypes.shallow_water_tile))
+					elif final_val > 0.7:
+						land_positions.append(global_pos)
+						curr_chunk.append(Tile.new(local_pos, Tile.TileTypes.snow_tile))
 					else:
-						curr_chunk.append(Tile.new(Vector2i(c*chunk_size+x, c*chunk_size+y), Tile.TileTypes.normal_grass_tile))
-					land_positions.append(Vector2i(x, y))
-		chunks[chunk_pos] = Chunk.new(chunk_pos, curr_chunk)
+						var moisture_val = 0.5
+						if moisture_val > 0.7:
+							curr_chunk.append(Tile.new(local_pos, Tile.TileTypes.wet_grass_tile))
+						elif moisture_val < 0.3:
+							curr_chunk.append(Tile.new(local_pos, Tile.TileTypes.dry_grass_tile))
+						else:
+							curr_chunk.append(Tile.new(local_pos, Tile.TileTypes.normal_grass_tile))
+						land_positions.append(global_pos)
+			
+			chunks[chunk_pos] = Chunk.new(chunk_pos, curr_chunk)
 	return chunks
 
 func load_square_gradient(path):

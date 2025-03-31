@@ -7,7 +7,7 @@
 script = ExtResource("1_pmmax")
 name = &"aions_keep"
 type = 3
-rarity = 4
+rarity = 2
 difficulty = 10.5
 scene = ExtResource("2_fhyvg")
 metadata/_custom_type_script = ExtResource("1_pmmax")

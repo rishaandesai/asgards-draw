@@ -1,10 +1,11 @@
 extends Resource
-class_name Chunk
+class_name Chunk 
 
-var tiles: Dictionary[Vector2i, ChunkTile] # Array[Array[chunkTile]]
-var position: Vector2i
 
-func _init(pos: Vector2i, newTiles: Array[Tile]):
+@export var tiles: Dictionary[Vector2i, ChunkTile] # Array[Array[chunkTile]]
+@export var position: Vector2i
+
+func _init(pos: Vector2i = Vector2i(-1, -1), newTiles: Array[Tile] = []):
 	var important_tiles: Array[Tile] = newTiles.filter(func(tile: Tile): return tile.type != Tile.TileTypes.deep_water_tile)
 	if important_tiles.is_empty(): return # Filter out deep_water tiles, in an effort to reduce world file size by not saving each individual deep water tile
 	for tile: Tile in important_tiles:
