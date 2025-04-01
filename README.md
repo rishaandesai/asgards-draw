@@ -1,7 +1,7 @@
 ![Asgard's Draw Logo](Asgard's%20Draw.svg)
 # Asgard's Draw
 
-**Team Members:** Rishaan Desai and Maddy Plant
+**Team Members:** Rishaan Desai and Rhyley Plant
 
 **How would you pitch your game in one line?**
 
