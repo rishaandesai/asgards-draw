@@ -1,13 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://c55c2431783b8"]
+[gd_scene load_steps=8 format=3 uid="uid://c55c2431783b8"]
 
 [ext_resource type="PackedScene" uid="uid://b5l372d456hso" path="res://Scenes/CombatScenes/card_container.tscn" id="1_ck2br"]
 [ext_resource type="PackedScene" uid="uid://dv4u7nqs3roj7" path="res://Scenes/CombatScenes/Util/deck.tscn" id="2_kja1g"]
 [ext_resource type="PackedScene" uid="uid://rt6j0ajaffrt" path="res://Scenes/CombatScenes/combat_player.tscn" id="5_yn8se"]
-[ext_resource type="Script" uid="uid://budef7ube60t6" path="res://Scripts/CombatScenes/combat_player.gd" id="6_c4mj5"]
 [ext_resource type="Script" uid="uid://dh4en45236kku" path="res://Scripts/CombatScenes/Util/target.gd" id="6_j624e"]
 [ext_resource type="PackedScene" uid="uid://blwcmxhpw2rxe" path="res://Scenes/Utils/HUD.tscn" id="7_loea4"]
 [ext_resource type="Script" uid="uid://0fx714n61jm6" path="res://Scripts/CombatScenes/Util/enemy_manager.gd" id="7_m4rks"]
-[ext_resource type="Script" path="res://Scripts/CombatScenes/play_hand.gd" id="7_sv7pb"]
+[ext_resource type="Script" uid="uid://chp2w4b6vfq1g" path="res://Scripts/CombatScenes/play_hand.gd" id="7_sv7pb"]
 
 [node name="CombatScene" type="Node2D"]
 
@@ -80,9 +79,6 @@ theme_override_constants/margin_bottom = 50
 layout_mode = 2
 
 [node name="Jokers" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_ck2br")]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.5
 allowedTypes = Array[int]([4])
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="MarginContainer/VBoxContainer"]
@@ -92,7 +88,6 @@ size_flags_vertical = 3
 
 [node name="CombatPlayer" parent="MarginContainer/VBoxContainer/AspectRatioContainer" instance=ExtResource("5_yn8se")]
 position = Vector2(459, 180)
-script = ExtResource("6_c4mj5")
 health = 600
 max_health = 600
 
@@ -108,13 +103,9 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 15
 
 [node name="Playing" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource("1_ck2br")]
-layout_mode = 2
-size_flags_vertical = 3
 allowedTypes = Array[int]([0, 1, 2])
 
 [node name="Hand" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource("1_ck2br")]
-layout_mode = 2
-size_flags_vertical = 3
 allowedTypes = Array[int]([0, 1, 2])
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]

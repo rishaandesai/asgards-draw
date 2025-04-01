@@ -1,4 +1,4 @@
-extends Control
+extends Node2D
 class_name CardContainer
 
 var Cards: Array[CanvasCard] = []
@@ -13,7 +13,7 @@ func reorder() -> void:
 	for card: CanvasCard in Cards: 
 		card.z_index = Cards.find(card)
 		card.animationvar = 0
-		card.origin_position.x = position.x + (Cards.find(card)*size.x*scale.x)/(Cards.size())
+		card.origin_position.x = position.x + (Cards.find(card)*scale.x)/(Cards.size())
 		card.origin_position.y=0
 		card.target_position = card.origin_position
 

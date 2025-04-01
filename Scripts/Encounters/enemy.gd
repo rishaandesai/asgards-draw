@@ -9,7 +9,7 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func on_body_enter(body: Node2D):
-	if (body.get_path().get_concatenated_names() as String).split("d/").has("Player"):
+	if (body.get_path().get_concatenated_names() as String).split("/").has("Player"):
 		call_deferred("trigger_combat")
 		
 
@@ -22,7 +22,7 @@ func trigger_combat():
 	SaveData.save_scene = scene
 	for id in DoorManager.doors_by_id:
 		DoorManager.unregister_trigger(id)
-	parent.get_tree().change_scene_to_file("res://Scenes/combat_scene.tscn")
+	parent.get_tree().change_scene_to_file("res://Scenes/CombatScenes/combat_scene.tscn")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
 

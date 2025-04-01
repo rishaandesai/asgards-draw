@@ -41,11 +41,12 @@ func distribute_cards() -> void:
 
 func add_card_to_inventory(card: Card) -> void:
 	if card is Joker:
-		SaveData.jokers.append(card)
+		SaveData.saveFile.jokers.append(card)
 	else:
-		SaveData.deck.append(card)
+		SaveData.saveFile.deck.append(card)
 
 func show_card_notification(card: Card) -> void:
+	print_debug(owner)
 	owner.get_node("HUD").notify(owner.get_node("HUD").eStyles.POSITIVE, card.texture)
 
 func show_interaction_prompt() -> void:

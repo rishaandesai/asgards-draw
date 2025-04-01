@@ -61,10 +61,10 @@ func _button_pressed() -> void:
 		e.take_turn()
 
 func draw_jokers() -> void:
-	for joker: Joker in SaveData.jokers:
+	for joker: Joker in SaveData.saveFile.jokers:
 		var c = CanvasCard.init(joker)
-		get_parent().get_node("Jokers/HBoxContainer").add_child(c)
-		var container = get_node("../Jokers")
+		$"../../../Jokers/HBoxContainer".add_child(c)
+		var container = get_node("../../../Jokers")
 		c.parent_array = container.get_path()
 		container.Cards.append(c)
 		container.reorder()

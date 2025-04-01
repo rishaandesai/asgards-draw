@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bbx1nawk7xl5d"]
+[gd_scene load_steps=8 format=3 uid="uid://cef2objug7tpf"]
 
 [ext_resource type="PackedScene" uid="uid://b5l372d456hso" path="res://Scenes/CombatScenes/card_container.tscn" id="1_ck2br"]
 [ext_resource type="PackedScene" uid="uid://dv4u7nqs3roj7" path="res://Scenes/CombatScenes/Util/deck.tscn" id="2_kja1g"]
@@ -79,9 +79,6 @@ theme_override_constants/margin_bottom = 50
 layout_mode = 2
 
 [node name="Jokers" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_ck2br")]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.5
 allowedTypes = Array[int]([4])
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="MarginContainer/VBoxContainer"]
@@ -106,13 +103,9 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 15
 
 [node name="Playing" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource("1_ck2br")]
-layout_mode = 2
-size_flags_vertical = 3
 allowedTypes = Array[int]([0, 1, 2])
 
 [node name="Hand" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource("1_ck2br")]
-layout_mode = 2
-size_flags_vertical = 3
 allowedTypes = Array[int]([0, 1, 2])
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
