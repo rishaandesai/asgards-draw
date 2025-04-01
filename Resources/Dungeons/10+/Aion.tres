@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Dungeon" load_steps=3 format=3 uid="uid://cmqmgg2kstjmt"]
 
 [ext_resource type="Script" uid="uid://l6dl6mtnyi3v" path="res://Scripts/Utils/dungeons.gd" id="1_lk5wa"]
-[ext_resource type="PackedScene" uid="uid://daay405xwbq1m" path="res://Scenes/Puzzle/Dungeons/Boss Rooms/aions_keep.tscn" id="2_f5sva"]
+[ext_resource type="PackedScene" uid="uid://daay405xwbq1m" path="res://Scenes/Puzzle/Dungeons/aions_keep.tscn" id="2_f5sva"]
 
 [resource]
 script = ExtResource("1_lk5wa")

@@ -78,18 +78,10 @@ theme_override_constants/margin_bottom = 50
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="Jokers" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_ck2br")]
-allowedTypes = Array[int]([4])
-
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 size_flags_vertical = 3
-
-[node name="CombatPlayer" parent="MarginContainer/VBoxContainer/AspectRatioContainer" instance=ExtResource("5_yn8se")]
-position = Vector2(459, 180)
-health = 600
-max_health = 600
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -102,28 +94,50 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 15
 
-[node name="Playing" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource("1_ck2br")]
-allowedTypes = Array[int]([0, 1, 2])
-
-[node name="Hand" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource("1_ck2br")]
-allowedTypes = Array[int]([0, 1, 2])
-
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.17
 theme_override_constants/separation = 50
 
-[node name="PlayHand" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "Play Hand"
-script = ExtResource("7_sv7pb")
-
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 
-[node name="Deck" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/CenterContainer" instance=ExtResource("2_kja1g")]
+[node name="Jokers" parent="." instance=ExtResource("1_ck2br")]
+position = Vector2(882, 118)
+scale = Vector2(56.88, 5.56)
+allowedTypes = Array[int]([4])
+
+[node name="Playing" parent="." instance=ExtResource("1_ck2br")]
+position = Vector2(866, 793)
+scale = Vector2(57.24, 5.8)
+allowedTypes = Array[int]([0, 1, 2])
+
+[node name="Hand" parent="." instance=ExtResource("1_ck2br")]
+position = Vector2(870, 622)
+scale = Vector2(56.5634, 5.91437)
+allowedTypes = Array[int]([0, 1, 2])
+
+[node name="CombatPlayer" parent="." instance=ExtResource("5_yn8se")]
+position = Vector2(654, 230)
+health = 600
+max_health = 600
+
+[node name="Deck" parent="." instance=ExtResource("2_kja1g")]
 custom_minimum_size = Vector2(100, 140)
-layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 1681.0
+offset_top = 834.0
+offset_right = 1781.0
+offset_bottom = 974.0
 size_flags_horizontal = 0
+
+[node name="PlayHand" type="Button" parent="."]
+offset_left = 1615.0
+offset_top = 514.0
+offset_right = 1848.0
+offset_bottom = 749.0
+text = "Play Hand"
+script = ExtResource("7_sv7pb")
