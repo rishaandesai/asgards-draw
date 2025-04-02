@@ -1,11 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddho1cag5vw4w"]
+[gd_scene load_steps=5 format=3 uid="uid://ddho1cag5vw4w"]
 
 [ext_resource type="Script" uid="uid://c1j34suksnble" path="res://Scripts/Puzzles/MoveableBox.gd" id="1_inbfd"]
+[ext_resource type="Texture2D" uid="uid://dkaxpvkoe8t43" path="res://Resources/Textures/World/Dungeon_Tileset.png" id="2_wqh7v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g8v05"]
-size = Vector2(63.3333, 42.8999)
+size = Vector2(53.3333, 33.0152)
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_c0xyv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqh7v"]
+atlas = ExtResource("2_wqh7v")
+region = Rect2(50, 130, 12, 12)
 
 [node name="Box" type="RigidBody2D"]
 lock_rotation = true
@@ -13,13 +16,11 @@ script = ExtResource("1_inbfd")
 friction = 7.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(5.36442e-07, 13.0201)
+position = Vector2(0, 16.0201)
 scale = Vector2(0.6, 0.607)
 shape = SubResource("RectangleShape2D_g8v05")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 13.3185)
-scale = Vector2(1.5, 0.683)
-texture = SubResource("PlaceholderTexture2D_c0xyv")
-region_enabled = true
-region_rect = Rect2(162.771, 85.8268, 26.243, 39.4102)
+[node name="DungeonTileset" type="Sprite2D" parent="."]
+position = Vector2(1.90735e-06, 10)
+scale = Vector2(2.66667, 2.66667)
+texture = SubResource("AtlasTexture_wqh7v")

@@ -1,12 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://dxe674mclqi16"]
+[gd_scene load_steps=5 format=3 uid="uid://dxe674mclqi16"]
 
 [ext_resource type="Script" uid="uid://bm1mmfhddembp" path="res://Scripts/Puzzles/Trigger.gd" id="1_0t5i8"]
+[ext_resource type="Texture2D" uid="uid://dkaxpvkoe8t43" path="res://Resources/Textures/World/Dungeon_Tileset.png" id="2_mpo14"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0hqs6"]
+size = Vector2(60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5fn1q"]
+atlas = ExtResource("2_mpo14")
+region = Rect2(128, 48, 16, 16)
 
 [node name="Trigger" type="Area2D"]
 script = ExtResource("1_0t5i8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_0hqs6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3.75, 3.75)
+texture = SubResource("AtlasTexture_5fn1q")

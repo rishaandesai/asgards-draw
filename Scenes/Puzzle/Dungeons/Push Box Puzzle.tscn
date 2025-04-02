@@ -1,12 +1,12 @@
 [gd_scene load_steps=33 format=4 uid="uid://bi7cphbw0towj"]
 
-[ext_resource type="PackedScene" uid="uid://blwcmxhpw2rxe" path="res://Scenes/Utils/HUD.tscn" id="1_1xxyt"]
-[ext_resource type="Texture2D" uid="uid://dkaxpvkoe8t43" path="res://Resources/Textures/World/Dungeon_Tileset.png" id="2_yv84d"]
-[ext_resource type="PackedScene" uid="uid://ca72xlhs8s4vt" path="res://Scenes/Puzzle/Door.tscn" id="3_nm3h4"]
-[ext_resource type="PackedScene" uid="uid://dpbglpsa0dedh" path="res://Scenes/Puzzle/Player.tscn" id="4_kwvi7"]
-[ext_resource type="PackedScene" uid="uid://ddho1cag5vw4w" path="res://Scenes/Puzzle/MoveableBox.tscn" id="5_wygih"]
-[ext_resource type="PackedScene" uid="uid://dxe674mclqi16" path="res://Scenes/Puzzle/Trigger.tscn" id="6_uf4xk"]
-[ext_resource type="PackedScene" uid="uid://dnhf3dqoap620" path="res://Scenes/Puzzle/level_win.tscn" id="11_hu0jn"]
+[ext_resource type="PackedScene" uid="uid://blwcmxhpw2rxe" path="res://Scenes/Utils/HUD.tscn" id="1_wc5xb"]
+[ext_resource type="Texture2D" uid="uid://dkaxpvkoe8t43" path="res://Resources/Textures/World/Dungeon_Tileset.png" id="2_68qqg"]
+[ext_resource type="PackedScene" uid="uid://dpbglpsa0dedh" path="res://Scenes/Puzzle/Player.tscn" id="3_t4jyy"]
+[ext_resource type="PackedScene" uid="uid://ddho1cag5vw4w" path="res://Scenes/Puzzle/MoveableBox.tscn" id="4_wip3m"]
+[ext_resource type="PackedScene" uid="uid://dxe674mclqi16" path="res://Scenes/Puzzle/Trigger.tscn" id="5_cqavo"]
+[ext_resource type="PackedScene" uid="uid://ca72xlhs8s4vt" path="res://Scenes/Puzzle/Door.tscn" id="6_tb3gn"]
+[ext_resource type="PackedScene" uid="uid://dnhf3dqoap620" path="res://Scenes/Puzzle/level_win.tscn" id="7_vb1jp"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_op4cu"]
 polygon = PackedVector2Array(-8, -8, 0.761698, -8, 0.678608, 8, -8, 8)
@@ -72,7 +72,7 @@ polygon = PackedVector2Array(0.591555, -0.807205, -8, -0.708284, -8, 8, 0.7894, 
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6o4x5"]
-texture = ExtResource("2_yv84d")
+texture = ExtResource("2_68qqg")
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 1
@@ -497,7 +497,7 @@ terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 
 [node name="PushBoxPuzzle" type="Node2D"]
 
-[node name="HUD" parent="." instance=ExtResource("1_1xxyt")]
+[node name="HUD" parent="." instance=ExtResource("1_wc5xb")]
 
 [node name="Ground Tilemap" type="TileMapLayer" parent="."]
 z_index = -2
@@ -516,37 +516,37 @@ z_index = -1
 position = Vector2(749.261, 433.72)
 tile_set = SubResource("TileSet_tnm22")
 
-[node name="Player" parent="." instance=ExtResource("4_kwvi7")]
+[node name="Player" parent="." instance=ExtResource("3_t4jyy")]
 position = Vector2(362, 632)
 scale = Vector2(0.5, 0.5)
 
-[node name="RigidBody2D2" parent="." instance=ExtResource("5_wygih")]
+[node name="RigidBody2D2" parent="." instance=ExtResource("4_wip3m")]
 position = Vector2(316, 346)
 
-[node name="Trigger" parent="." instance=ExtResource("6_uf4xk")]
+[node name="Trigger" parent="." instance=ExtResource("5_cqavo")]
 z_index = 6
 position = Vector2(533, 363)
 scale = Vector2(0.332117, 0.35208)
 trigger_id = "A"
 
-[node name="Door2" parent="." instance=ExtResource("3_nm3h4")]
+[node name="Door2" parent="." instance=ExtResource("6_tb3gn")]
 position = Vector2(311, 493)
 scale = Vector2(1.26, 3)
 door_id = "A"
 
-[node name="Door4" parent="." instance=ExtResource("3_nm3h4")]
+[node name="Door4" parent="." instance=ExtResource("6_tb3gn")]
 position = Vector2(311, 294)
 scale = Vector2(1.19999, 3)
 door_id = "E"
 
-[node name="RigidBody2D3" parent="." instance=ExtResource("5_wygih")]
+[node name="RigidBody2D3" parent="." instance=ExtResource("4_wip3m")]
 position = Vector2(239, 571)
 
-[node name="Trigger4" parent="." instance=ExtResource("6_uf4xk")]
+[node name="Trigger4" parent="." instance=ExtResource("5_cqavo")]
 z_index = 6
 position = Vector2(126, 587)
 scale = Vector2(0.332117, 0.35208)
 trigger_id = "A"
 
-[node name="LevelWin" parent="." instance=ExtResource("11_hu0jn")]
+[node name="LevelWin" parent="." instance=ExtResource("7_vb1jp")]
 position = Vector2(312, 233)

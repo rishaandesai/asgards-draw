@@ -661,18 +661,18 @@ script = ExtResource("1_gufl8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 12)
-scale = Vector2(3, 3)
+scale = Vector2(2.24, 2.24)
 shape = SubResource("RectangleShape2D_x0ipt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-0.554337, 12.0289)
 rotation = 3.14159
-scale = Vector2(0.159998, -21.84)
+scale = Vector2(0.119465, -16.3072)
 script = ExtResource("2_5cq3y")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -1)
-scale = Vector2(3, 3)
+scale = Vector2(2.24, 2.24)
 sprite_frames = SubResource("SpriteFrames_lr7ti")
 animation = &"idle"
 

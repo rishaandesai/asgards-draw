@@ -1,13 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://dnhf3dqoap620"]
+[gd_scene load_steps=5 format=3 uid="uid://dnhf3dqoap620"]
 
 [ext_resource type="Script" uid="uid://h8kx7mxk4mjg" path="res://Scripts/Puzzles/level_win.gd" id="1_muxxm"]
+[ext_resource type="Texture2D" uid="uid://bq34biu8bxrbs" path="res://Resources/Textures/World/aions_keep.png" id="2_l1yh7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6y4w0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8dl7b"]
+atlas = ExtResource("2_l1yh7")
+region = Rect2(144, 48, 16, 16)
 
 [node name="LevelWin" type="Area2D"]
 script = ExtResource("1_muxxm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_6y4w0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_8dl7b")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

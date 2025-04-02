@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://c8w3mbkbqj307"]
+
+[ext_resource type="Script" path="res://Scripts/card_class.gd" id="1_1b53c"]
+
+[resource]
+script = ExtResource("1_1b53c")
+type = 1
+played_card_type = 0
+level = 0
+affect = {
+&"damage": 0,
+&"heal": 50,
+&"max_heal": 0,
+&"mult": 0,
+&"shield": 0
+}
+metadata/_custom_type_script = ExtResource("1_1b53c")

@@ -132,6 +132,8 @@ offset_left = 1681.0
 offset_top = 834.0
 offset_right = 1781.0
 offset_bottom = 974.0
+grow_horizontal = 1
+grow_vertical = 1
 size_flags_horizontal = 0
 
 [node name="PlayHand" type="Button" parent="."]
