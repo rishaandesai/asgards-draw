@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dra5ryvhaquj6"]
+[gd_scene load_steps=5 format=3 uid="uid://dra5ryvhaquj6"]
 
 [ext_resource type="Script" uid="uid://ba8ujomlsd2bh" path="res://Resources/Play_Cards.gd" id="1_bdyji"]
+[ext_resource type="Script" path="res://Scripts/card_class.gd" id="2_mafd6"]
+[ext_resource type="Resource" uid="uid://c8w3mbkbqj307" path="res://Resources/Cards/Heal/Heal.tres" id="3_fjor6"]
+[ext_resource type="Resource" uid="uid://bgxcgjr2mcpnb" path="res://Resources/Cards/Sword of Power/SwordofPower.tres" id="4_2k818"]
 
 [node name="AllCards" type="Node"]
 script = ExtResource("1_bdyji")
+AllCards = Array[ExtResource("2_mafd6")]([ExtResource("3_fjor6"), ExtResource("4_2k818"), ExtResource("4_2k818"), ExtResource("4_2k818"), ExtResource("4_2k818"), ExtResource("4_2k818"), ExtResource("3_fjor6"), ExtResource("3_fjor6"), ExtResource("3_fjor6"), ExtResource("3_fjor6"), ExtResource("3_fjor6")])

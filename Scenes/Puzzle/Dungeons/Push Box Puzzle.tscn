@@ -527,16 +527,16 @@ position = Vector2(316, 346)
 z_index = 6
 position = Vector2(533, 363)
 scale = Vector2(0.332117, 0.35208)
-trigger_id = "A"
+trigger_id = "E"
 
 [node name="Door2" parent="." instance=ExtResource("6_tb3gn")]
-position = Vector2(311, 493)
-scale = Vector2(1.26, 3)
+position = Vector2(311, 520)
+scale = Vector2(0.97998, 1)
 door_id = "A"
 
 [node name="Door4" parent="." instance=ExtResource("6_tb3gn")]
-position = Vector2(311, 294)
-scale = Vector2(1.19999, 3)
+position = Vector2(311, 311)
+scale = Vector2(0.95999, 0.92)
 door_id = "E"
 
 [node name="RigidBody2D3" parent="." instance=ExtResource("4_wip3m")]

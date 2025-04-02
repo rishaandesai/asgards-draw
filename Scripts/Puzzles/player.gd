@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Player
 
-const SPEED = 100.0
+const SPEED = 75.0
 const PUSH_FORCE = 10.0  # Adjust for stronger/weaker pushing
 
 @onready var animation_player = $AnimationPlayer

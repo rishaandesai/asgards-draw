@@ -1,12 +1,9 @@
-[gd_scene load_steps=42 format=4 uid="uid://bll4fs43d0x86"]
+[gd_scene load_steps=38 format=4 uid="uid://bll4fs43d0x86"]
 
 [ext_resource type="PackedScene" uid="uid://blwcmxhpw2rxe" path="res://Scenes/Utils/HUD.tscn" id="1_rx1i6"]
-[ext_resource type="PackedScene" uid="uid://cbuqk5k1icn0c" path="res://Scenes/Puzzle/enemy.tscn" id="2_xonnj"]
 [ext_resource type="Texture2D" uid="uid://dkaxpvkoe8t43" path="res://Resources/Textures/World/Dungeon_Tileset.png" id="4_w61yd"]
-[ext_resource type="Script" path="res://Scripts/enemy_tpe.gd" id="4_xonnj"]
 [ext_resource type="PackedScene" uid="uid://ca72xlhs8s4vt" path="res://Scenes/Puzzle/Door.tscn" id="5_suq1r"]
 [ext_resource type="PackedScene" uid="uid://dpbglpsa0dedh" path="res://Scenes/Puzzle/Player.tscn" id="6_dr1wo"]
-[ext_resource type="Script" uid="uid://cq25g6c1lqxxd" path="res://Scripts/Jokers/joker_class.gd" id="6_wu77e"]
 [ext_resource type="PackedScene" uid="uid://ddho1cag5vw4w" path="res://Scenes/Puzzle/MoveableBox.tscn" id="7_v77ao"]
 [ext_resource type="PackedScene" uid="uid://dxe674mclqi16" path="res://Scenes/Puzzle/Trigger.tscn" id="8_73cgr"]
 [ext_resource type="Texture2D" uid="uid://u3fovhq7q6k4" path="res://Resources/Textures/Player/wasd-icons.png" id="9_mky6w"]
@@ -503,17 +500,6 @@ terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 
 [sub_resource type="TileSet" id="TileSet_tdap5"]
 
-[sub_resource type="Resource" id="Resource_suq1r"]
-script = ExtResource("4_xonnj")
-health = 0
-max_health = 0
-shield = 0
-deck = Array[ExtResource("11_86y2r")]([])
-used = Array[ExtResource("11_86y2r")]([])
-jokers = Array[ExtResource("6_wu77e")]([])
-hand_size = 5
-metadata/_custom_type_script = ExtResource("4_xonnj")
-
 [node name="StartWorld" type="Node2D"]
 
 [node name="HUD" parent="." instance=ExtResource("1_rx1i6")]
@@ -534,11 +520,6 @@ use_kinematic_bodies = true
 z_index = -1
 position = Vector2(749.261, 433.72)
 tile_set = SubResource("TileSet_tdap5")
-
-[node name="Enemy" parent="." instance=ExtResource("2_xonnj")]
-position = Vector2(627, 330)
-scale = Vector2(0.20001, 0.20001)
-encounter = Array[ExtResource("4_xonnj")]([SubResource("Resource_suq1r")])
 
 [node name="Player" parent="." instance=ExtResource("6_dr1wo")]
 position = Vector2(312, 575)
@@ -588,7 +569,7 @@ door_id = "D"
 position = Vector2(289, 613)
 
 [node name="RigidBody2D3" parent="." instance=ExtResource("7_v77ao")]
-position = Vector2(350, 614)
+position = Vector2(350, 585)
 
 [node name="Door3" parent="." instance=ExtResource("5_suq1r")]
 position = Vector2(623, 799)

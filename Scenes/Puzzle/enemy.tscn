@@ -1,19 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbuqk5k1icn0c"]
+[gd_scene load_steps=6 format=3 uid="uid://cbuqk5k1icn0c"]
 
 [ext_resource type="Script" uid="uid://be0qng0wwww1s" path="res://Scripts/Encounters/enemy.gd" id="1_4vmqp"]
-[ext_resource type="Texture2D" uid="uid://df0ujj1p3c2fc" path="res://Resources/Textures/Enemy_Placeholder.JPG" id="2_cggb4"]
+[ext_resource type="Texture2D" uid="uid://dkcfbm12h5t7q" path="res://Resources/Textures/World/monsters.png" id="2_ewcce"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wbq1e"]
-size = Vector2(178, 83)
+size = Vector2(162, 55.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_acbfv"]
 size = Vector2(178, 88)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0wfw"]
+atlas = ExtResource("2_ewcce")
+region = Rect2(321, 199, 31, 24)
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_4vmqp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 41)
+position = Vector2(0, 54.75)
 shape = SubResource("RectangleShape2D_wbq1e")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -23,8 +27,9 @@ position = Vector2(0, 127)
 shape = SubResource("RectangleShape2D_acbfv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.317308, 0.317308)
-texture = ExtResource("2_cggb4")
+position = Vector2(1.90735e-06, 20)
+scale = Vector2(5.26683, 5.26683)
+texture = SubResource("AtlasTexture_g0wfw")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true

@@ -12,10 +12,8 @@ func reorder() -> void:
 	$HBoxContainer.queue_sort()
 	for card: CanvasCard in Cards: 
 		card.z_index = Cards.find(card)
-		card.animationvar = 0
-		card.origin_position.x = position.x + (Cards.find(card)*scale.x)/(Cards.size())
-		card.origin_position.y=0
-		card.target_position = card.origin_position
+		card.position.x = (Cards.find(card))
+		card.position.y=0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

@@ -49,6 +49,10 @@ func _init(new_file: bool = false) -> void:
 		shield = 100
 	}
 	deck = []
+	for c: Card in load("res://Resources/all_cards.tscn").instantiate().AllCards:
+		print(c)
+		deck.append(c.duplicate())
+		print(deck)
 	jokers = []
 
 	if new_file:

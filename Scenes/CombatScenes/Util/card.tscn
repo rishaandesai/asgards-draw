@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://b57h1lwg4vldy"]
+[gd_scene load_steps=4 format=3 uid="uid://b57h1lwg4vldy"]
 
 [ext_resource type="Script" uid="uid://30vn685f7srj" path="res://Scripts/CombatScenes/Util/card_test.gd" id="1_5ibw6"]
+[ext_resource type="Texture2D" uid="uid://dp21cgi6tn0i5" path="res://Resources/Cards/Heal/healcardd.png" id="2_snqti"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ceyy8"]
 size = Vector2(151, 210)
@@ -9,7 +10,6 @@ size = Vector2(151, 210)
 script = ExtResource("1_5ibw6")
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(-948.5, -407)
 collision_layer = 16
 collision_mask = 8
 
@@ -18,3 +18,5 @@ position = Vector2(75.5, 105)
 shape = SubResource("RectangleShape2D_ceyy8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(75, 105)
+texture = ExtResource("2_snqti")

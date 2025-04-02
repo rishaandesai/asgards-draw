@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://c8w3mbkbqj307"]
+[gd_resource type="Resource" script_class="Card" load_steps=3 format=3 uid="uid://c8w3mbkbqj307"]
 
 [ext_resource type="Script" path="res://Scripts/card_class.gd" id="1_1b53c"]
+[ext_resource type="Texture2D" uid="uid://dp21cgi6tn0i5" path="res://Resources/Cards/Heal/healcardd.png" id="2_7ddp0"]
 
 [resource]
 script = ExtResource("1_1b53c")
+texture = ExtResource("2_7ddp0")
 type = 1
 played_card_type = 0
 level = 0

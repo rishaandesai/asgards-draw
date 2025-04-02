@@ -11,9 +11,12 @@ func _exit_tree():
 		$CollisionShape2D.queue_free()
 
 func open_door():
-	$CollisionShape2D.set_deferred("disabled", true)  # Make door passable
+	$CollisionShape2D.set_deferred("disabled", true)
+	visible = false
+	  # Make door passable
 	modulate = Color(1, 1, 1, 0.1)  # Keep door visible
 
 func close_door():
 	$CollisionShape2D.set_deferred("disabled", false)  # Make door solid again
+	visible = true
 	modulate = Color(1, 1, 1, 1)  # Keep door visible
